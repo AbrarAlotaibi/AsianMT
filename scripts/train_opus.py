@@ -109,7 +109,7 @@ def main() -> None:
         train_dataset=train_ds,
         eval_dataset=dev_ds,
         data_collator=collator,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
     )
 
     trainer.train()
