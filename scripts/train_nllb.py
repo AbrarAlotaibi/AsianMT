@@ -42,6 +42,8 @@ def main() -> None:
     ap.add_argument("--data-dir", default="Ar-En/clean", type=Path)
     ap.add_argument("--output-dir", default="checkpoints/nllb-Ar-En", type=Path)
     ap.add_argument("--epochs", type=int, default=3)
+    ap.add_argument("--max-steps", type=int, default=-1,
+                    help="If >0, stop after this many optimizer steps (overrides epochs). For smoke tests.")
     ap.add_argument("--lr", type=float, default=3e-5)
     ap.add_argument("--batch-size", type=int, default=4)
     ap.add_argument("--grad-accum", type=int, default=8)
@@ -87,9 +89,11 @@ def main() -> None:
 
     collator = DataCollatorForSeq2Seq(tokenizer, model=model, padding="longest")
 
+    smoke = args.max_steps and args.max_steps > 0
     training_args = Seq2SeqTrainingArguments(
         output_dir=str(args.output_dir),
         num_train_epochs=args.epochs,
+        max_steps=args.max_steps,
         learning_rate=args.lr,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
@@ -97,10 +101,10 @@ def main() -> None:
         warmup_ratio=args.warmup_ratio,
         weight_decay=args.weight_decay,
         fp16=torch.cuda.is_available(),
-        eval_strategy="epoch",
-        save_strategy="epoch",
+        eval_strategy="no" if smoke else "epoch",
+        save_strategy="no" if smoke else "epoch",
         save_total_limit=2,
-        load_best_model_at_end=True,
+        load_best_model_at_end=not smoke,
         metric_for_best_model="eval_loss",
         greater_is_better=False,
         logging_steps=50,
@@ -120,9 +124,12 @@ def main() -> None:
     )
 
     trainer.train()
-    trainer.save_model(str(args.output_dir / "best"))
-    tokenizer.save_pretrained(str(args.output_dir / "best"))
-    print(f"saved best model to {args.output_dir / 'best'}")
+    if smoke:
+        print(f"smoke test completed {args.max_steps} steps (no checkpoint saved)")
+    else:
+        trainer.save_model(str(args.output_dir / "best"))
+        tokenizer.save_pretrained(str(args.output_dir / "best"))
+        print(f"saved best model to {args.output_dir / 'best'}")
 
 
 if __name__ == "__main__":
