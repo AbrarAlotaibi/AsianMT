@@ -46,6 +46,15 @@ pip install -r requirements.txt
 
 ## Run (Ar↔En)
 
+**Wrappers** — pick the one for your shell:
+```bash
+bash run_smoke.sh && bash run_nllb.sh        # Linux / macOS / Git Bash / WSL
+```
+```powershell
+.\run_smoke.ps1; .\run_nllb.ps1               # Windows PowerShell
+```
+
+**Or run the steps manually:**
 ```bash
 # 1. Clean training data (writes Ar-En/clean/)
 python scripts/clean.py
