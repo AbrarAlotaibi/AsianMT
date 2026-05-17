@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import sys
 from pathlib import Path
 
 import torch
@@ -21,6 +22,16 @@ from transformers import (
     Seq2SeqTrainer,
     Seq2SeqTrainingArguments,
 )
+
+# torch < 2.6 forces use_safetensors=True (CVE-2025-32434), which triggers a meta-tensor
+# bug in some transformers releases. Require torch >= 2.6 to keep the loading path clean.
+_TORCH_VER = tuple(int(x) for x in torch.__version__.split("+")[0].split(".")[:2])
+if _TORCH_VER < (2, 6):
+    sys.exit(
+        f"torch {torch.__version__} detected; this script requires torch >= 2.6.\n"
+        f"Fix:\n"
+        f"  conda install -n asianmt -c pytorch -c nvidia pytorch=2.6 pytorch-cuda=12.1"
+    )
 
 LANG = {"ar": "arb_Arab", "en": "eng_Latn"}
 
@@ -54,12 +65,7 @@ def main() -> None:
     args = ap.parse_args()
 
     tokenizer = AutoTokenizer.from_pretrained(args.model)
-    # use_safetensors=True avoids the CVE-2025-32434 .bin load block on torch < 2.6.
-    # low_cpu_mem_usage=False forces eager weight materialization (avoids "meta tensor" errors
-    # when the trainer later calls model.to(device)).
-    model = AutoModelForSeq2SeqLM.from_pretrained(
-        args.model, use_safetensors=True, low_cpu_mem_usage=False,
-    )
+    model = AutoModelForSeq2SeqLM.from_pretrained(args.model)
     model.gradient_checkpointing_enable()
     model.config.use_cache = False
 
