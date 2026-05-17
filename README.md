@@ -30,6 +30,14 @@ Future Asian pairs would slot in as sibling folders: `Ar-Hi/`, `Ar-Bn/`, `Ar-Id/
 
 ## Setup
 
+**Conda (recommended for local GPU machines):**
+```bash
+conda env create -f environment.yml
+conda activate asianmt
+```
+For CUDA 11.8 instead of 12.1, edit `environment.yml` (`pytorch-cuda=11.8`).
+
+**Or venv + pip:**
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install torch --index-url https://download.pytorch.org/whl/cu121
