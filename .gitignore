@@ -1,0 +1,25 @@
+# Shared task data — released to registered participants only, do not redistribute
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Model checkpoints, logs, predictions, eval artifacts
+checkpoints/
+runs/
+outputs/
+predictions/
+wandb/
+*.pt
+*.bin
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
