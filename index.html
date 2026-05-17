@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WMT26 — Low-Resource Arabic-Asian Language Translation</title>
+<meta name="description" content="WMT26 shared task on Low-Resource Arabic-Asian Language Translation, co-located with EMNLP 2026 in Budapest, Hungary." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <p class="eyebrow">EMNLP 2026 · Eleventh Conference on Machine Translation (WMT26)</p>
+      <h1>Low-Resource Arabic-Asian Language Translation</h1>
+      <p class="subtitle">Arabic-Asian MT Task · November 2026 · Budapest, Hungary</p>
+    </div>
+  </div>
+  <nav class="topnav">
+    <div class="container">
+      <div class="nav-group">
+        <span class="nav-label">Translation Tasks:</span>
+        <a href="#">General MT</a> ·
+        <a href="#">Indic MT</a> ·
+        <a class="active" href="#">Arabic-Asian MT</a> ·
+        <a href="#">Chinese-Southeast Asian MT</a> ·
+        <a href="#">Terminology</a> ·
+        <a href="#">Model Compression</a> ·
+        <a href="#">Creole MT</a> ·
+        <a href="#">Video Subtitle Translation</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-label">Evaluation Tasks:</span>
+        <a href="#">MT Test Suites</a> ·
+        <a href="#">Automated MT Evaluation</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-label">Other Tasks:</span>
+        <a href="#">Open Data</a> ·
+        <a href="#">Multilingual Instruction</a> ·
+        <a href="#">Limited Resources LLM</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="container layout">
+  <aside class="sidebar">
+    <h2 class="toc-title">On this page</h2>
+    <ul class="toc">
+      <li><a href="#announcements">Announcements</a></li>
+      <li><a href="#overview">Overview &amp; Task Description</a>
+        <ul>
+          <li><a href="#task1">Task 1: Translation into Arabic</a></li>
+          <li><a href="#task2">Task 2: Translation from Arabic</a></li>
+        </ul>
+      </li>
+      <li><a href="#goal">Goal</a></li>
+      <li><a href="#dates">Important Dates</a></li>
+      <li><a href="#data">Data</a>
+        <ul>
+          <li><a href="#test-data">Test Data (Challenge Test Set)</a></li>
+        </ul>
+      </li>
+      <li><a href="#submission">System Submission Guidelines</a>
+        <ul>
+          <li><a href="#output-instructions">Test Set Output Submission Instructions</a></li>
+          <li><a href="#naming">Submission File Naming Convention</a></li>
+          <li><a href="#description-file">System Description File</a></li>
+          <li><a href="#email">Email Submission</a></li>
+        </ul>
+      </li>
+      <li><a href="#evaluation">Evaluation</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#paper">Paper Submission</a></li>
+      <li><a href="#organizers">Organizers</a></li>
+    </ul>
+  </aside>
+
+  <article class="content">
+
+    <section id="announcements">
+      <h2>Announcements</h2>
+      <div class="callout">
+        <p>Please register your team for participation in the shared task:
+          <a href="https://forms.gle/zd9AeZem32RMEa7A9" target="_blank" rel="noopener">forms.gle/zd9AeZem32RMEa7A9</a>
+          <a class="btn btn-primary" href="https://forms.gle/zd9AeZem32RMEa7A9" target="_blank" rel="noopener">REGISTER NOW!</a>
+        </p>
+      </div>
+      <ul class="announcement-list">
+        <li><span class="badge">📢 April 8, 2026</span> Website released, and the task is announced!</li>
+        <li><em>We are still updating the page. Please keep your eye on it!</em></li>
+      </ul>
+    </section>
+
+    <section id="overview">
+      <h2>Overview and Task Description</h2>
+      <p>
+        Arabic (عربي) is one of the most widely spoken languages in the world, serving as a primary
+        means of communication across multiple countries and playing a crucial role in global domains
+        such as education, commerce, culture, and international relations. Developing robust and
+        accurate Arabic machine translation (MT) systems is therefore essential for enabling
+        cross-lingual communication, improving information accessibility, and fostering digital
+        inclusion for millions of speakers.
+      </p>
+      <p>
+        In recent years, machine translation has achieved significant progress due to advances in
+        multilingual modeling and transfer learning. These innovations have expanded MT capabilities
+        beyond high-resource languages, encouraging broader coverage of linguistically and
+        geographically diverse languages. However, many language pairs involving Arabic still suffer
+        from limited availability of parallel corpora, which remains a key bottleneck in building
+        high-quality translation systems. This challenge is particularly evident in low-resource
+        scenarios, where the lack of sufficient training data restricts the performance of
+        conventional MT approaches. Consequently, developing efficient MT systems that can operate
+        effectively with relatively small datasets is of great importance.
+      </p>
+      <p>
+        To address this need, this shared task focuses on Arabic-centric low-resource translation,
+        covering both forward and backward translation directions between Arabic and selected Asian
+        languages, namely, <strong>Bangla, Hindi, Indonesian, Urdu</strong> and <strong>English</strong>.
+      </p>
+      <p>The Low-Resource Arabic-Asian language translation task features two categories of tasks:</p>
+
+      <div class="task-grid">
+        <div class="task-card" id="task1">
+          <h3>Task 1: Translation into Arabic</h3>
+          <ul>
+            <li><strong>Sub-Task 1A:</strong> English → Arabic</li>
+            <li><strong>Sub-Task 1B:</strong> Hindi → Arabic</li>
+            <li><strong>Sub-Task 1C:</strong> Bangla → Arabic</li>
+            <li><strong>Sub-Task 1D:</strong> Indonesian → Arabic</li>
+            <li><strong>Sub-Task 1E:</strong> Urdu → Arabic</li>
+          </ul>
+        </div>
+        <div class="task-card" id="task2">
+          <h3>Task 2: Translation from Arabic</h3>
+          <ul>
+            <li><strong>Sub-Task 2A:</strong> Arabic → English</li>
+            <li><strong>Sub-Task 2B:</strong> Arabic → Hindi</li>
+            <li><strong>Sub-Task 2C:</strong> Arabic → Bangla</li>
+            <li><strong>Sub-Task 2D:</strong> Arabic → Indonesian</li>
+            <li><strong>Sub-Task 2E:</strong> Arabic → Urdu</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="goal">
+      <h2>Goal</h2>
+      <p>
+        The primary objective of this task is to develop machine translation (MT) systems capable of
+        delivering high-quality translations under limited data conditions. Participants are
+        encouraged to explore and experiment with the following approaches:
+      </p>
+      <ul class="goal-list">
+        <li><strong>Transfer Learning:</strong> Adapting knowledge from models trained on high-resource language pairs to low-resource language pair translation.</li>
+        <li><strong>Multilingual Approaches:</strong> Examining the impact of cross-lingual transfer on improving performance for low-resource language pairs.</li>
+        <li><strong>Monolingual Data Utilization:</strong> Effectively leveraging monolingual corpora to enhance translation quality using limited low-resource parallel data.</li>
+        <li><strong>Innovative Techniques:</strong> Designing and applying novel methods specifically suited for low-resource translation scenarios.</li>
+      </ul>
+    </section>
+
+    <section id="dates">
+      <h2>Important Dates</h2>
+      <table class="dates-table">
+        <thead>
+          <tr><th>Date</th><th>Milestone</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>April 8, 2026</td><td>Website released, and the task is announced!</td></tr>
+          <tr><td>April 8, 2026</td><td>Team Registration Open</td></tr>
+          <tr><td>May 20, 2026</td><td>Team Registration Close <em>(Extended)</em></td></tr>
+          <tr><td>May 16, 2026</td><td>Training, Development/validation, DevTest data release <em>(only registered participants)</em></td></tr>
+          <tr><td>June 1, 2026</td><td>Beginning of the evaluation cycle (Challenge Test Set release and run submission)</td></tr>
+          <tr><td>June 7, 2026</td><td>End of the evaluation cycle</td></tr>
+          <tr><td>June 20, 2026</td><td>Result Declaration to individual team</td></tr>
+          <tr><td>in-line with WMT26</td><td>System Paper Submission</td></tr>
+          <tr><td>November, 2026</td><td>Under EMNLP Conference</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="data">
+      <h2>Data</h2>
+      <p><strong>Releasing Soon:</strong> <a class="btn btn-outline" href="#" aria-disabled="true">DOWNLOAD 2026 TASK DATA</a></p>
+
+      <h3 id="test-data">Test Data (Challenge Test Set)</h3>
+      <p>TBA</p>
+    </section>
+
+    <section id="submission">
+      <h2>System Submission Guidelines</h2>
+
+      <h3 id="output-instructions">📝 Test Set Output Submission Instructions</h3>
+      <p>For each language pair (e.g., English → Arabic), you may submit up to:</p>
+      <ul>
+        <li><strong>Primary system</strong>
+          <ul>
+            <li>A <strong>constrained</strong> system (uses only official data), or</li>
+            <li>A system that uses <strong>additional monolingual resources, pretrained, etc.</strong>, depending on your setup (should be publicly available).</li>
+          </ul>
+        </li>
+        <li><strong>Contrastive systems</strong> <em>(Optional — may use external or additional data beyond the task set.)</em> (Up to 2 submissions allowed)</li>
+      </ul>
+      <p class="alert">🚨 Maximum: 3 submissions per language pair.</p>
+
+      <h3 id="naming">📄 Submission File Naming Convention</h3>
+      <p>Each submission file must be named using this format:</p>
+      <pre><code>&lt;TEAM_NAME&gt;_&lt;SUBMISSION_TYPE&gt;_&lt;SUB-Task No.&gt;.txt</code></pre>
+      <p>Where:</p>
+      <ul>
+        <li><strong>TEAM_NAME</strong> — Your registered team name (e.g., <code>BAHASH-AI</code>)</li>
+        <li><strong>SUBMISSION_TYPE</strong> — One of: <code>primary</code> or <code>contrastive</code></li>
+        <li><strong>Sub-Task No.</strong> — Use format like <code>Sub-Task-1A</code> for English → Arabic</li>
+      </ul>
+      <p>🔍 <strong>Example:</strong> For a primary system submission from team BAHASH-AI for English → Arabic:</p>
+      <pre><code>BAHASH-AI_primary_Sub-Task-1A.txt</code></pre>
+      <p>Repeat this pattern for all your submissions.</p>
+
+      <h3 id="description-file">📄 System Description File <span class="mandatory">(Mandatory!)</span></h3>
+      <p>You must include a brief abstract system description in one of the following formats:</p>
+      <ul>
+        <li><code>.pdf</code></li>
+        <li><code>.doc</code> / <code>.docx</code></li>
+      </ul>
+      <p>This file is mandatory. Submissions without it will not be published in the final results.</p>
+
+      <h3>📦 Packaging Your Submission</h3>
+      <p>Place the following files in a single <code>.zip</code> archive:</p>
+      <ul>
+        <li>All your system output files</li>
+        <li>The abstract system description file</li>
+      </ul>
+      <p>Name the zip file using your team name:</p>
+      <pre><code>&lt;TEAM_NAME&gt;.zip</code></pre>
+      <p>📌 <strong>Example:</strong> For team BAHASH-AI, name the file:</p>
+      <pre><code>BAHASH-AI.zip</code></pre>
+
+      <h3 id="email">📄 Email Submission</h3>
+      <p>Send your <code>.zip</code> file to the following address:</p>
+      <p><strong>Email:</strong> <a href="mailto:asianmt.wmt@gmail.com">asianmt.wmt@gmail.com</a></p>
+      <p><strong>Subject Line:</strong></p>
+      <pre><code>&lt;TEAM_NAME&gt;: Submission File for Shared Task: Low-Resource Arabic-Asian Language Translation</code></pre>
+      <p><strong>Example Subject Line:</strong></p>
+      <pre><code>BAHASH-AI: Submission File for Shared Task: Low-Resource Arabic-Asian Language Translation</code></pre>
+      <p>Thank you for participating in the shared task! We look forward to your submissions and system descriptions.</p>
+    </section>
+
+    <section id="evaluation">
+      <h2>Evaluation</h2>
+      <p>
+        Systems will undergo both <strong>automatic evaluation metrics</strong> (using BLEU, ChrF,
+        TER, COMET etc.) and <strong>human evaluation</strong> by native speakers for a comprehensive
+        assessment of translation quality.
+      </p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><a href="mailto:asianmt.wmt@gmail.com">asianmt.wmt@gmail.com</a></p>
+    </section>
+
+    <section id="paper">
+      <h2>Paper Submission</h2>
+      <p>in-line with WMT26</p>
+      <p>
+        Your system paper submission should be prepared according to the WMT instructions and
+        uploaded to START before <strong>TBA, 2026</strong>
+        (<a href="#">WMT MAIN PAGE</a>).
+      </p>
+    </section>
+
+    <section id="organizers">
+      <h2>Organizers</h2>
+      <ul class="organizers">
+        <li><strong>Sahinur Rahman Laskar</strong>, UPES, Dehradun, India</li>
+        <li><strong>Firoj Alam</strong>, Qatar Computing Research Institute, Doha, Qatar</li>
+        <li><strong>Bishwaraj Paul</strong>, Bahash-AI, Bahash Private Limited, Silchar, India</li>
+        <li><strong>Irfan Ahmad</strong>, King Fahd University of Petroleum and Minerals, Saudi Arabia</li>
+        <li><strong>Maya Silvi Lydia</strong>, Universitas Sumatera Utara, Medan, Indonesia</li>
+        <li><strong>Pankaj Dadure</strong>, UPES, Dehradun, India</li>
+      </ul>
+    </section>
+
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Last updated 2026-05-16 04:13:20 UTC</p>
+    <p>WMT26 · Eleventh Conference on Machine Translation · EMNLP 2026 · Budapest, Hungary</p>
+  </div>
+</footer>
+</body>
+</html>
