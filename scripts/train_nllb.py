@@ -54,7 +54,12 @@ def main() -> None:
     args = ap.parse_args()
 
     tokenizer = AutoTokenizer.from_pretrained(args.model)
-    model = AutoModelForSeq2SeqLM.from_pretrained(args.model, use_safetensors=True)
+    # use_safetensors=True avoids the CVE-2025-32434 .bin load block on torch < 2.6.
+    # low_cpu_mem_usage=False forces eager weight materialization (avoids "meta tensor" errors
+    # when the trainer later calls model.to(device)).
+    model = AutoModelForSeq2SeqLM.from_pretrained(
+        args.model, use_safetensors=True, low_cpu_mem_usage=False,
+    )
     model.gradient_checkpointing_enable()
     model.config.use_cache = False
 
