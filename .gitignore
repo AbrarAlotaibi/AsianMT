@@ -1,5 +1,5 @@
-# Shared task data — released to registered participants only, do not redistribute
-data/
+# Generated cleaning output (regenerable from raw with scripts/clean.py)
+*/clean/
 
 # Python
 __pycache__/

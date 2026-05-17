@@ -41,7 +41,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--direction", choices=["ar-en", "en-ar"], required=True)
     ap.add_argument("--model", default=None, help="HF model id; default picked by --direction")
-    ap.add_argument("--data-dir", default="data/clean", type=Path)
+    ap.add_argument("--data-dir", default="Ar-En/clean", type=Path)
     ap.add_argument("--output-dir", default=None, type=Path)
     ap.add_argument("--epochs", type=int, default=5)
     ap.add_argument("--lr", type=float, default=5e-5)
@@ -55,7 +55,7 @@ def main() -> None:
 
     src, tgt = args.direction.split("-")
     model_name = args.model or DEFAULT_MODEL[args.direction]
-    output_dir = args.output_dir or Path(f"checkpoints/opus-{args.direction}")
+    output_dir = args.output_dir or Path(f"checkpoints/opus-Ar-En-{args.direction}")
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)

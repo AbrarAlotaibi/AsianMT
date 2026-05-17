@@ -39,8 +39,8 @@ def load_parallel(data_dir: Path, split: str) -> list[dict]:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="facebook/nllb-200-distilled-600M")
-    ap.add_argument("--data-dir", default="data/clean", type=Path)
-    ap.add_argument("--output-dir", default="checkpoints/nllb-aren", type=Path)
+    ap.add_argument("--data-dir", default="Ar-En/clean", type=Path)
+    ap.add_argument("--output-dir", default="checkpoints/nllb-Ar-En", type=Path)
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--lr", type=float, default=3e-5)
     ap.add_argument("--batch-size", type=int, default=4)

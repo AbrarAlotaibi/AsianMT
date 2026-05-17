@@ -1,6 +1,6 @@
 """Filter parallel ar/en data: dedupe pairs, drop length-ratio and length outliers.
 
-Reads data/raw/{train,dev,devtest}.{ar,en} and writes data/clean/ with the same names.
+Reads Ar-En/{train,dev,devtest}.{ar,en} and writes Ar-En/clean/ with the same names.
 Dev and devtest are kept as-is (we never filter eval data) — only train is cleaned.
 """
 from __future__ import annotations
@@ -61,8 +61,8 @@ def copy_through(src: Path, dst: Path) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--raw-dir", default="data/raw", type=Path)
-    ap.add_argument("--out-dir", default="data/clean", type=Path)
+    ap.add_argument("--raw-dir", default="Ar-En", type=Path)
+    ap.add_argument("--out-dir", default="Ar-En/clean", type=Path)
     ap.add_argument("--max-tokens", type=int, default=200)
     ap.add_argument("--min-tokens", type=int, default=1)
     ap.add_argument("--max-ratio", type=float, default=3.0)
