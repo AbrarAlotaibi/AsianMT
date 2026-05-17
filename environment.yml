@@ -17,7 +17,7 @@ channels:
 dependencies:
   - python=3.11
   - pip
-  - pytorch>=2.1
+  - pytorch>=2.6
   - pytorch-cuda=12.1
   - pip:
       - -r requirements.txt

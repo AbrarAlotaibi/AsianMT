@@ -54,7 +54,7 @@ def main() -> None:
     args = ap.parse_args()
 
     tokenizer = AutoTokenizer.from_pretrained(args.model)
-    model = AutoModelForSeq2SeqLM.from_pretrained(args.model)
+    model = AutoModelForSeq2SeqLM.from_pretrained(args.model, use_safetensors=True)
     model.gradient_checkpointing_enable()
     model.config.use_cache = False
 
