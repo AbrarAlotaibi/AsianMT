@@ -32,6 +32,9 @@ def main() -> None:
     ap.add_argument("--output", required=True, type=Path)
     ap.add_argument("--batch-size", type=int, default=16)
     ap.add_argument("--num-beams", type=int, default=5)
+    ap.add_argument("--length-penalty", type=float, default=1.0,
+                    help="Length penalty: >1.0 favors longer outputs (useful for morphologically "
+                         "rich target languages like Arabic). Default 1.0.")
     ap.add_argument("--max-length", type=int, default=256)
     args = ap.parse_args()
 
@@ -41,7 +44,11 @@ def main() -> None:
     tokenizer = AutoTokenizer.from_pretrained(str(args.model))
     model = AutoModelForSeq2SeqLM.from_pretrained(str(args.model)).to(device).eval()
 
-    gen_kwargs = {"num_beams": args.num_beams, "max_length": args.max_length}
+    gen_kwargs = {
+        "num_beams": args.num_beams,
+        "length_penalty": args.length_penalty,
+        "max_length": args.max_length,
+    }
     if args.kind == "nllb":
         tokenizer.src_lang = NLLB_LANG[src]
         forced = tokenizer.convert_tokens_to_ids(NLLB_LANG[tgt])
