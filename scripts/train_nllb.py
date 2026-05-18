@@ -36,14 +36,16 @@ if _TORCH_VER < (2, 6):
 LANG = {"ar": "arb_Arab", "en": "eng_Latn"}
 
 
-def load_parallel(data_dir: Path, split: str) -> list[dict]:
+def load_parallel(data_dir: Path, split: str, direction: str = "both") -> list[dict]:
     ar = (data_dir / f"{split}.ar").read_text(encoding="utf-8").splitlines()
     en = (data_dir / f"{split}.en").read_text(encoding="utf-8").splitlines()
     assert len(ar) == len(en), f"{split}: {len(ar)} vs {len(en)}"
     rows = []
     for a, e in zip(ar, en):
-        rows.append({"src": a, "tgt": e, "src_lang": "ar", "tgt_lang": "en"})
-        rows.append({"src": e, "tgt": a, "src_lang": "en", "tgt_lang": "ar"})
+        if direction in ("ar-en", "both"):
+            rows.append({"src": a, "tgt": e, "src_lang": "ar", "tgt_lang": "en"})
+        if direction in ("en-ar", "both"):
+            rows.append({"src": e, "tgt": a, "src_lang": "en", "tgt_lang": "ar"})
     return rows
 
 
@@ -52,6 +54,9 @@ def main() -> None:
     ap.add_argument("--model", default="facebook/nllb-200-distilled-600M")
     ap.add_argument("--allow-cpu", action="store_true",
                     help="Allow training on CPU. Without this flag, the script exits if no GPU is found.")
+    ap.add_argument("--direction", choices=["ar-en", "en-ar", "both"], default="both",
+                    help="Train only one direction or both (default). Use a single direction "
+                         "for per-direction fine-tuning from an existing bidir checkpoint.")
     ap.add_argument("--data-dir", default="Ar-En/clean", type=Path)
     ap.add_argument("--output-dir", default="checkpoints/nllb-Ar-En", type=Path)
     ap.add_argument("--epochs", type=int, default=3)
@@ -98,9 +103,9 @@ def main() -> None:
     model.gradient_checkpointing_enable()
     model.config.use_cache = False
 
-    train_rows = load_parallel(args.data_dir, "train")
-    dev_rows = load_parallel(args.data_dir, "dev")
-    print(f"train examples: {len(train_rows)}  dev examples: {len(dev_rows)}")
+    train_rows = load_parallel(args.data_dir, "train", args.direction)
+    dev_rows = load_parallel(args.data_dir, "dev", args.direction)
+    print(f"direction: {args.direction}  train examples: {len(train_rows)}  dev examples: {len(dev_rows)}")
 
     def tokenize_batch(batch: dict) -> dict:
         # All rows in a batch share the same src/tgt direction iff the dataset is
