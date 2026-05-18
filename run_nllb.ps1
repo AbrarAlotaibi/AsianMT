@@ -18,6 +18,10 @@
 
 $ErrorActionPreference = 'Stop'
 
+# Workaround for "OMP: Error #15" caused by conda MKL + pip torch shipping
+# duplicate libiomp5md.dll on Windows.
+$env:KMP_DUPLICATE_LIB_OK = "TRUE"
+
 $DataDir = "Ar-En\clean"
 $Ckpt    = "checkpoints\nllb-Ar-En\best"
 $PredDir = "predictions"

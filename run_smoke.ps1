@@ -16,6 +16,10 @@
 
 $ErrorActionPreference = 'Stop'
 
+# Workaround for "OMP: Error #15" caused by conda MKL + pip torch shipping
+# duplicate libiomp5md.dll on Windows.
+$env:KMP_DUPLICATE_LIB_OK = "TRUE"
+
 if (-not (Test-Path "Ar-En\clean\train.ar")) {
     Write-Host ">>> running scripts/clean.py (one-time)"
     python scripts/clean.py
