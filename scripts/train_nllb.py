@@ -84,6 +84,17 @@ def main() -> None:
 
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     model = AutoModelForSeq2SeqLM.from_pretrained(args.model)
+    # Migrate legacy generation params from model.config to model.generation_config
+    # (their new home in transformers 5.x). Silences the runtime warning.
+    for k in ("max_length", "min_length", "num_beams", "early_stopping",
+              "no_repeat_ngram_size", "length_penalty"):
+        val = getattr(model.config, k, None)
+        if val is not None:
+            setattr(model.generation_config, k, val)
+            try:
+                delattr(model.config, k)
+            except AttributeError:
+                setattr(model.config, k, None)
     model.gradient_checkpointing_enable()
     model.config.use_cache = False
 

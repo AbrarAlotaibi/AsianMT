@@ -59,6 +59,15 @@ def main() -> None:
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    for k in ("max_length", "min_length", "num_beams", "early_stopping",
+              "no_repeat_ngram_size", "length_penalty"):
+        val = getattr(model.config, k, None)
+        if val is not None:
+            setattr(model.generation_config, k, val)
+            try:
+                delattr(model.config, k)
+            except AttributeError:
+                setattr(model.config, k, None)
 
     train_rows = load_parallel(args.data_dir, "train", src, tgt)
     dev_rows = load_parallel(args.data_dir, "dev", src, tgt)
