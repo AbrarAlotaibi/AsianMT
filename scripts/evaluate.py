@@ -24,21 +24,25 @@ def main() -> None:
     args = ap.parse_args()
 
     import sacrebleu
+    from sacrebleu.metrics import BLEU, CHRF, TER
 
     hyps = load(args.hyp)
     refs = load(args.ref)
     assert len(hyps) == len(refs), f"len mismatch: hyp={len(hyps)} ref={len(refs)}"
 
-    bleu = sacrebleu.corpus_bleu(hyps, [refs])
-    chrf = sacrebleu.corpus_chrf(hyps, [refs])
-    ter = sacrebleu.corpus_ter(hyps, [refs])
+    bleu_m = BLEU()
+    chrf_m = CHRF()
+    ter_m = TER()
+    bleu = bleu_m.corpus_score(hyps, [refs])
+    chrf = chrf_m.corpus_score(hyps, [refs])
+    ter = ter_m.corpus_score(hyps, [refs])
 
     results = {
         "n": len(hyps),
         "BLEU": round(bleu.score, 2),
         "chrF": round(chrf.score, 2),
         "TER": round(ter.score, 2),
-        "BLEU_signature": bleu.get_signature().format(),
+        "BLEU_signature": str(bleu_m.get_signature()),
     }
 
     if args.comet:
