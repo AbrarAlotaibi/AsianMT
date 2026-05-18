@@ -1,5 +1,5 @@
 # Full NLLB-600M training run for Ar<->En, then translate dev and score.
-# Expected wall time on a 12 GB GPU: ~1.5-3 hours for 3 epochs.
+# Expected wall time: ~45-90 min on a 16 GB GPU (RTX 4080 class) for 3 epochs.
 #
 # Outputs:
 #   checkpoints\nllb-Ar-En\best\                      fine-tuned model
@@ -38,12 +38,12 @@ if (-not (Test-Path "$DataDir\train.ar")) {
     Write-Host ">>> [1/4] cleaned data already present, skipping clean.py"
 }
 
-# 2. Train (3 epochs, fp16, grad-accum 8 for 12 GB GPU)
+# 2. Train (3 epochs, fp16, batch 8 x grad-accum 4 = effective batch 32 on 16 GB GPU)
 Write-Host ">>> [2/4] fine-tuning NLLB-200-distilled-600M (both directions)"
 python scripts/train_nllb.py `
     --epochs 3 `
-    --batch-size 4 `
-    --grad-accum 8 `
+    --batch-size 8 `
+    --grad-accum 4 `
     --lr 3e-5
 if ($LASTEXITCODE -ne 0) { throw "training failed" }
 
