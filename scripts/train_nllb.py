@@ -50,6 +50,8 @@ def load_parallel(data_dir: Path, split: str) -> list[dict]:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="facebook/nllb-200-distilled-600M")
+    ap.add_argument("--allow-cpu", action="store_true",
+                    help="Allow training on CPU. Without this flag, the script exits if no GPU is found.")
     ap.add_argument("--data-dir", default="Ar-En/clean", type=Path)
     ap.add_argument("--output-dir", default="checkpoints/nllb-Ar-En", type=Path)
     ap.add_argument("--epochs", type=int, default=3)
@@ -63,6 +65,22 @@ def main() -> None:
     ap.add_argument("--weight-decay", type=float, default=0.01)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
+
+    if torch.cuda.is_available():
+        print(f"GPU: {torch.cuda.get_device_name(0)}  "
+              f"VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB  "
+              f"torch: {torch.__version__}")
+    elif args.allow_cpu:
+        print("WARNING: training on CPU (--allow-cpu set). This will be ~10-30x slower.")
+    else:
+        sys.exit(
+            "ERROR: no GPU detected by PyTorch. NLLB-600M on CPU is impractically slow.\n"
+            "Sanity-check:\n"
+            "  python -c \"import torch; print(torch.cuda.is_available())\"\n"
+            "If False, reinstall CUDA-enabled PyTorch:\n"
+            "  conda install -n asianmt -c pytorch -c nvidia pytorch=2.6 pytorch-cuda=12.1\n"
+            "Or pass --allow-cpu to override (not recommended)."
+        )
 
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     model = AutoModelForSeq2SeqLM.from_pretrained(args.model)
