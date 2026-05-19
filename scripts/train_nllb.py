@@ -68,6 +68,9 @@ def main() -> None:
     ap.add_argument("--max-length", type=int, default=128)
     ap.add_argument("--warmup-ratio", type=float, default=0.05)
     ap.add_argument("--weight-decay", type=float, default=0.01)
+    ap.add_argument("--optim", default="adamw_torch",
+                    help="Optimizer name passed to Seq2SeqTrainingArguments. "
+                         "Use 'adamw_bnb_8bit' to halve optimizer memory (needs bitsandbytes).")
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 
@@ -145,6 +148,7 @@ def main() -> None:
         gradient_accumulation_steps=args.grad_accum,
         warmup_ratio=args.warmup_ratio,
         weight_decay=args.weight_decay,
+        optim=args.optim,
         fp16=torch.cuda.is_available(),
         eval_strategy="no" if smoke else "epoch",
         save_strategy="no" if smoke else "epoch",

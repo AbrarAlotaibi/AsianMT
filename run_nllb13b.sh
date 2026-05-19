@@ -23,9 +23,10 @@ python scripts/train_nllb.py \
   --model facebook/nllb-200-distilled-1.3B \
   --output-dir checkpoints/nllb13b-Ar-En \
   --epochs 3 \
-  --batch-size 2 \
-  --grad-accum 16 \
-  --lr 3e-5
+  --batch-size 4 \
+  --grad-accum 8 \
+  --lr 3e-5 \
+  --optim adamw_bnb_8bit
 
 echo ">>> [3/4] translating dev set"
 python scripts/translate.py \

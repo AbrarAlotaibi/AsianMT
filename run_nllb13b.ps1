@@ -1,13 +1,17 @@
 # Bidirectional fine-tune of NLLB-200-distilled-1.3B for Ar<->En.
 # Bigger model than the 600M baseline -> expected +3 to +5 BLEU per direction.
 #
-# Memory: 1.3B params need fp16 + gradient checkpointing on a 16 GB GPU.
-# Tuned for RTX 4080 (Super) class cards. Effective batch 32 (batch 2 x accum 16),
-# same as the 600M run for an apples-to-apples comparison.
+# Memory: 1.3B needs 8-bit AdamW (bitsandbytes) on a 16 GB GPU to free up
+# enough VRAM for a usable microbatch. With batch=4, grad_accum=8, effective
+# batch is 32 (same as the 600M run).
 #
-# Expected wall time: ~7-10 hours for 3 epochs. Plan it as an overnight run.
+# Prereq (once):
+#   pip install bitsandbytes
 #
-# If you OOM at batch=2, edit this script to use --batch-size 1 --grad-accum 32.
+# Expected wall time: ~6-10 h for 3 epochs. Plan it as an overnight run.
+#
+# If you still OOM at batch=4, drop to batch=2 grad_accum=16. If batch=2 still
+# OOMs (it shouldn't with adamw_bnb_8bit), go to batch=1 grad_accum=32.
 #
 # Outputs:
 #   checkpoints\nllb13b-Ar-En\best\                fine-tuned model
@@ -39,9 +43,10 @@ python scripts/train_nllb.py `
     --model facebook/nllb-200-distilled-1.3B `
     --output-dir checkpoints/nllb13b-Ar-En `
     --epochs 3 `
-    --batch-size 2 `
-    --grad-accum 16 `
-    --lr 3e-5
+    --batch-size 4 `
+    --grad-accum 8 `
+    --lr 3e-5 `
+    --optim adamw_bnb_8bit
 if ($LASTEXITCODE -ne 0) { throw "training failed" }
 
 Write-Host ">>> [3/4] translating dev set"

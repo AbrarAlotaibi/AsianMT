@@ -9,3 +9,5 @@ sacrebleu>=2.4.2
 unbabel-comet>=2.2.2
 tqdm>=4.66.0
 pyyaml>=6.0
+# 8-bit AdamW (used by the 1.3B run via --optim adamw_bnb_8bit)
+bitsandbytes>=0.43.0; sys_platform != 'darwin'
