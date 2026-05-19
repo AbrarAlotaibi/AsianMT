@@ -2,18 +2,25 @@
 
 Examples:
   # NLLB checkpoint, ar -> en
-  python scripts/translate.py --model checkpoints/nllb-aren/best \\
+  python scripts/translate.py --model checkpoints/nllb-Ar-En/best \\
       --kind nllb --direction ar-en \\
-      --input data/clean/devtest.ar --output predictions/nllb_ar-en.devtest.en
+      --input Ar-En/clean/devtest.ar --output predictions/nllb_ar-en.devtest.en
 
   # opus-mt checkpoint (already direction-locked at training time)
-  python scripts/translate.py --model checkpoints/opus-ar-en/best \\
+  python scripts/translate.py --model checkpoints/opus-Ar-En-ar-en/best \\
       --kind opus --direction ar-en \\
-      --input data/clean/devtest.ar --output predictions/opus_ar-en.devtest.en
+      --input Ar-En/clean/devtest.ar --output predictions/opus_ar-en.devtest.en
 """
 from __future__ import annotations
 
 import argparse
+import os
+import sys
+
+# Avoid the conda-MKL + pip-torch libiomp5 collision on Windows when running this
+# script outside the PowerShell wrappers.
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+
 from pathlib import Path
 
 import torch
@@ -36,10 +43,26 @@ def main() -> None:
                     help="Length penalty: >1.0 favors longer outputs (useful for morphologically "
                          "rich target languages like Arabic). Default 1.0.")
     ap.add_argument("--max-length", type=int, default=256)
+    ap.add_argument("--allow-cpu", action="store_true",
+                    help="Allow inference on CPU. Without this flag, the script exits if no GPU is found.")
     args = ap.parse_args()
 
     src, tgt = args.direction.split("-")
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    if torch.cuda.is_available():
+        device = "cuda"
+        print(f"GPU: {torch.cuda.get_device_name(0)}  "
+              f"VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB  "
+              f"torch: {torch.__version__}")
+    elif args.allow_cpu:
+        device = "cpu"
+        print("WARNING: inference on CPU (--allow-cpu set). Beam search will be very slow.")
+    else:
+        sys.exit(
+            "ERROR: no GPU detected by PyTorch. Beam-search inference on CPU is ~100x slower.\n"
+            "If this is unexpected, sanity-check:\n"
+            "  python -c \"import torch; print(torch.cuda.is_available())\"\n"
+            "Pass --allow-cpu to override (not recommended)."
+        )
 
     tokenizer = AutoTokenizer.from_pretrained(str(args.model))
     model = AutoModelForSeq2SeqLM.from_pretrained(str(args.model)).to(device).eval()
