@@ -66,11 +66,13 @@ def main() -> None:
 
     tokenizer = AutoTokenizer.from_pretrained(str(args.model))
     model = AutoModelForSeq2SeqLM.from_pretrained(str(args.model)).to(device).eval()
+    model.config.use_cache = True  # KV cache speeds up generation
 
     gen_kwargs = {
         "num_beams": args.num_beams,
         "length_penalty": args.length_penalty,
         "max_length": args.max_length,
+        "early_stopping": True,  # stop a beam group once num_beams finished hyps are found
     }
     if args.kind == "nllb":
         tokenizer.src_lang = NLLB_LANG[src]
