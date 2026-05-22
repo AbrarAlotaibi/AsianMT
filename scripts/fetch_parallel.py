@@ -24,6 +24,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import random
 import unicodedata
 import urllib.parse
 import urllib.request
@@ -78,7 +79,12 @@ def main() -> None:
     ap.add_argument("--max-tokens", type=int, default=200)
     ap.add_argument("--min-tokens", type=int, default=1)
     ap.add_argument("--max-ratio", type=float, default=3.0)
+    ap.add_argument("--max-extra", type=int, default=None,
+                    help="Cap on total EXTERNAL pairs (randomly sampled across all corpora). "
+                         "Official pairs are always kept. Omit to keep everything.")
+    ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
+    random.seed(args.seed)
 
     # Contamination blocklist: every ar/en line in dev + devtest.
     block: set[str] = set()
@@ -93,9 +99,9 @@ def main() -> None:
     off_src = [normalize(x) for x in (args.official_dir / f"train.{args.src}").read_text(encoding="utf-8").splitlines()]
     off_tgt = [normalize(x) for x in (args.official_dir / f"train.{args.tgt}").read_text(encoding="utf-8").splitlines()]
     seen: set[tuple[str, str]] = set(zip(off_src, off_tgt))
-    out_src, out_tgt = list(off_src), list(off_tgt)
-    print(f"official train pairs: {len(out_src)}")
+    print(f"official train pairs: {len(off_src)}")
 
+    extra: list[tuple[str, str]] = []
     for corpus in args.corpora:
         try:
             url = resolve_url(corpus, args.src, args.tgt)
@@ -122,9 +128,16 @@ def main() -> None:
             if max(a, b) / max(min(a, b), 1) > args.max_ratio:
                 drop["ratio"] += 1; continue
             seen.add((ns, nt))
-            out_src.append(ns); out_tgt.append(nt)
+            extra.append((ns, nt))
             kept += 1
         print(f"  {corpus}: downloaded {len(pairs)}, kept {kept}  (drop {drop})")
+
+    if args.max_extra is not None and len(extra) > args.max_extra:
+        print(f"sampling {args.max_extra} of {len(extra)} external pairs (seed {args.seed})")
+        extra = random.sample(extra, args.max_extra)
+
+    out_src = list(off_src) + [s for s, _ in extra]
+    out_tgt = list(off_tgt) + [t for _, t in extra]
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
     (args.out_dir / f"train.{args.src}").write_text("\n".join(out_src) + "\n", encoding="utf-8")
