@@ -11,3 +11,5 @@ tqdm>=4.66.0
 pyyaml>=6.0
 # 8-bit AdamW (used by the 1.3B run via --optim adamw_bnb_8bit)
 bitsandbytes>=0.43.0; sys_platform != 'darwin'
+# X-ALMA / LLM-MT: 4-bit loading + LoRA adapters
+peft>=0.11.0
