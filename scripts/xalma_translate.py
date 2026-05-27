@@ -46,9 +46,14 @@ def main() -> None:
     ap.add_argument("--direction", choices=["ar-en", "en-ar"], required=True)
     ap.add_argument("--input", required=True, type=Path)
     ap.add_argument("--output", required=True, type=Path)
-    ap.add_argument("--batch-size", type=int, default=4)
-    ap.add_argument("--num-beams", type=int, default=5)
+    ap.add_argument("--batch-size", type=int, default=8)
+    ap.add_argument("--num-beams", type=int, default=1,
+                    help="1 = greedy (fast, low memory). beam>1 needs more VRAM; on a 16 GB "
+                         "card use --batch-size 1 if you raise this.")
     ap.add_argument("--max-new-tokens", type=int, default=256)
+    ap.add_argument("--allow-cpu-offload", action="store_true",
+                    help="Permit accelerate to offload layers to CPU. Off by default because "
+                         "offloading makes generation ~100x slower; better to fail fast.")
     ap.add_argument("--limit", type=int, default=0, help="If >0, only translate the first N lines (smoke test).")
     args = ap.parse_args()
 
@@ -64,8 +69,12 @@ def main() -> None:
         bnb_4bit_compute_dtype=torch.float16, bnb_4bit_use_double_quant=True,
     )
     print("loading X-ALMA backbone in 4-bit ...")
+    # Force all weights onto GPU 0 (device_map={"":0}); "auto" silently offloads to
+    # CPU when it doesn't fit, which crawls. If this OOMs, the model genuinely
+    # doesn't fit -> lower --batch-size / --num-beams (or pass --allow-cpu-offload).
+    device_map = "auto" if args.allow_cpu_offload else {"": 0}
     model = AutoModelForCausalLM.from_pretrained(
-        args.backbone, quantization_config=bnb, device_map="auto", torch_dtype=torch.float16,
+        args.backbone, quantization_config=bnb, device_map=device_map, dtype=torch.float16,
     )
     model = PeftModel.from_pretrained(model, args.group)
     if args.adapter:
