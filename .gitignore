@@ -14,8 +14,10 @@ checkpoints/
 runs/
 outputs/
 predictions/
-results/
 wandb/
+
+# NOTE: results/ is intentionally TRACKED (small score JSONs + run logs) so runs
+# on a remote server can be reviewed by pushing them to the repo.
 *.pt
 *.bin
 

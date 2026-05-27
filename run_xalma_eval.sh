@@ -8,6 +8,9 @@ DATA_DIR="Ar-En/clean"
 PRED_DIR="predictions"
 RES_DIR="results"
 mkdir -p "$PRED_DIR" "$RES_DIR"
+# Tee ALL output to a log so it can be pushed to the repo and reviewed remotely.
+exec > >(tee "$RES_DIR/xalma_eval.log") 2>&1
+echo "=== run_xalma_eval $(date -u +%FT%TZ) ==="
 
 echo ">>> smoke: 20-line ar->en sanity check"
 python scripts/xalma_translate.py --direction ar-en \
