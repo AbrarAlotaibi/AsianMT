@@ -4,20 +4,15 @@
 #   conda env create -f environment.yml
 #   conda activate asianmt
 #
-# Update (after pulling changes to this file):
-#   conda env update -f environment.yml --prune
-#
-# Tested with CUDA 12.1. If you have CUDA 11.8, change pytorch-cuda=12.1
-# to pytorch-cuda=11.8.
+# Installs CUDA 12.4 torch wheels via pip (torch 2.6 requires cu124, not cu121).
+# For a different CUDA, change the --extra-index-url below (e.g. .../whl/cu118).
 name: asianmt
 channels:
-  - pytorch
-  - nvidia
   - conda-forge
 dependencies:
   - python=3.11
   - pip
-  - pytorch>=2.6
-  - pytorch-cuda=12.1
   - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch>=2.6
       - -r requirements.txt
