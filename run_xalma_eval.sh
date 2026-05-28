@@ -4,6 +4,10 @@
 
 set -euo pipefail
 
+# Unbuffer Python stdout/stderr so tqdm progress bars (and other prints) flow
+# through tee in real time instead of pooling in the pipe buffer.
+export PYTHONUNBUFFERED=1
+
 DATA_DIR="Ar-En/clean"
 PRED_DIR="predictions"
 RES_DIR="results"
