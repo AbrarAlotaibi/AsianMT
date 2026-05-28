@@ -3,11 +3,14 @@
 # translate dev and score. See run_opus.ps1 for notes.
 
 set -euo pipefail
+export PYTHONUNBUFFERED=1
 
 DATA_DIR="Ar-En/clean"
 PRED_DIR="predictions"
 RES_DIR="results"
 mkdir -p "$PRED_DIR" "$RES_DIR"
+exec > >(tee "$RES_DIR/opus.log") 2>&1
+echo "=== run_opus $(date -u +%FT%TZ) ==="
 
 for dir in ar-en en-ar; do
   echo ">>> training opus-mt $dir"
