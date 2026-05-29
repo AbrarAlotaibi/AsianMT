@@ -45,6 +45,11 @@ def main() -> None:
     ap.add_argument("--max-length", type=int, default=256)
     ap.add_argument("--allow-cpu", action="store_true",
                     help="Allow inference on CPU. Without this flag, the script exits if no GPU is found.")
+    ap.add_argument("--num-samples", type=int, default=1,
+                    help="If >1, draw N sampled hypotheses per source (for MBR / preference data). "
+                         "Writes <output>.sampleK files (K=0..N-1) instead of a single beam output.")
+    ap.add_argument("--temperature", type=float, default=0.8)
+    ap.add_argument("--top-p", type=float, default=0.95)
     args = ap.parse_args()
 
     src, tgt = args.direction.split("-")
@@ -68,12 +73,23 @@ def main() -> None:
     model = AutoModelForSeq2SeqLM.from_pretrained(str(args.model)).to(device).eval()
     model.config.use_cache = True  # KV cache speeds up generation
 
+    sampling = args.num_samples > 1
     gen_kwargs = {
-        "num_beams": args.num_beams,
-        "length_penalty": args.length_penalty,
         "max_length": args.max_length,
-        "early_stopping": True,  # stop a beam group once num_beams finished hyps are found
     }
+    if sampling:
+        gen_kwargs.update({
+            "do_sample": True,
+            "temperature": args.temperature,
+            "top_p": args.top_p,
+            "num_return_sequences": args.num_samples,
+        })
+    else:
+        gen_kwargs.update({
+            "num_beams": args.num_beams,
+            "length_penalty": args.length_penalty,
+            "early_stopping": True,  # stop a beam group once num_beams finished hyps are found
+        })
     if args.kind == "nllb":
         tokenizer.src_lang = NLLB_LANG[src]
         forced = tokenizer.convert_tokens_to_ids(NLLB_LANG[tgt])
@@ -82,17 +98,27 @@ def main() -> None:
     lines = args.input.read_text(encoding="utf-8").splitlines()
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
-    out_lines: list[str] = []
+    k = args.num_samples if sampling else 1
+    cols: list[list[str]] = [[] for _ in range(k)]
     with torch.inference_mode():
         for i in tqdm(range(0, len(lines), args.batch_size), desc="translate"):
             batch = lines[i : i + args.batch_size]
             enc = tokenizer(batch, return_tensors="pt", padding=True, truncation=True,
                             max_length=args.max_length).to(device)
             out = model.generate(**enc, **gen_kwargs)
-            out_lines.extend(tokenizer.batch_decode(out, skip_special_tokens=True))
+            dec = tokenizer.batch_decode(out, skip_special_tokens=True)
+            # rows are grouped per source: [s0_k0, s0_k1, ..., s1_k0, ...]
+            for j, text in enumerate(dec):
+                cols[j % k].append(text)
 
-    args.output.write_text("\n".join(out_lines) + "\n", encoding="utf-8")
-    print(f"wrote {len(out_lines)} lines -> {args.output}")
+    if sampling:
+        for ki, col in enumerate(cols):
+            p = args.output.with_suffix(args.output.suffix + f".sample{ki}")
+            p.write_text("\n".join(col) + "\n", encoding="utf-8")
+        print(f"wrote {k} sample files -> {args.output}.sample0..{k-1}")
+    else:
+        args.output.write_text("\n".join(cols[0]) + "\n", encoding="utf-8")
+        print(f"wrote {len(cols[0])} lines -> {args.output}")
 
 
 if __name__ == "__main__":

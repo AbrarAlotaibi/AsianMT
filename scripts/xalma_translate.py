@@ -55,6 +55,11 @@ def main() -> None:
                     help="Permit accelerate to offload layers to CPU. Off by default because "
                          "offloading makes generation ~100x slower; better to fail fast.")
     ap.add_argument("--limit", type=int, default=0, help="If >0, only translate the first N lines (smoke test).")
+    ap.add_argument("--num-samples", type=int, default=1,
+                    help="If >1, draw N sampled hypotheses per source (for MBR / preference data). "
+                         "Writes <output>.sampleK files (K=0..N-1) instead of a single beam output.")
+    ap.add_argument("--temperature", type=float, default=0.6)
+    ap.add_argument("--top-p", type=float, default=0.9)
     args = ap.parse_args()
 
     if not torch.cuda.is_available():
@@ -90,21 +95,38 @@ def main() -> None:
         lines = lines[: args.limit]
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
-    out: list[str] = []
+    sampling = args.num_samples > 1
+    # One output column per sample (sampling) or a single column (beam/greedy).
+    cols: list[list[str]] = [[] for _ in range(args.num_samples if sampling else 1)]
     with torch.inference_mode():
         for i in tqdm(range(0, len(lines), args.batch_size), desc="xalma"):
             batch = lines[i : i + args.batch_size]
             prompts = [build_prompt(tokenizer, src_name, tgt_name, s) for s in batch]
             enc = tokenizer(prompts, return_tensors="pt", padding=True,
                             add_special_tokens=False).to(model.device)
-            gen = model.generate(**enc, num_beams=args.num_beams,
-                                 max_new_tokens=args.max_new_tokens, do_sample=False)
+            if sampling:
+                gen = model.generate(
+                    **enc, do_sample=True, temperature=args.temperature, top_p=args.top_p,
+                    num_return_sequences=args.num_samples, max_new_tokens=args.max_new_tokens,
+                )
+            else:
+                gen = model.generate(**enc, num_beams=args.num_beams,
+                                     max_new_tokens=args.max_new_tokens, do_sample=False)
             new = gen[:, enc["input_ids"].shape[1]:]
             dec = tokenizer.batch_decode(new, skip_special_tokens=True)
-            out.extend(s.strip() for s in dec)
+            # generate() returns rows grouped as [s0_k0, s0_k1, ..., s1_k0, ...].
+            k = args.num_samples if sampling else 1
+            for j, text in enumerate(dec):
+                cols[j % k].append(text.strip())
 
-    args.output.write_text("\n".join(out) + "\n", encoding="utf-8")
-    print(f"wrote {len(out)} lines -> {args.output}")
+    if sampling:
+        for k, col in enumerate(cols):
+            p = args.output.with_suffix(args.output.suffix + f".sample{k}")
+            p.write_text("\n".join(col) + "\n", encoding="utf-8")
+        print(f"wrote {args.num_samples} sample files -> {args.output}.sample0..{args.num_samples-1}")
+    else:
+        args.output.write_text("\n".join(cols[0]) + "\n", encoding="utf-8")
+        print(f"wrote {len(cols[0])} lines -> {args.output}")
 
 
 if __name__ == "__main__":
