@@ -1,0 +1,13 @@
+=== run_all 2026-05-28T08:06:08Z ===
+From https://github.com/AbrarAlotaibi/AsianMT
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+launched:
+  GPU 0  NLLB-3.3B FT       pid=4028835   log=results/nllb33b.log
+  GPU 1  X-ALMA QLoRA FT    pid=4028836   log=results/xalma_finetune.log
+  GPU 2  opus-mt contrastive pid=4028837  log=results/opus.log
+monitor: tail -f results/*.log
+all finished at 2026-05-29T00:57:13Z
+  NLLB-3.3B exit=1
+  X-ALMA FT exit=0
+  opus-mt  exit=0
