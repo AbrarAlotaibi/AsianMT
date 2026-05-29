@@ -71,6 +71,11 @@ def main() -> None:
     ap.add_argument("--optim", default="adamw_torch",
                     help="Optimizer name passed to Seq2SeqTrainingArguments. "
                          "Use 'adamw_bnb_8bit' to halve optimizer memory (needs bitsandbytes).")
+    ap.add_argument("--model-parallel", action="store_true",
+                    help="Shard the model layers across all visible GPUs (device_map='auto'). "
+                         "Use for big models that OOM on one card (e.g. NLLB-3.3B full FT): "
+                         "expose 2+ GPUs via CUDA_VISIBLE_DEVICES. Naive pipeline parallelism "
+                         "(GPUs run sequentially per batch) but removes the memory ceiling.")
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 
@@ -91,7 +96,15 @@ def main() -> None:
         )
 
     tokenizer = AutoTokenizer.from_pretrained(args.model)
-    model = AutoModelForSeq2SeqLM.from_pretrained(args.model)
+    if args.model_parallel:
+        n_gpu = torch.cuda.device_count()
+        print(f"model-parallel: sharding across {n_gpu} GPU(s) via device_map='auto'")
+        model = AutoModelForSeq2SeqLM.from_pretrained(args.model, device_map="auto")
+        # Tell Trainer the model spans devices so it skips the DDP/.to(device) path.
+        model.is_parallelizable = True
+        model.model_parallel = True
+    else:
+        model = AutoModelForSeq2SeqLM.from_pretrained(args.model)
     # Migrate legacy generation params from model.config to model.generation_config
     # (their new home in transformers 5.x). Silences the runtime warning.
     for k in ("max_length", "min_length", "num_beams", "early_stopping",
