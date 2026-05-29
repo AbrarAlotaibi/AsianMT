@@ -10,6 +10,10 @@
 #
 # Run on a specific GPU when paralleling other experiments:
 #   CUDA_VISIBLE_DEVICES=0 bash run_nllb33b.sh
+#
+# If a single 24 GB card still OOMs, shard the model across GPUs (no memory
+# ceiling) by exposing 2+ GPUs and setting MODEL_PARALLEL=1:
+#   CUDA_VISIBLE_DEVICES=0,1 MODEL_PARALLEL=1 bash run_nllb33b.sh
 
 set -euo pipefail
 export PYTHONUNBUFFERED=1
@@ -18,6 +22,15 @@ export PYTHONUNBUFFERED=1
 # flagged, and batch=2/grad_accum=16 halves activation memory (same effective
 # batch 32). Falls within budget with ~1.5 GB headroom.
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+# Optional: spread layers across all visible GPUs to eliminate OOM risk.
+# With the model sharded there's room for a bigger micro-batch.
+MP_ARGS=""
+BATCH=2; ACCUM=16
+if [ "${MODEL_PARALLEL:-0}" = "1" ]; then
+  MP_ARGS="--model-parallel"
+  BATCH="${BATCH_OVERRIDE:-6}"; ACCUM="${ACCUM_OVERRIDE:-5}"
+fi
 
 DATA_DIR="Ar-En/clean"
 CKPT="checkpoints/nllb33b-Ar-En/best"
@@ -36,10 +49,10 @@ python scripts/train_nllb.py \
   --model facebook/nllb-200-3.3B \
   --output-dir checkpoints/nllb33b-Ar-En \
   --epochs 2 \
-  --batch-size 2 \
-  --grad-accum 16 \
+  --batch-size "$BATCH" \
+  --grad-accum "$ACCUM" \
   --lr 3e-5 \
-  --optim adamw_bnb_8bit
+  --optim adamw_bnb_8bit $MP_ARGS
 
 echo ">>> [2/4] translating dev (ar->en)"
 python scripts/translate.py --model "$CKPT" --kind nllb --direction ar-en \

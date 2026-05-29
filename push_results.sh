@@ -22,10 +22,14 @@ git -c user.email="${GIT_EMAIL:-results-bot@local}" \
     -c user.name="${GIT_NAME:-results-bot}" \
     commit -m "results: ${MSG}"
 
+# Everything lives in main now: publish there regardless of the checked-out
+# branch. Rebase first so a concurrent push doesn't reject this one.
+git pull --rebase origin main 2>&1 | tail -3 || true
+
 # Retry push a few times in case of transient network errors.
 for i in 1 2 3 4; do
-  if git push origin HEAD; then
-    echo "pushed."
+  if git push origin HEAD:main; then
+    echo "pushed to main."
     exit 0
   fi
   echo "push failed (attempt $i); retrying in $((2**i))s"

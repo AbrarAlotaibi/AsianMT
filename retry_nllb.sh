@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
-# One-command rerun of just the NLLB-200-3.3B fine-tune on GPU 0 (the only track
-# that OOM'd; X-ALMA QLoRA and opus-mt already succeeded). Pulls latest code,
-# runs, and auto-pushes results/ when done. Survives SSH disconnect.
+# One-command rerun of just the NLLB-200-3.3B fine-tune (the only track that
+# OOM'd; X-ALMA QLoRA and opus-mt already succeeded). Pulls latest code, runs,
+# and auto-pushes results/ to main when done. Survives SSH disconnect.
+#
+# Default: single GPU 0 with the batch=2 + expandable_segments fix (frees GPUs
+# 1-2 for run_improvements.sh in parallel).
+# Safer: shard across two GPUs (no OOM possible, bigger batch) ->
+#   MODEL_PARALLEL=1 bash retry_nllb.sh
 #
 # Usage:  bash retry_nllb.sh
 # Monitor: tail -f results/nllb33b.log
@@ -17,7 +22,13 @@ echo "=== retry_nllb $(date -u +%FT%TZ) ===" | tee -a results/run_all.log
 git checkout main 2>/dev/null || git checkout -b main origin/main
 git pull --rebase origin main 2>&1 | tail -2 || true
 
-CUDA_VISIBLE_DEVICES=0 bash run_nllb33b.sh
+if [ "${MODEL_PARALLEL:-0}" = "1" ]; then
+  # Shard the 3.3B across GPUs 0+1; leaves GPU 2 for other work.
+  echo "retry_nllb: model-parallel across GPUs 0,1" | tee -a results/run_all.log
+  CUDA_VISIBLE_DEVICES="${MP_GPUS:-0,1}" MODEL_PARALLEL=1 bash run_nllb33b.sh
+else
+  CUDA_VISIBLE_DEVICES=0 bash run_nllb33b.sh
+fi
 R=$?
 echo "retry_nllb: NLLB-3.3B exit=$R at $(date -u +%FT%TZ)" | tee -a results/run_all.log
 
