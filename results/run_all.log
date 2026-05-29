@@ -11,3 +11,19 @@ all finished at 2026-05-29T00:57:13Z
   NLLB-3.3B exit=1
   X-ALMA FT exit=0
   opus-mt  exit=0
+[claude/wmt26-website-setup-KAY7C 45f08c2] results: parallel: NLLB-3.3B + X-ALMA QLoRA + opus-mt
+ 8 files changed, 709 insertions(+)
+ create mode 100644 results/nllb33b.log
+ create mode 100644 results/opus.ar-en.dev.json
+ create mode 100644 results/opus.en-ar.dev.json
+ create mode 100644 results/opus.log
+ create mode 100644 results/run_all.log
+ create mode 100644 results/xalma-ft.ar-en.dev.json
+ create mode 100644 results/xalma-ft.en-ar.dev.json
+ create mode 100644 results/xalma_finetune.log
+To https://github.com/AbrarAlotaibi/AsianMT.git
+   f5e200a..45f08c2  HEAD -> claude/wmt26-website-setup-KAY7C
+pushed.
+run_all done.
+=== retry_nllb 2026-05-29T23:58:44Z ===
+retry_nllb: NLLB-3.3B exit=1 at 2026-05-29T23:59:21Z
