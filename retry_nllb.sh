@@ -12,6 +12,9 @@ cd "$(dirname "$0")"
 
 mkdir -p results
 echo "=== retry_nllb $(date -u +%FT%TZ) ===" | tee -a results/run_all.log
+# Operate on main so results land there (checkpoints/ are gitignored, so
+# switching branches won't touch the trained models).
+git checkout main 2>/dev/null || git checkout -b main origin/main
 git pull --rebase origin main 2>&1 | tail -2 || true
 
 CUDA_VISIBLE_DEVICES=0 bash run_nllb33b.sh
