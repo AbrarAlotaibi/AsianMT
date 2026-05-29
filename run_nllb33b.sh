@@ -13,6 +13,11 @@
 
 set -euo pipefail
 export PYTHONUNBUFFERED=1
+# Full FT of 3.3B leaves only ~3.7 GB for activations on a 24 GB card; batch=4
+# OOM'd by 32 MB. expandable_segments removes the fragmentation waste the error
+# flagged, and batch=2/grad_accum=16 halves activation memory (same effective
+# batch 32). Falls within budget with ~1.5 GB headroom.
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 DATA_DIR="Ar-En/clean"
 CKPT="checkpoints/nllb33b-Ar-En/best"
@@ -31,8 +36,8 @@ python scripts/train_nllb.py \
   --model facebook/nllb-200-3.3B \
   --output-dir checkpoints/nllb33b-Ar-En \
   --epochs 2 \
-  --batch-size 4 \
-  --grad-accum 8 \
+  --batch-size 2 \
+  --grad-accum 16 \
   --lr 3e-5 \
   --optim adamw_bnb_8bit
 
