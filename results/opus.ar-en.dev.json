@@ -1,0 +1,7 @@
+{
+  "n": 1000,
+  "BLEU": 26.49,
+  "chrF": 54.08,
+  "TER": 62.36,
+  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0"
+}
