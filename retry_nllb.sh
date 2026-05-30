@@ -15,12 +15,12 @@ set -uo pipefail
 trap '' HUP
 cd "$(dirname "$0")"
 
+# Activate asianmt env + sync to main (after pulling, so our own log writes
+# below don't block the rebase).
+source "$(dirname "$0")/scripts/preflight.sh"
+
 mkdir -p results
 echo "=== retry_nllb $(date -u +%FT%TZ) ===" | tee -a results/run_all.log
-# Operate on main so results land there (checkpoints/ are gitignored, so
-# switching branches won't touch the trained models).
-git checkout main 2>/dev/null || git checkout -b main origin/main
-git pull --rebase origin main 2>&1 | tail -2 || true
 
 if [ "${MODEL_PARALLEL:-0}" = "1" ]; then
   # Shard the 3.3B across GPUs 0+1; leaves GPU 2 for other work.

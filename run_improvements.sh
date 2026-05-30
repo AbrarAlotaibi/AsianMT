@@ -17,10 +17,10 @@ set -uo pipefail
 trap '' HUP
 cd "$(dirname "$0")"
 
+source "$(dirname "$0")/scripts/preflight.sh"
+
 mkdir -p results
 echo "=== run_improvements $(date -u +%FT%TZ) ===" | tee -a results/run_all.log
-git checkout main 2>/dev/null || git checkout -b main origin/main
-git pull --rebase origin main 2>&1 | tail -2 || true
 
 CUDA_VISIBLE_DEVICES=1 bash run_cpo.sh          & P1=$!
 CUDA_VISIBLE_DEVICES=2 bash run_contradecode.sh & P2=$!
