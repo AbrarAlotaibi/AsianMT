@@ -27,3 +27,6 @@ pushed.
 run_all done.
 === retry_nllb 2026-05-29T23:58:44Z ===
 retry_nllb: NLLB-3.3B exit=1 at 2026-05-29T23:59:21Z
+=== retry_nllb 2026-05-30T00:01:01Z ===
+retry_nllb: model-parallel across GPUs 0,1
+retry_nllb: NLLB-3.3B exit=1 at 2026-05-30T00:01:01Z
