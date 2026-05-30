@@ -3,10 +3,13 @@
 # OOM'd; X-ALMA QLoRA and opus-mt already succeeded). Pulls latest code, runs,
 # and auto-pushes results/ to main when done. Survives SSH disconnect.
 #
-# Default: single GPU 0 with the batch=2 + expandable_segments fix (frees GPUs
-# 1-2 for run_improvements.sh in parallel).
-# Safer: shard across two GPUs (no OOM possible, bigger batch) ->
-#   MODEL_PARALLEL=1 bash retry_nllb.sh
+# The 3.3B full fine-tune does NOT fit on one 24 GB card (OOMs even at batch=2),
+# so this shards the model across all visible GPUs by DEFAULT. With 3x 3090 it
+# spreads over all three and trains comfortably.
+#
+# To pin to specific GPUs:   MP_GPUS=0,1 bash retry_nllb.sh
+# To force single-GPU (will OOM on 3.3B; only for smaller models):
+#                            MODEL_PARALLEL=0 bash retry_nllb.sh
 #
 # Usage:  bash retry_nllb.sh
 # Monitor: tail -f results/nllb33b.log
@@ -22,11 +25,15 @@ source "$(dirname "$0")/scripts/preflight.sh"
 mkdir -p results
 echo "=== retry_nllb $(date -u +%FT%TZ) ===" | tee -a results/run_all.log
 
-if [ "${MODEL_PARALLEL:-0}" = "1" ]; then
-  # Shard the 3.3B across GPUs 0+1; leaves GPU 2 for other work.
-  echo "retry_nllb: model-parallel across GPUs 0,1" | tee -a results/run_all.log
-  CUDA_VISIBLE_DEVICES="${MP_GPUS:-0,1}" MODEL_PARALLEL=1 bash run_nllb33b.sh
+# Model-parallel ON by default (the 3.3B won't fit on one card). Set
+# MODEL_PARALLEL=0 to force single-GPU. MP_GPUS picks which GPUs to shard over
+# (default: all visible).
+if [ "${MODEL_PARALLEL:-1}" != "0" ]; then
+  GPUS="${MP_GPUS:-$(python -c 'import torch;print(",".join(str(i) for i in range(torch.cuda.device_count())))')}"
+  echo "retry_nllb: model-parallel across GPUs $GPUS" | tee -a results/run_all.log
+  CUDA_VISIBLE_DEVICES="$GPUS" MODEL_PARALLEL=1 bash run_nllb33b.sh
 else
+  echo "retry_nllb: single-GPU (GPU 0) -- 3.3B will likely OOM" | tee -a results/run_all.log
   CUDA_VISIBLE_DEVICES=0 bash run_nllb33b.sh
 fi
 R=$?
