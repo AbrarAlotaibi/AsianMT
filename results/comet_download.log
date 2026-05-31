@@ -1,0 +1,76 @@
+total chunks=70 already_done=0 todo=70
+[1/70   1.4%] ~ 0.02 MB/s elapsed=22.9m
+[2/70   2.9%] ~ 0.05 MB/s elapsed=23.0m
+[3/70   4.3%] ~ 0.07 MB/s elapsed=23.2m
+[4/70   5.7%] ~ 0.09 MB/s elapsed=23.4m
+[5/70   7.1%] ~ 0.11 MB/s elapsed=23.4m
+[6/70   8.6%] ~ 0.14 MB/s elapsed=23.5m
+[7/70  10.0%] ~ 0.16 MB/s elapsed=23.6m
+[8/70  11.4%] ~ 0.18 MB/s elapsed=23.8m
+[9/70  12.9%] ~ 0.20 MB/s elapsed=23.9m
+[10/70  14.3%] ~ 0.22 MB/s elapsed=23.9m
+[11/70  15.7%] ~ 0.24 MB/s elapsed=24.1m
+[12/70  17.1%] ~ 0.27 MB/s elapsed=24.1m
+[13/70  18.6%] ~ 0.29 MB/s elapsed=24.1m
+[14/70  20.0%] ~ 0.31 MB/s elapsed=24.2m
+[15/70  21.4%] ~ 0.32 MB/s elapsed=24.6m
+[16/70  22.9%] ~ 0.34 MB/s elapsed=24.9m
+[17/70  24.3%] ~ 0.19 MB/s elapsed=47.7m
+[18/70  25.7%] ~ 0.20 MB/s elapsed=48.2m
+[19/70  27.1%] ~ 0.21 MB/s elapsed=48.5m
+[20/70  28.6%] ~ 0.22 MB/s elapsed=48.8m
+[21/70  30.0%] ~ 0.23 MB/s elapsed=49.0m
+[22/70  31.4%] ~ 0.24 MB/s elapsed=49.1m
+[23/70  32.9%] ~ 0.25 MB/s elapsed=49.1m
+[24/70  34.3%] ~ 0.26 MB/s elapsed=49.2m
+[25/70  35.7%] ~ 0.27 MB/s elapsed=49.5m
+[26/70  37.1%] ~ 0.28 MB/s elapsed=49.9m
+[27/70  38.6%] ~ 0.29 MB/s elapsed=50.1m
+[28/70  40.0%] ~ 0.30 MB/s elapsed=50.2m
+[29/70  41.4%] ~ 0.31 MB/s elapsed=50.3m
+[30/70  42.9%] ~ 0.32 MB/s elapsed=50.6m
+[31/70  44.3%] ~ 0.33 MB/s elapsed=50.8m
+[32/70  45.7%] ~ 0.33 MB/s elapsed=52.4m
+[33/70  47.1%] ~ 0.24 MB/s elapsed=72.7m
+[34/70  48.6%] ~ 0.25 MB/s elapsed=72.8m
+[35/70  50.0%] ~ 0.26 MB/s elapsed=73.0m
+[36/70  51.4%] ~ 0.26 MB/s elapsed=73.0m
+[37/70  52.9%] ~ 0.27 MB/s elapsed=73.2m
+[38/70  54.3%] ~ 0.28 MB/s elapsed=73.2m
+[39/70  55.7%] ~ 0.28 MB/s elapsed=73.3m
+[40/70  57.1%] ~ 0.29 MB/s elapsed=73.4m
+[41/70  58.6%] ~ 0.30 MB/s elapsed=73.6m
+[42/70  60.0%] ~ 0.30 MB/s elapsed=73.7m
+[43/70  61.4%] ~ 0.31 MB/s elapsed=73.7m
+[44/70  62.9%] ~ 0.32 MB/s elapsed=73.8m
+[45/70  64.3%] ~ 0.32 MB/s elapsed=74.9m
+[46/70  65.7%] ~ 0.29 MB/s elapsed=85.2m
+[47/70  67.1%] ~ 0.29 MB/s elapsed=85.2m
+[48/70  68.6%] ~ 0.27 MB/s elapsed=93.4m
+[49/70  70.0%] ~ 0.28 MB/s elapsed=93.6m
+[50/70  71.4%] ~ 0.28 MB/s elapsed=94.0m
+[51/70  72.9%] ~ 0.29 MB/s elapsed=94.1m
+[52/70  74.3%] ~ 0.29 MB/s elapsed=94.7m
+[53/70  75.7%] ~ 0.30 MB/s elapsed=94.7m
+[54/70  77.1%] ~ 0.30 MB/s elapsed=94.8m
+[55/70  78.6%] ~ 0.31 MB/s elapsed=94.9m
+[56/70  80.0%] ~ 0.31 MB/s elapsed=95.1m
+[57/70  81.4%] ~ 0.32 MB/s elapsed=95.4m
+[58/70  82.9%] ~ 0.32 MB/s elapsed=96.5m
+[59/70  84.3%] ~ 0.32 MB/s elapsed=97.0m
+[60/70  85.7%] ~ 0.33 MB/s elapsed=97.3m
+[61/70  87.1%] ~ 0.33 MB/s elapsed=97.9m
+[62/70  88.6%] ~ 0.32 MB/s elapsed=101.9m
+[63/70  90.0%] ~ 0.30 MB/s elapsed=110.8m
+[64/70  91.4%] ~ 0.31 MB/s elapsed=111.7m
+[65/70  92.9%] ~ 0.30 MB/s elapsed=117.5m
+[66/70  94.3%] ~ 0.30 MB/s elapsed=118.0m
+[67/70  95.7%] ~ 0.30 MB/s elapsed=118.2m
+[68/70  97.1%] ~ 0.30 MB/s elapsed=119.2m
+[69/70  98.6%] ~ 0.31 MB/s elapsed=119.2m
+[70/70 100.0%] ~ 0.31 MB/s elapsed=119.4m
+verifying sha256 ...
+sha256 OK
+BLOB ready: /home/g202203240/.cache/huggingface/hub/models--Unbabel--wmt22-comet-da/blobs/e213091cde220f97b89f8bdfa750c458cfea741ad62affb455b59900210ff2af
+SYMLINK: /home/g202203240/.cache/huggingface/hub/models--Unbabel--wmt22-comet-da/snapshots/2760a223ac957f30acfb18c8aa649b01cf1d75f2/checkpoints/model.ckpt -> ../../../blobs/e213091cde220f97b89f8bdfa750c458cfea741ad62affb455b59900210ff2af
+ALL_DONE

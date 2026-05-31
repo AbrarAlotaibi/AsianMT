@@ -1,0 +1,170 @@
+=== run_mbr 2026-05-31T11:01:03Z ===
+ar->en candidates: predictions/xalma-ft.ar-en.dev.en predictions/nllb33b.ar-en.dev.en predictions/opus.ar-en.dev.en
+en->ar candidates: predictions/xalma-ft.en-ar.dev.ar predictions/nllb33b.en-ar.dev.ar predictions/opus.en-ar.dev.ar
+>>> MBR ar->en
+GPU: NVIDIA GeForce RTX 3090  torch: 2.7.1+cu118
+/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torchmetrics/utilities/imports.py:23: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+1000 sources x 3 candidate files
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint ../../../home/g202203240/.cache/huggingface/hub/models--Unbabel--wmt22-comet-da/snapshots/2760a223ac957f30acfb18c8aa649b01cf1d75f2/checkpoints/model.ckpt`
+The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
+The tokenizer class you load from this checkpoint is 'BertTokenizer'. 
+The class this function is called from is 'XLMRobertaTokenizer'.
+Traceback (most recent call last):
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2359, in _from_pretrained
+    tokenizer = cls(*init_inputs, **init_kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/models/xlm_roberta/tokenization_xlm_roberta.py", line 125, in __init__
+    self.sp_model.Load(str(vocab_file))
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/sentencepiece/__init__.py", line 961, in Load
+    return self.LoadFromFile(model_file)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/sentencepiece/__init__.py", line 316, in LoadFromFile
+    return _sentencepiece.SentencePieceProcessor_LoadFromFile(self, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: Not found: "None": No such file or directory Error #2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/mbr_decode.py", line 148, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/mbr_decode.py", line 125, in main
+    mbr = load_from_checkpoint(download_model(args.mbr_model))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/__init__.py", line 120, in load_from_checkpoint
+    model = model_class.load_from_checkpoint(**kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/pytorch_lightning/utilities/model_helpers.py", line 130, in wrapper
+    return self.method(cls_type, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/pytorch_lightning/core/module.py", line 1796, in load_from_checkpoint
+    loaded = _load_from_checkpoint(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/pytorch_lightning/core/saving.py", line 93, in _load_from_checkpoint
+    model = _load_state(cls, checkpoint, strict=strict, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/pytorch_lightning/core/saving.py", line 167, in _load_state
+    obj = instantiator(cls, _cls_kwargs) if instantiator else cls(**_cls_kwargs)
+                                                              ^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/regression/regression_metric.py", line 100, in __init__
+    super().__init__(
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/base.py", line 121, in __init__
+    self.encoder = str2encoder[self.hparams.encoder_model].from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/encoders/xlmr.py", line 90, in from_pretrained
+    return XLMREncoder(pretrained_model, load_pretrained_weights, local_files_only)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/encoders/xlmr.py", line 46, in __init__
+    self.tokenizer = XLMRobertaTokenizerFast.from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2113, in from_pretrained
+    return cls._from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2151, in _from_pretrained
+    slow_tokenizer = (cls.slow_tokenizer_class)._from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2374, in _from_pretrained
+    raise OSError(
+OSError: Unable to load vocabulary from file. Please check that the provided vocabulary is accessible and not corrupted.
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 64, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 29, in main
+    hyps = load(args.hyp)
+           ^^^^^^^^^^^^^^
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 14, in load
+    return [l.rstrip("\n") for l in p.read_text(encoding="utf-8").splitlines()]
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'predictions/mbr.ar-en.dev.en'
+>>> MBR en->ar
+GPU: NVIDIA GeForce RTX 3090  torch: 2.7.1+cu118
+/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torchmetrics/utilities/imports.py:23: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+1000 sources x 3 candidate files
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint ../../../home/g202203240/.cache/huggingface/hub/models--Unbabel--wmt22-comet-da/snapshots/2760a223ac957f30acfb18c8aa649b01cf1d75f2/checkpoints/model.ckpt`
+The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
+The tokenizer class you load from this checkpoint is 'BertTokenizer'. 
+The class this function is called from is 'XLMRobertaTokenizer'.
+Traceback (most recent call last):
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2359, in _from_pretrained
+    tokenizer = cls(*init_inputs, **init_kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/models/xlm_roberta/tokenization_xlm_roberta.py", line 125, in __init__
+    self.sp_model.Load(str(vocab_file))
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/sentencepiece/__init__.py", line 961, in Load
+    return self.LoadFromFile(model_file)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/sentencepiece/__init__.py", line 316, in LoadFromFile
+    return _sentencepiece.SentencePieceProcessor_LoadFromFile(self, arg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: Not found: "None": No such file or directory Error #2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/mbr_decode.py", line 148, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/mbr_decode.py", line 125, in main
+    mbr = load_from_checkpoint(download_model(args.mbr_model))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/__init__.py", line 120, in load_from_checkpoint
+    model = model_class.load_from_checkpoint(**kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/pytorch_lightning/utilities/model_helpers.py", line 130, in wrapper
+    return self.method(cls_type, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/pytorch_lightning/core/module.py", line 1796, in load_from_checkpoint
+    loaded = _load_from_checkpoint(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/pytorch_lightning/core/saving.py", line 93, in _load_from_checkpoint
+    model = _load_state(cls, checkpoint, strict=strict, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/pytorch_lightning/core/saving.py", line 167, in _load_state
+    obj = instantiator(cls, _cls_kwargs) if instantiator else cls(**_cls_kwargs)
+                                                              ^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/regression/regression_metric.py", line 100, in __init__
+    super().__init__(
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/base.py", line 121, in __init__
+    self.encoder = str2encoder[self.hparams.encoder_model].from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/encoders/xlmr.py", line 90, in from_pretrained
+    return XLMREncoder(pretrained_model, load_pretrained_weights, local_files_only)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/encoders/xlmr.py", line 46, in __init__
+    self.tokenizer = XLMRobertaTokenizerFast.from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2113, in from_pretrained
+    return cls._from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2151, in _from_pretrained
+    slow_tokenizer = (cls.slow_tokenizer_class)._from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2374, in _from_pretrained
+    raise OSError(
+OSError: Unable to load vocabulary from file. Please check that the provided vocabulary is accessible and not corrupted.
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 64, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 29, in main
+    hyps = load(args.hyp)
+           ^^^^^^^^^^^^^^
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 14, in load
+    return [l.rstrip("\n") for l in p.read_text(encoding="utf-8").splitlines()]
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'predictions/mbr.en-ar.dev.ar'
+done. compare MBR to the best single system per direction.
