@@ -98,11 +98,34 @@ def main() -> None:
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     if args.model_parallel:
         n_gpu = torch.cuda.device_count()
-        print(f"model-parallel: sharding across {n_gpu} GPU(s) via device_map='auto'")
-        model = AutoModelForSeq2SeqLM.from_pretrained(args.model, device_map="auto")
+        # device_map="auto" only spills to extra GPUs when the model DOESN'T fit
+        # on the first one. NLLB-3.3B (6.6 GiB fp16) fits on a single 24 GiB
+        # card, so "auto" packs everything onto GPU 0 and OOMs once
+        # grads+optim+activations land on top.
+        # Cap the per-GPU weight budget to force layer sharding across all
+        # visible cards. 4 GiB is enough for ~1/3 of any model up to ~12 GiB,
+        # leaving ~20 GiB per card for training memory.
+        max_memory = {i: "4GiB" for i in range(n_gpu)}
+        max_memory["cpu"] = "200GiB"
+        print(f"model-parallel: forcing layer-sharding across {n_gpu} GPU(s) "
+              f"(max_memory=4GiB/device)")
+        model = AutoModelForSeq2SeqLM.from_pretrained(
+            args.model, device_map="auto", max_memory=max_memory,
+        )
         # Tell Trainer the model spans devices so it skips the DDP/.to(device) path.
         model.is_parallelizable = True
         model.model_parallel = True
+        # Verify sharding actually happened. If everything is on one device, the
+        # next OOM is inevitable -- fail loud here instead.
+        from collections import Counter
+        placement = Counter(str(p.device) for p in model.parameters())
+        print(f"weight placement: {dict(placement)}")
+        if len(placement) < 2:
+            sys.exit(
+                f"ERROR: model still on a single device ({list(placement)[0]}). "
+                "Lower max_memory or check that CUDA_VISIBLE_DEVICES exposes "
+                "multiple GPUs."
+            )
     else:
         model = AutoModelForSeq2SeqLM.from_pretrained(args.model)
     # Migrate legacy generation params from model.config to model.generation_config
