@@ -21,14 +21,17 @@ exec > >(tee "$RES/mbr.log") 2>&1
 echo "=== run_mbr $(date -u +%FT%TZ) ==="
 
 # Collect candidate files that actually exist, per direction.
+# Also accept the NLLB-1.3B baseline that's saved without a "13b" suffix.
 ar_en=()
 for f in "$PRED"/xalma-ft.ar-en.dev.en "$PRED"/nllb33b.ar-en.dev.en \
-         "$PRED"/nllb13b.ar-en.dev.en "$PRED"/opus.ar-en.dev.en; do
+         "$PRED"/nllb13b.ar-en.dev.en "$PRED"/nllb.ar-en.dev.en \
+         "$PRED"/opus.ar-en.dev.en; do
   [ -f "$f" ] && ar_en+=("$f")
 done
 en_ar=()
 for f in "$PRED"/xalma-ft.en-ar.dev.ar "$PRED"/nllb33b.en-ar.dev.ar \
-         "$PRED"/nllb13b.en-ar.dev.ar "$PRED"/opus.en-ar.dev.ar; do
+         "$PRED"/nllb13b.en-ar.dev.ar "$PRED"/nllb.en-ar.dev.ar \
+         "$PRED"/opus.en-ar.dev.ar; do
   [ -f "$f" ] && en_ar+=("$f")
 done
 
@@ -56,3 +59,6 @@ else
 fi
 
 echo "done. compare MBR to the best single system per direction."
+
+# Auto-push so the scores land in main without a second command.
+bash push_results.sh "MBR ensemble (XALMA-FT + NLLB-3.3B + opus + NLLB-1.3B if present)" 2>&1 | tail -3 || true
