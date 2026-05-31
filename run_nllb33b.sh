@@ -44,22 +44,34 @@ if [ ! -f "$DATA_DIR/train.ar" ]; then
   python scripts/clean.py
 fi
 
-echo ">>> [1/4] fine-tuning NLLB-200-3.3B (both directions)"
-python scripts/train_nllb.py \
-  --model facebook/nllb-200-3.3B \
-  --output-dir checkpoints/nllb33b-Ar-En \
-  --epochs 2 \
-  --batch-size "$BATCH" \
-  --grad-accum "$ACCUM" \
-  --lr 3e-5 \
-  --optim adamw_bnb_8bit $MP_ARGS
+if [ "${SKIP_TRAIN:-0}" = "1" ]; then
+  echo ">>> [1/4] SKIP_TRAIN=1 -- skipping training, using existing $CKPT"
+  if [ ! -d "$CKPT" ]; then
+    echo "ERROR: SKIP_TRAIN=1 but $CKPT doesn't exist." >&2
+    exit 1
+  fi
+else
+  echo ">>> [1/4] fine-tuning NLLB-200-3.3B (both directions)"
+  python scripts/train_nllb.py \
+    --model facebook/nllb-200-3.3B \
+    --output-dir checkpoints/nllb33b-Ar-En \
+    --epochs 2 \
+    --batch-size "$BATCH" \
+    --grad-accum "$ACCUM" \
+    --lr 3e-5 \
+    --optim adamw_bnb_8bit $MP_ARGS
+fi
 
+# 3.3B inference needs fp16 (~6.6 GB) instead of fp32 (~13 GB) to fit a 24 GB
+# card with KV cache. --model-parallel kept as a safety net.
 echo ">>> [2/4] translating dev (ar->en)"
 python scripts/translate.py --model "$CKPT" --kind nllb --direction ar-en \
+  --dtype fp16 \
   --input "$DATA_DIR/dev.ar" --output "$PRED_DIR/nllb33b.ar-en.dev.en"
 
 echo ">>> [3/4] translating dev (en->ar)"
 python scripts/translate.py --model "$CKPT" --kind nllb --direction en-ar \
+  --dtype fp16 \
   --input "$DATA_DIR/dev.en" --output "$PRED_DIR/nllb33b.en-ar.dev.ar"
 
 echo ">>> [4/4] scoring"

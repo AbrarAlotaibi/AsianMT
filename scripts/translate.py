@@ -45,6 +45,11 @@ def main() -> None:
     ap.add_argument("--max-length", type=int, default=256)
     ap.add_argument("--allow-cpu", action="store_true",
                     help="Allow inference on CPU. Without this flag, the script exits if no GPU is found.")
+    ap.add_argument("--dtype", choices=["fp16", "fp32"], default="fp16",
+                    help="Inference dtype. fp16 halves VRAM (essential for NLLB-3.3B). Default fp16.")
+    ap.add_argument("--model-parallel", action="store_true",
+                    help="Shard the model across all visible GPUs (device_map='auto' + capped "
+                         "max_memory). Use if a single GPU OOMs at generation time.")
     ap.add_argument("--num-samples", type=int, default=1,
                     help="If >1, draw N sampled hypotheses per source (for MBR / preference data). "
                          "Writes <output>.sampleK files (K=0..N-1) instead of a single beam output.")
@@ -70,7 +75,19 @@ def main() -> None:
         )
 
     tokenizer = AutoTokenizer.from_pretrained(str(args.model))
-    model = AutoModelForSeq2SeqLM.from_pretrained(str(args.model)).to(device).eval()
+    dtype = torch.float16 if args.dtype == "fp16" and device == "cuda" else torch.float32
+    if args.model_parallel and device == "cuda":
+        n_gpu = torch.cuda.device_count()
+        max_memory = {i: "8GiB" for i in range(n_gpu)}
+        max_memory["cpu"] = "200GiB"
+        print(f"sharding across {n_gpu} GPU(s) in {dtype}")
+        model = AutoModelForSeq2SeqLM.from_pretrained(
+            str(args.model), dtype=dtype, device_map="auto", max_memory=max_memory,
+        ).eval()
+    else:
+        model = AutoModelForSeq2SeqLM.from_pretrained(
+            str(args.model), dtype=dtype,
+        ).to(device).eval()
     model.config.use_cache = True  # KV cache speeds up generation
 
     sampling = args.num_samples > 1
