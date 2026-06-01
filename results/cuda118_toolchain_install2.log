@@ -1,0 +1,75 @@
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 22.9.0
+  latest version: 26.5.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+
+## Package Plan ##
+
+  environment location: /home/g202203240/.conda/envs/asianmt
+
+  added / updated specs:
+    - cuda-cccl
+    - cuda-cudart-dev
+    - cuda-libraries-dev
+    - cuda-nvcc
+    - cuda-nvtx
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    libcublas-11.11.3.6        |                0       364.0 MB  nvidia/label/cuda-11.8.0
+    libcusparse-11.7.5.86      |                0       176.3 MB  nvidia/label/cuda-11.8.0
+    libnpp-11.8.0.86           |                0       147.8 MB  nvidia/label/cuda-11.8.0
+    ------------------------------------------------------------
+                                           Total:       688.1 MB
+
+The following NEW packages will be INSTALLED:
+
+  cuda-cccl          nvidia/label/cuda-11.8.0/linux-64::cuda-cccl-11.8.89-0 None
+  cuda-cudart        nvidia/label/cuda-11.8.0/linux-64::cuda-cudart-11.8.89-0 None
+  cuda-cudart-dev    nvidia/label/cuda-11.8.0/linux-64::cuda-cudart-dev-11.8.89-0 None
+  cuda-driver-dev    nvidia/label/cuda-11.8.0/linux-64::cuda-driver-dev-11.8.89-0 None
+  cuda-libraries-dev nvidia/label/cuda-11.8.0/linux-64::cuda-libraries-dev-11.8.0-0 None
+  cuda-nvcc          nvidia/label/cuda-11.8.0/linux-64::cuda-nvcc-11.8.89-0 None
+  cuda-nvrtc         nvidia/label/cuda-11.8.0/linux-64::cuda-nvrtc-11.8.89-0 None
+  cuda-nvrtc-dev     nvidia/label/cuda-11.8.0/linux-64::cuda-nvrtc-dev-11.8.89-0 None
+  cuda-nvtx          nvidia/label/cuda-11.8.0/linux-64::cuda-nvtx-11.8.86-0 None
+  cuda-profiler-api  nvidia/label/cuda-11.8.0/linux-64::cuda-profiler-api-11.8.86-0 None
+  libcublas          nvidia/label/cuda-11.8.0/linux-64::libcublas-11.11.3.6-0 None
+  libcublas-dev      nvidia/label/cuda-11.8.0/linux-64::libcublas-dev-11.11.3.6-0 None
+  libcufft           nvidia/label/cuda-11.8.0/linux-64::libcufft-10.9.0.58-0 None
+  libcufft-dev       nvidia/label/cuda-11.8.0/linux-64::libcufft-dev-10.9.0.58-0 None
+  libcufile          nvidia/label/cuda-11.8.0/linux-64::libcufile-1.4.0.31-0 None
+  libcufile-dev      nvidia/label/cuda-11.8.0/linux-64::libcufile-dev-1.4.0.31-0 None
+  libcurand          nvidia/label/cuda-11.8.0/linux-64::libcurand-10.3.0.86-0 None
+  libcurand-dev      nvidia/label/cuda-11.8.0/linux-64::libcurand-dev-10.3.0.86-0 None
+  libcusolver        nvidia/label/cuda-11.8.0/linux-64::libcusolver-11.4.1.48-0 None
+  libcusolver-dev    nvidia/label/cuda-11.8.0/linux-64::libcusolver-dev-11.4.1.48-0 None
+  libcusparse        nvidia/label/cuda-11.8.0/linux-64::libcusparse-11.7.5.86-0 None
+  libcusparse-dev    nvidia/label/cuda-11.8.0/linux-64::libcusparse-dev-11.7.5.86-0 None
+  libnpp             nvidia/label/cuda-11.8.0/linux-64::libnpp-11.8.0.86-0 None
+  libnpp-dev         nvidia/label/cuda-11.8.0/linux-64::libnpp-dev-11.8.0.86-0 None
+  libnvjpeg          nvidia/label/cuda-11.8.0/linux-64::libnvjpeg-11.9.0.86-0 None
+  libnvjpeg-dev      nvidia/label/cuda-11.8.0/linux-64::libnvjpeg-dev-11.9.0.86-0 None
+
+
+
+Downloading and Extracting Packages
+libcublas-11.11.3.6  | 364.0 MB  |            |   0% libcublas-11.11.3.6  | 364.0 MB  | ########## | 100% libcublas-11.11.3.6  | 364.0 MB  | ########## | 100% 
+libcusparse-11.7.5.8 | 176.3 MB  |            |   0% libcusparse-11.7.5.8 | 176.3 MB  | ########## | 100% libcusparse-11.7.5.8 | 176.3 MB  | ########## | 100% 
+libnpp-11.8.0.86     | 147.8 MB  |            |   0% libnpp-11.8.0.86     | 147.8 MB  | ########## | 100% libnpp-11.8.0.86     | 147.8 MB  | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Retrieving notices: ...working... done
