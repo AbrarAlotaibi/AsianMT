@@ -55,3 +55,7 @@ LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [2]
   "COMET": 0.8414,
   "COMET_model": "Unbabel/wmt22-comet-da"
 }
+To https://github.com/AbrarAlotaibi/AsianMT.git
+   40b4e7e..0d34bf1  HEAD -> main
+pushed to main.
+done. compare to plain beam: NLLB-1.3B en->ar 20.29, ar->en 30.79 BLEU.

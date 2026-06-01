@@ -9,4 +9,241 @@ wrote 32 sample files -> predictions/sampling.ar-en.dev.en.sample0..31
 GPU: NVIDIA GeForce RTX 3090  VRAM: 25.3 GB  torch: 2.7.1+cu118
 The tokenizer you are loading from 'checkpoints/nllb33b-Ar-En/best' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
 Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:00,  2.93it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00,  2.84it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.24it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  3.13it/s]
-translate:   0%|          | 0/250 [00:00<?, ?it/s]translate:   0%|          | 1/250 [00:06<26:33,  6.40s/it]translate:   1%|          | 2/250 [00:15<32:08,  7.78s/it]translate:   1%|          | 3/250 [00:28<42:22, 10.29s/it]translate:   2%|▏         | 4/250 [00:37<39:25,  9.62s/it]translate:   2%|▏         | 5/250 [00:50<44:46, 10.96s/it]translate:   2%|▏         | 6/250 [00:55<36:31,  8.98s/it]translate:   3%|▎         | 7/250 [01:02<34:02,  8.41s/it]translate:   3%|▎         | 8/250 [01:07<28:41,  7.11s/it]translate:   4%|▎         | 9/250 [01:11<25:10,  6.27s/it]translate:   4%|▍         | 10/250 [01:17<25:21,  6.34s/it]translate:   4%|▍         | 11/250 [01:22<23:16,  5.84s/it]translate:   5%|▍         | 12/250 [01:36<32:22,  8.16s/it]translate:   5%|▌         | 13/250 [01:42<29:31,  7.47s/it]translate:   6%|▌         | 14/250 [01:45<25:08,  6.39s/it]translate:   6%|▌         | 15/250 [01:59<33:52,  8.65s/it]translate:   6%|▋         | 16/250 [02:03<27:43,  7.11s/it]translate:   7%|▋         | 17/250 [02:08<24:59,  6.44s/it]translate:   7%|▋         | 18/250 [02:14<24:58,  6.46s/it]translate:   8%|▊         | 19/250 [02:21<25:04,  6.51s/it]translate:   8%|▊         | 20/250 [02:26<23:28,  6.12s/it]translate:   8%|▊         | 21/250 [02:37<28:58,  7.59s/it]translate:   9%|▉         | 22/250 [02:45<28:40,  7.55s/it]translate:   9%|▉         | 23/250 [02:51<26:54,  7.11s/it]translate:  10%|▉         | 24/250 [02:56<24:33,  6.52s/it]translate:  10%|█         | 25/250 [03:02<24:05,  6.42s/it]translate:  10%|█         | 26/250 [03:05<20:05,  5.38s/it]translate:  11%|█         | 27/250 [03:14<23:38,  6.36s/it]translate:  11%|█         | 28/250 [03:20<23:14,  6.28s/it]translate:  12%|█▏        | 29/250 [03:25<22:24,  6.08s/it]translate:  12%|█▏        | 30/250 [03:35<26:25,  7.21s/it]translate:  12%|█▏        | 31/250 [03:40<23:15,  6.37s/it]translate:  13%|█▎        | 32/250 [03:43<20:17,  5.59s/it]translate:  13%|█▎        | 33/250 [03:49<20:25,  5.65s/it]translate:  14%|█▎        | 34/250 [03:53<18:07,  5.03s/it]translate:  14%|█▍        | 35/250 [03:57<17:29,  4.88s/it]translate:  14%|█▍        | 36/250 [04:03<17:54,  5.02s/it]translate:  15%|█▍        | 37/250 [04:06<15:44,  4.43s/it]translate:  15%|█▌        | 38/250 [04:11<16:51,  4.77s/it]translate:  16%|█▌        | 39/250 [04:16<17:01,  4.84s/it]translate:  16%|█▌        | 40/250 [04:20<15:51,  4.53s/it]translate:  16%|█▋        | 41/250 [04:25<15:48,  4.54s/it]translate:  17%|█▋        | 42/250 [04:30<16:25,  4.74s/it]translate:  17%|█▋        | 43/250 [04:35<16:57,  4.92s/it]translate:  18%|█▊        | 44/250 [04:46<22:36,  6.58s/it]translate:  18%|█▊        | 45/250 [04:49<19:02,  5.57s/it]
+translate:   0%|          | 0/250 [00:00<?, ?it/s]translate:   0%|          | 1/250 [00:06<26:33,  6.40s/it]translate:   1%|          | 2/250 [00:15<32:08,  7.78s/it]translate:   1%|          | 3/250 [00:28<42:22, 10.29s/it]translate:   2%|▏         | 4/250 [00:37<39:25,  9.62s/it]translate:   2%|▏         | 5/250 [00:50<44:46, 10.96s/it]translate:   2%|▏         | 6/250 [00:55<36:31,  8.98s/it]translate:   3%|▎         | 7/250 [01:02<34:02,  8.41s/it]translate:   3%|▎         | 8/250 [01:07<28:41,  7.11s/it]translate:   4%|▎         | 9/250 [01:11<25:10,  6.27s/it]translate:   4%|▍         | 10/250 [01:17<25:21,  6.34s/it]translate:   4%|▍         | 11/250 [01:22<23:16,  5.84s/it]translate:   5%|▍         | 12/250 [01:36<32:22,  8.16s/it]translate:   5%|▌         | 13/250 [01:42<29:31,  7.47s/it]translate:   6%|▌         | 14/250 [01:45<25:08,  6.39s/it]translate:   6%|▌         | 15/250 [01:59<33:52,  8.65s/it]translate:   6%|▋         | 16/250 [02:03<27:43,  7.11s/it]translate:   7%|▋         | 17/250 [02:08<24:59,  6.44s/it]translate:   7%|▋         | 18/250 [02:14<24:58,  6.46s/it]translate:   8%|▊         | 19/250 [02:21<25:04,  6.51s/it]translate:   8%|▊         | 20/250 [02:26<23:28,  6.12s/it]translate:   8%|▊         | 21/250 [02:37<28:58,  7.59s/it]translate:   9%|▉         | 22/250 [02:45<28:40,  7.55s/it]translate:   9%|▉         | 23/250 [02:51<26:54,  7.11s/it]translate:  10%|▉         | 24/250 [02:56<24:33,  6.52s/it]translate:  10%|█         | 25/250 [03:02<24:05,  6.42s/it]translate:  10%|█         | 26/250 [03:05<20:05,  5.38s/it]translate:  11%|█         | 27/250 [03:14<23:38,  6.36s/it]translate:  11%|█         | 28/250 [03:20<23:14,  6.28s/it]translate:  12%|█▏        | 29/250 [03:25<22:24,  6.08s/it]translate:  12%|█▏        | 30/250 [03:35<26:25,  7.21s/it]translate:  12%|█▏        | 31/250 [03:40<23:15,  6.37s/it]translate:  13%|█▎        | 32/250 [03:43<20:17,  5.59s/it]translate:  13%|█▎        | 33/250 [03:49<20:25,  5.65s/it]translate:  14%|█▎        | 34/250 [03:53<18:07,  5.03s/it]translate:  14%|█▍        | 35/250 [03:57<17:29,  4.88s/it]translate:  14%|█▍        | 36/250 [04:03<17:54,  5.02s/it]translate:  15%|█▍        | 37/250 [04:06<15:44,  4.43s/it]translate:  15%|█▌        | 38/250 [04:11<16:51,  4.77s/it]translate:  16%|█▌        | 39/250 [04:16<17:01,  4.84s/it]translate:  16%|█▌        | 40/250 [04:20<15:51,  4.53s/it]translate:  16%|█▋        | 41/250 [04:25<15:48,  4.54s/it]translate:  17%|█▋        | 42/250 [04:30<16:25,  4.74s/it]translate:  17%|█▋        | 43/250 [04:35<16:57,  4.92s/it]translate:  18%|█▊        | 44/250 [04:46<22:36,  6.58s/it]translate:  18%|█▊        | 45/250 [04:49<19:02,  5.57s/it]translate:  18%|█▊        | 46/250 [05:00<24:14,  7.13s/it]translate:  19%|█▉        | 47/250 [05:05<22:09,  6.55s/it]translate:  19%|█▉        | 48/250 [05:10<20:43,  6.16s/it]translate:  20%|█▉        | 49/250 [05:14<18:12,  5.44s/it]translate:  20%|██        | 50/250 [05:19<18:24,  5.52s/it]translate:  20%|██        | 51/250 [05:23<16:22,  4.94s/it]translate:  21%|██        | 52/250 [05:27<15:46,  4.78s/it]translate:  21%|██        | 53/250 [05:33<16:00,  4.88s/it]translate:  22%|██▏       | 54/250 [05:38<16:36,  5.08s/it]translate:  22%|██▏       | 55/250 [05:49<22:16,  6.85s/it]translate:  22%|██▏       | 56/250 [05:54<19:55,  6.16s/it]translate:  23%|██▎       | 57/250 [05:57<17:12,  5.35s/it]translate:  23%|██▎       | 58/250 [06:04<18:49,  5.88s/it]translate:  24%|██▎       | 59/250 [06:13<21:26,  6.73s/it]translate:  24%|██▍       | 60/250 [06:19<20:13,  6.39s/it]translate:  24%|██▍       | 61/250 [06:22<17:41,  5.62s/it]translate:  25%|██▍       | 62/250 [06:32<21:01,  6.71s/it]translate:  25%|██▌       | 63/250 [06:37<19:37,  6.30s/it]translate:  26%|██▌       | 64/250 [06:41<17:08,  5.53s/it]translate:  26%|██▌       | 65/250 [06:46<16:45,  5.44s/it]translate:  26%|██▋       | 66/250 [06:51<15:56,  5.20s/it]translate:  27%|██▋       | 67/250 [07:02<22:01,  7.22s/it]translate:  27%|██▋       | 68/250 [07:09<20:57,  6.91s/it]translate:  28%|██▊       | 69/250 [07:15<20:37,  6.84s/it]translate:  28%|██▊       | 70/250 [07:22<20:06,  6.70s/it]translate:  28%|██▊       | 71/250 [07:28<19:10,  6.43s/it]translate:  29%|██▉       | 72/250 [07:31<16:36,  5.60s/it]translate:  29%|██▉       | 73/250 [07:34<14:25,  4.89s/it]translate:  30%|██▉       | 74/250 [07:37<12:37,  4.30s/it]translate:  30%|███       | 75/250 [07:49<18:35,  6.37s/it]translate:  30%|███       | 76/250 [07:53<16:39,  5.75s/it]translate:  31%|███       | 77/250 [08:02<19:39,  6.82s/it]translate:  31%|███       | 78/250 [08:05<16:24,  5.72s/it]translate:  32%|███▏      | 79/250 [08:10<15:16,  5.36s/it]translate:  32%|███▏      | 80/250 [08:14<14:32,  5.13s/it]translate:  32%|███▏      | 81/250 [08:21<15:28,  5.49s/it]translate:  33%|███▎      | 82/250 [08:31<19:11,  6.85s/it]translate:  33%|███▎      | 83/250 [08:36<17:19,  6.22s/it]translate:  34%|███▎      | 84/250 [08:40<15:28,  5.59s/it]translate:  34%|███▍      | 85/250 [08:43<13:10,  4.79s/it]translate:  34%|███▍      | 86/250 [08:47<13:06,  4.80s/it]translate:  35%|███▍      | 87/250 [08:56<16:28,  6.07s/it]translate:  35%|███▌      | 88/250 [09:02<16:02,  5.94s/it]translate:  36%|███▌      | 89/250 [09:08<16:02,  5.98s/it]translate:  36%|███▌      | 90/250 [09:12<14:08,  5.31s/it]translate:  36%|███▋      | 91/250 [09:15<12:35,  4.75s/it]translate:  37%|███▋      | 92/250 [09:26<17:09,  6.52s/it]translate:  37%|███▋      | 93/250 [09:31<16:10,  6.18s/it]translate:  38%|███▊      | 94/250 [09:39<17:09,  6.60s/it]translate:  38%|███▊      | 95/250 [09:43<14:43,  5.70s/it]translate:  38%|███▊      | 96/250 [09:47<13:17,  5.18s/it]translate:  39%|███▉      | 97/250 [09:51<12:48,  5.02s/it]translate:  39%|███▉      | 98/250 [09:54<11:11,  4.42s/it]translate:  40%|███▉      | 99/250 [09:58<10:43,  4.26s/it]translate:  40%|████      | 100/250 [10:03<11:09,  4.46s/it]translate:  40%|████      | 101/250 [10:09<12:06,  4.88s/it]translate:  41%|████      | 102/250 [10:14<12:26,  5.04s/it]translate:  41%|████      | 103/250 [10:19<11:49,  4.83s/it]translate:  42%|████▏     | 104/250 [10:29<16:00,  6.58s/it]translate:  42%|████▏     | 105/250 [10:33<13:54,  5.75s/it]translate:  42%|████▏     | 106/250 [10:39<13:45,  5.73s/it]translate:  43%|████▎     | 107/250 [10:45<13:51,  5.82s/it]translate:  43%|████▎     | 108/250 [10:51<13:56,  5.89s/it]translate:  44%|████▎     | 109/250 [10:54<11:55,  5.07s/it]translate:  44%|████▍     | 110/250 [10:59<11:31,  4.94s/it]translate:  44%|████▍     | 111/250 [11:05<12:24,  5.36s/it]translate:  45%|████▍     | 112/250 [11:10<12:11,  5.30s/it]translate:  45%|████▌     | 113/250 [11:25<18:42,  8.19s/it]translate:  46%|████▌     | 114/250 [11:38<21:56,  9.68s/it]translate:  46%|████▌     | 115/250 [11:42<17:33,  7.80s/it]translate:  46%|████▋     | 116/250 [11:45<14:33,  6.52s/it]translate:  47%|████▋     | 117/250 [11:54<15:53,  7.17s/it]translate:  47%|████▋     | 118/250 [11:57<12:51,  5.84s/it]translate:  48%|████▊     | 119/250 [12:00<11:19,  5.19s/it]translate:  48%|████▊     | 120/250 [12:04<10:13,  4.72s/it]translate:  48%|████▊     | 121/250 [12:08<09:25,  4.39s/it]translate:  49%|████▉     | 122/250 [12:11<08:41,  4.07s/it]translate:  49%|████▉     | 123/250 [12:14<08:20,  3.94s/it]translate:  50%|████▉     | 124/250 [12:19<08:52,  4.23s/it]translate:  50%|█████     | 125/250 [12:26<10:01,  4.81s/it]translate:  50%|█████     | 126/250 [12:30<09:38,  4.66s/it]translate:  51%|█████     | 127/250 [12:35<10:05,  4.92s/it]translate:  51%|█████     | 128/250 [12:39<09:24,  4.62s/it]translate:  52%|█████▏    | 129/250 [12:44<09:13,  4.57s/it]translate:  52%|█████▏    | 130/250 [12:51<10:43,  5.36s/it]translate:  52%|█████▏    | 131/250 [12:55<09:57,  5.02s/it]translate:  53%|█████▎    | 132/250 [12:58<08:45,  4.46s/it]translate:  53%|█████▎    | 133/250 [13:03<09:04,  4.66s/it]translate:  54%|█████▎    | 134/250 [13:07<08:23,  4.34s/it]translate:  54%|█████▍    | 135/250 [13:13<08:59,  4.69s/it]translate:  54%|█████▍    | 136/250 [13:23<12:22,  6.52s/it]translate:  55%|█████▍    | 137/250 [13:28<11:09,  5.93s/it]translate:  55%|█████▌    | 138/250 [13:32<10:10,  5.45s/it]translate:  56%|█████▌    | 139/250 [13:36<09:06,  4.92s/it]translate:  56%|█████▌    | 140/250 [13:42<09:22,  5.12s/it]translate:  56%|█████▋    | 141/250 [13:45<08:16,  4.56s/it]translate:  57%|█████▋    | 142/250 [13:48<07:40,  4.26s/it]translate:  57%|█████▋    | 143/250 [13:57<10:10,  5.70s/it]translate:  58%|█████▊    | 144/250 [14:05<11:19,  6.41s/it]translate:  58%|█████▊    | 145/250 [14:12<11:06,  6.34s/it]translate:  58%|█████▊    | 146/250 [14:18<11:02,  6.37s/it]translate:  59%|█████▉    | 147/250 [14:22<09:32,  5.56s/it]translate:  59%|█████▉    | 148/250 [14:27<09:10,  5.40s/it]translate:  60%|█████▉    | 149/250 [14:33<09:32,  5.67s/it]translate:  60%|██████    | 150/250 [14:40<09:57,  5.98s/it]translate:  60%|██████    | 151/250 [14:44<09:14,  5.60s/it]translate:  61%|██████    | 152/250 [14:50<08:56,  5.47s/it]translate:  61%|██████    | 153/250 [14:53<07:35,  4.69s/it]translate:  62%|██████▏   | 154/250 [14:57<07:10,  4.48s/it]translate:  62%|██████▏   | 155/250 [15:05<09:02,  5.71s/it]translate:  62%|██████▏   | 156/250 [15:09<07:56,  5.07s/it]translate:  63%|██████▎   | 157/250 [15:17<09:09,  5.90s/it]translate:  63%|██████▎   | 158/250 [15:19<07:24,  4.83s/it]translate:  64%|██████▎   | 159/250 [15:22<06:34,  4.34s/it]translate:  64%|██████▍   | 160/250 [15:25<05:52,  3.92s/it]translate:  64%|██████▍   | 161/250 [15:28<05:34,  3.76s/it]translate:  65%|██████▍   | 162/250 [15:35<06:38,  4.53s/it]translate:  65%|██████▌   | 163/250 [15:38<06:07,  4.23s/it]translate:  66%|██████▌   | 164/250 [15:43<06:19,  4.41s/it]translate:  66%|██████▌   | 165/250 [15:56<09:41,  6.84s/it]translate:  66%|██████▋   | 166/250 [15:59<08:06,  5.79s/it]translate:  67%|██████▋   | 167/250 [16:05<08:06,  5.86s/it]translate:  67%|██████▋   | 168/250 [16:09<07:20,  5.37s/it]translate:  68%|██████▊   | 169/250 [16:15<07:18,  5.41s/it]translate:  68%|██████▊   | 170/250 [16:24<08:42,  6.53s/it]translate:  68%|██████▊   | 171/250 [16:30<08:17,  6.30s/it]translate:  69%|██████▉   | 172/250 [16:36<08:23,  6.46s/it]translate:  69%|██████▉   | 173/250 [16:42<07:51,  6.12s/it]translate:  70%|██████▉   | 174/250 [16:48<07:38,  6.03s/it]translate:  70%|███████   | 175/250 [16:50<06:12,  4.96s/it]translate:  70%|███████   | 176/250 [16:55<06:05,  4.94s/it]translate:  71%|███████   | 177/250 [17:02<06:51,  5.63s/it]translate:  71%|███████   | 178/250 [17:16<09:49,  8.19s/it]translate:  72%|███████▏  | 179/250 [17:21<08:23,  7.10s/it]translate:  72%|███████▏  | 180/250 [17:26<07:35,  6.51s/it]translate:  72%|███████▏  | 181/250 [17:29<06:25,  5.59s/it]translate:  73%|███████▎  | 182/250 [17:33<05:47,  5.12s/it]translate:  73%|███████▎  | 183/250 [17:39<05:48,  5.20s/it]translate:  74%|███████▎  | 184/250 [17:48<06:51,  6.24s/it]translate:  74%|███████▍  | 185/250 [17:54<06:56,  6.40s/it]translate:  74%|███████▍  | 186/250 [17:59<06:09,  5.78s/it]translate:  75%|███████▍  | 187/250 [18:05<06:07,  5.84s/it]translate:  75%|███████▌  | 188/250 [18:10<05:47,  5.61s/it]translate:  76%|███████▌  | 189/250 [18:16<05:52,  5.77s/it]translate:  76%|███████▌  | 190/250 [18:20<05:21,  5.36s/it]translate:  76%|███████▋  | 191/250 [18:23<04:31,  4.60s/it]translate:  77%|███████▋  | 192/250 [18:26<04:02,  4.18s/it]translate:  77%|███████▋  | 193/250 [18:30<03:55,  4.13s/it]translate:  78%|███████▊  | 194/250 [18:34<03:36,  3.87s/it]translate:  78%|███████▊  | 195/250 [18:38<03:36,  3.94s/it]translate:  78%|███████▊  | 196/250 [18:46<04:49,  5.36s/it]translate:  79%|███████▉  | 197/250 [18:53<04:59,  5.64s/it]translate:  79%|███████▉  | 198/250 [18:57<04:34,  5.27s/it]translate:  80%|███████▉  | 199/250 [19:01<04:13,  4.96s/it]translate:  80%|████████  | 200/250 [19:15<06:12,  7.45s/it]translate:  80%|████████  | 201/250 [19:18<05:01,  6.16s/it]translate:  81%|████████  | 202/250 [19:22<04:29,  5.62s/it]translate:  81%|████████  | 203/250 [19:27<04:16,  5.45s/it]translate:  82%|████████▏ | 204/250 [19:33<04:12,  5.50s/it]translate:  82%|████████▏ | 205/250 [19:39<04:24,  5.87s/it]translate:  82%|████████▏ | 206/250 [19:43<03:50,  5.25s/it]translate:  83%|████████▎ | 207/250 [19:49<03:58,  5.55s/it]translate:  83%|████████▎ | 208/250 [19:53<03:27,  4.95s/it]translate:  84%|████████▎ | 209/250 [20:02<04:07,  6.03s/it]translate:  84%|████████▍ | 210/250 [20:05<03:32,  5.30s/it]translate:  84%|████████▍ | 211/250 [20:10<03:19,  5.12s/it]translate:  85%|████████▍ | 212/250 [20:16<03:26,  5.43s/it]translate:  85%|████████▌ | 213/250 [20:21<03:16,  5.30s/it]translate:  86%|████████▌ | 214/250 [20:31<03:59,  6.65s/it]translate:  86%|████████▌ | 215/250 [20:40<04:14,  7.28s/it]translate:  86%|████████▋ | 216/250 [20:44<03:41,  6.51s/it]translate:  87%|████████▋ | 217/250 [20:55<04:12,  7.65s/it]translate:  87%|████████▋ | 218/250 [20:58<03:21,  6.30s/it]translate:  88%|████████▊ | 219/250 [21:02<02:57,  5.72s/it]translate:  88%|████████▊ | 220/250 [21:12<03:32,  7.08s/it]translate:  88%|████████▊ | 221/250 [21:23<03:54,  8.07s/it]translate:  89%|████████▉ | 222/250 [21:26<03:08,  6.75s/it]translate:  89%|████████▉ | 223/250 [21:33<02:57,  6.56s/it]translate:  90%|████████▉ | 224/250 [21:36<02:26,  5.64s/it]translate:  90%|█████████ | 225/250 [21:42<02:24,  5.78s/it]translate:  90%|█████████ | 226/250 [21:45<02:00,  5.03s/it]translate:  91%|█████████ | 227/250 [21:51<01:56,  5.07s/it]translate:  91%|█████████ | 228/250 [21:56<01:57,  5.33s/it]translate:  92%|█████████▏| 229/250 [22:06<02:15,  6.48s/it]translate:  92%|█████████▏| 230/250 [22:12<02:09,  6.48s/it]translate:  92%|█████████▏| 231/250 [22:16<01:45,  5.56s/it]translate:  93%|█████████▎| 232/250 [22:20<01:34,  5.25s/it]translate:  93%|█████████▎| 233/250 [22:28<01:45,  6.18s/it]translate:  94%|█████████▎| 234/250 [22:36<01:43,  6.47s/it]translate:  94%|█████████▍| 235/250 [22:46<01:54,  7.66s/it]translate:  94%|█████████▍| 236/250 [22:51<01:35,  6.84s/it]translate:  95%|█████████▍| 237/250 [22:58<01:28,  6.77s/it]translate:  95%|█████████▌| 238/250 [23:06<01:27,  7.31s/it]translate:  96%|█████████▌| 239/250 [23:10<01:08,  6.26s/it]translate:  96%|█████████▌| 240/250 [23:16<01:00,  6.06s/it]translate:  96%|█████████▋| 241/250 [23:20<00:51,  5.67s/it]translate:  97%|█████████▋| 242/250 [23:26<00:45,  5.74s/it]translate:  97%|█████████▋| 243/250 [23:32<00:39,  5.64s/it]translate:  98%|█████████▊| 244/250 [23:37<00:33,  5.59s/it]translate:  98%|█████████▊| 245/250 [23:42<00:26,  5.28s/it]translate:  98%|█████████▊| 246/250 [23:50<00:24,  6.10s/it]translate:  99%|█████████▉| 247/250 [24:01<00:22,  7.63s/it]translate:  99%|█████████▉| 248/250 [24:07<00:14,  7.19s/it]translate: 100%|█████████▉| 249/250 [24:12<00:06,  6.53s/it]translate: 100%|██████████| 250/250 [24:17<00:00,  6.22s/it]translate: 100%|██████████| 250/250 [24:17<00:00,  5.83s/it]
+wrote 32 sample files -> predictions/sampling.en-ar.dev.ar.sample0..31
+>>> [3/4] COMET-MBR over ar->en samples
+GPU: NVIDIA GeForce RTX 3090  torch: 2.7.1+cu118
+/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torchmetrics/utilities/imports.py:23: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+1000 sources x 32 candidate files
+loading QE model Unbabel/wmt22-cometkiwi-da ...
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 403, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://huggingface.co/Unbabel/wmt22-cometkiwi-da/resolve/1ad785194e391eebc6c53e2d0776cada8f83179a/.gitattributes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/__init__.py", line 48, in download_model
+    model_path = snapshot_download(
+                 ^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 332, in snapshot_download
+    thread_map(
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1662, in _raise_on_head_call_error
+    raise head_call_error
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1550, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1467, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 283, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 307, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 420, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 403 Client Error. (Request ID: Root=1-6a1d894e-75cd850213aab95765e82a1d;bcede4e5-648a-44df-a82d-ab9a35a262a1)
+
+Cannot access gated repo for url https://huggingface.co/Unbabel/wmt22-cometkiwi-da/resolve/1ad785194e391eebc6c53e2d0776cada8f83179a/.gitattributes.
+Access to model Unbabel/wmt22-cometkiwi-da is restricted and you are not in the authorized list. Visit https://huggingface.co/Unbabel/wmt22-cometkiwi-da to ask for access.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/__init__.py", line 53, in download_model
+    checkpoint_path = download_model_legacy(model, saving_directory)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/download_utils.py", line 224, in download_model_legacy
+    raise Exception(
+Exception: Unbabel/wmt22-cometkiwi-da is not in the `available_legacy_metrics` or is a valid checkpoint folder.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/mbr_decode.py", line 148, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/mbr_decode.py", line 100, in main
+    qe = load_from_checkpoint(download_model(args.qe_model))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/__init__.py", line 55, in download_model
+    raise KeyError(f"Model '{model}' not supported by COMET.")
+KeyError: "Model 'Unbabel/wmt22-cometkiwi-da' not supported by COMET."
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 64, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 29, in main
+    hyps = load(args.hyp)
+           ^^^^^^^^^^^^^^
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 14, in load
+    return [l.rstrip("\n") for l in p.read_text(encoding="utf-8").splitlines()]
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'predictions/sampling-mbr.ar-en.dev.en'
+>>> [4/4] COMET-MBR over en->ar samples
+GPU: NVIDIA GeForce RTX 3090  torch: 2.7.1+cu118
+/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torchmetrics/utilities/imports.py:23: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import DistributionNotFound, get_distribution
+1000 sources x 32 candidate files
+loading QE model Unbabel/wmt22-cometkiwi-da ...
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 403, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://huggingface.co/Unbabel/wmt22-cometkiwi-da/resolve/1ad785194e391eebc6c53e2d0776cada8f83179a/.gitattributes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/__init__.py", line 48, in download_model
+    model_path = snapshot_download(
+                 ^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 332, in snapshot_download
+    thread_map(
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 69, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/tqdm/contrib/concurrent.py", line 51, in _executor_map
+    return list(tqdm_class(ex.map(fn, *iterables, chunksize=chunksize), **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1662, in _raise_on_head_call_error
+    raise head_call_error
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1550, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1467, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 283, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 307, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 420, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 403 Client Error. (Request ID: Root=1-6a1d8954-7e7cd1fa18c3cd3d10694ce5;2442a06f-3e3e-4bb6-bbb1-4c7b5a2fdaef)
+
+Cannot access gated repo for url https://huggingface.co/Unbabel/wmt22-cometkiwi-da/resolve/1ad785194e391eebc6c53e2d0776cada8f83179a/.gitattributes.
+Access to model Unbabel/wmt22-cometkiwi-da is restricted and you are not in the authorized list. Visit https://huggingface.co/Unbabel/wmt22-cometkiwi-da to ask for access.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/__init__.py", line 53, in download_model
+    checkpoint_path = download_model_legacy(model, saving_directory)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/download_utils.py", line 224, in download_model_legacy
+    raise Exception(
+Exception: Unbabel/wmt22-cometkiwi-da is not in the `available_legacy_metrics` or is a valid checkpoint folder.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/mbr_decode.py", line 148, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/mbr_decode.py", line 100, in main
+    qe = load_from_checkpoint(download_model(args.qe_model))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/comet/models/__init__.py", line 55, in download_model
+    raise KeyError(f"Model '{model}' not supported by COMET.")
+KeyError: "Model 'Unbabel/wmt22-cometkiwi-da' not supported by COMET."
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 64, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 29, in main
+    hyps = load(args.hyp)
+           ^^^^^^^^^^^^^^
+  File "/hdd/g202203240/AsianMT/scripts/evaluate.py", line 14, in load
+    return [l.rstrip("\n") for l in p.read_text(encoding="utf-8").splitlines()]
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'predictions/sampling-mbr.en-ar.dev.ar'
