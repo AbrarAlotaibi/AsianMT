@@ -1,0 +1,82 @@
+=== run_cpo 2026-06-01T12:50:28Z  K=4 N=4000 ===
+>>> [1/6] sampling candidates ar->en
+GPU: NVIDIA GeForce RTX 3090  torch: 2.7.1+cu118
+loading X-ALMA backbone in 4-bit ...
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:03<00:19,  4.00s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:08<00:16,  4.15s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:12<00:12,  4.18s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:16<00:08,  4.16s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:20<00:04,  4.15s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:21<00:00,  3.02s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:21<00:00,  3.59s/it]
+xalma:   0%|          | 0/500 [00:00<?, ?it/s]xalma:   0%|          | 1/500 [00:11<1:38:19, 11.82s/it]xalma:   0%|          | 2/500 [00:23<1:35:55, 11.56s/it]xalma:   1%|          | 3/500 [00:37<1:47:15, 12.95s/it]xalma:   1%|          | 3/500 [00:45<2:04:28, 15.03s/it]
+Traceback (most recent call last):
+  File "/hdd/g202203240/AsianMT/scripts/xalma_translate.py", line 133, in <module>
+    main()
+  File "/hdd/g202203240/AsianMT/scripts/xalma_translate.py", line 108, in main
+    gen = model.generate(
+          ^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/peft/peft_model.py", line 2122, in generate
+    outputs = self.base_model.generate(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/generation/utils.py", line 2566, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/generation/utils.py", line 2786, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 309, in forward
+    hidden_states = self.mlp(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 155, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+                                                                ^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/g202203240/.conda/envs/asianmt/lib/python3.11/site-packages/peft/tuners/lora/bnb.py", line 545, in forward
+    output = lora_B(lora_A(dropout(x))) * scaling
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 972.00 MiB. GPU 0 has a total capacity of 23.57 GiB of which 680.44 MiB is free. Including non-PyTorch memory, this process has 22.83 GiB memory in use. Of the allocated memory 19.42 GiB is allocated by PyTorch, and 3.11 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
