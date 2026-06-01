@@ -3,5 +3,7 @@
   "BLEU": 24.67,
   "chrF": 52.3,
   "TER": 64.09,
-  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0"
+  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+  "COMET": 0.838,
+  "COMET_model": "Unbabel/wmt22-comet-da"
 }
