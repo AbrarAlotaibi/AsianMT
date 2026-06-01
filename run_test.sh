@@ -32,8 +32,14 @@ pick() {  # pick FIRST_EXISTING fallback1 fallback2 ...
   for c in "$@"; do [ -f "$c" ] && { echo "$c"; return; }; done
   echo ""
 }
-TEST_AR="${TEST_AR:-$(pick Ar-En/test.ar Ar-En/clean/test.ar Ar-En/devtest.ar Ar-En/clean/devtest.ar)}"
-TEST_EN="${TEST_EN:-$(pick Ar-En/test.en Ar-En/clean/test.en Ar-En/devtest.en Ar-En/clean/devtest.en)}"
+TEST_AR="${TEST_AR:-$(pick \
+  Ar-En/test.ar Ar-En/clean/test.ar \
+  "Challenge_Test/Sub-Task 2A_Arabic-to-English/Ar-to-En/test_challenge_ar_ar-to-en.txt" \
+  Ar-En/devtest.ar Ar-En/clean/devtest.ar)}"
+TEST_EN="${TEST_EN:-$(pick \
+  Ar-En/test.en Ar-En/clean/test.en \
+  "Challenge_Test/Sub-Task 1A_ English-to- Arabic/En-to-Ar/test_challenge_en_en-to-ar.txt" \
+  Ar-En/devtest.en Ar-En/clean/devtest.en)}"
 if [ -z "$TEST_AR" ] || [ -z "$TEST_EN" ]; then
   echo "ERROR: no test source files found. Set TEST_AR=... TEST_EN=... ." >&2
   exit 1
