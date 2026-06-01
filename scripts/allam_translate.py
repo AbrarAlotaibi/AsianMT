@@ -17,6 +17,7 @@ import os
 import sys
 
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
 from pathlib import Path
 
@@ -60,7 +61,8 @@ def main() -> None:
     ap.add_argument("--direction", choices=["ar-en", "en-ar"], required=True)
     ap.add_argument("--input", required=True, type=Path)
     ap.add_argument("--output", required=True, type=Path)
-    ap.add_argument("--batch-size", type=int, default=8)
+    ap.add_argument("--batch-size", type=int, default=4,
+                    help="Reduce to 1-2 when --num-samples > 1 (K seqs generated per source).")
     ap.add_argument("--max-new-tokens", type=int, default=256)
     ap.add_argument("--num-samples", type=int, default=1,
                     help="If >1, draw N sampled hypotheses per source. "
@@ -100,6 +102,9 @@ def main() -> None:
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
     sampling = args.num_samples > 1
+    if sampling and args.batch_size > 2:
+        print(f"WARNING: --num-samples {args.num_samples} x batch {args.batch_size} "
+              f"= {args.num_samples * args.batch_size} sequences; consider --batch-size 2 to avoid OOM.")
     cols: list[list[str]] = [[] for _ in range(args.num_samples if sampling else 1)]
 
     with torch.inference_mode():

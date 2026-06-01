@@ -19,6 +19,7 @@ from pathlib import Path
 
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
 import torch
 from datasets import Dataset
@@ -29,7 +30,7 @@ from transformers import (
 )
 
 LANG_NAME = {"ar": "Arabic", "en": "English"}
-DEFAULT_MODEL = "sdaia/allam-1-7b-instruct"
+DEFAULT_MODEL = "ALLaM-AI/ALLaM-7B-Instruct-preview"
 SYSTEM_PROMPT = (
     "You are a professional translator. Translate the given text accurately "
     "and naturally. Output only the translation with no explanation."
@@ -66,8 +67,8 @@ def main() -> None:
     ap.add_argument("--max-samples", type=int, default=0,
                     help="If >0, cap training examples (smoke test).")
     ap.add_argument("--epochs", type=int, default=3)
-    ap.add_argument("--batch-size", type=int, default=4)
-    ap.add_argument("--grad-accum", type=int, default=8)
+    ap.add_argument("--batch-size", type=int, default=2)
+    ap.add_argument("--grad-accum", type=int, default=16)
     ap.add_argument("--lr", type=float, default=2e-4)
     ap.add_argument("--max-length", type=int, default=512)
     ap.add_argument("--lora-r", type=int, default=16)
@@ -92,6 +93,7 @@ def main() -> None:
     model = AutoModelForCausalLM.from_pretrained(
         args.model, quantization_config=bnb, device_map={"": 0},
     )
+    torch.cuda.empty_cache()
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
 
     lora_cfg = LoraConfig(
