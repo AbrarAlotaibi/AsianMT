@@ -10,7 +10,7 @@
 # Run on its own GPU:  CUDA_VISIBLE_DEVICES=1 bash run_cpo.sh
 # Monitor: tail -f results/cpo.log
 
-set -uo pipefail
+set -euo pipefail
 export PYTHONUNBUFFERED=1
 cd "$(dirname "$0")"
 source "$(dirname "$0")/scripts/preflight.sh"
