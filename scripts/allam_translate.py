@@ -61,8 +61,9 @@ def main() -> None:
     ap.add_argument("--direction", choices=["ar-en", "en-ar"], required=True)
     ap.add_argument("--input", required=True, type=Path)
     ap.add_argument("--output", required=True, type=Path)
-    ap.add_argument("--batch-size", type=int, default=4,
-                    help="Reduce to 1-2 when --num-samples > 1 (K seqs generated per source).")
+    ap.add_argument("--batch-size", type=int, default=16,
+                    help="Reduce to 2-4 when --num-samples > 1 (K seqs generated per source).")
+    ap.add_argument("--flash-attn", action="store_true", default=True)
     ap.add_argument("--max-new-tokens", type=int, default=256)
     ap.add_argument("--num-samples", type=int, default=1,
                     help="If >1, draw N sampled hypotheses per source. "
@@ -84,8 +85,15 @@ def main() -> None:
         bnb_4bit_compute_dtype=torch.float16, bnb_4bit_use_double_quant=True,
     )
     print(f"loading {args.model} in 4-bit ...")
+    fa2_kwargs = {}
+    try:
+        if args.flash_attn:
+            import flash_attn  # noqa: F401
+            fa2_kwargs["attn_implementation"] = "flash_attention_2"
+    except ImportError:
+        pass
     model = AutoModelForCausalLM.from_pretrained(
-        args.model, quantization_config=bnb, device_map={"": 0},
+        args.model, quantization_config=bnb, device_map={"": 0}, **fa2_kwargs,
     )
     if args.adapter:
         print(f"loading adapter {args.adapter} ...")

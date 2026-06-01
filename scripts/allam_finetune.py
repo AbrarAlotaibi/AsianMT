@@ -67,12 +67,14 @@ def main() -> None:
     ap.add_argument("--max-samples", type=int, default=0,
                     help="If >0, cap training examples (smoke test).")
     ap.add_argument("--epochs", type=int, default=3)
-    ap.add_argument("--batch-size", type=int, default=2)
-    ap.add_argument("--grad-accum", type=int, default=16)
+    ap.add_argument("--batch-size", type=int, default=8)
+    ap.add_argument("--grad-accum", type=int, default=4)
     ap.add_argument("--lr", type=float, default=2e-4)
-    ap.add_argument("--max-length", type=int, default=512)
-    ap.add_argument("--lora-r", type=int, default=16)
-    ap.add_argument("--lora-alpha", type=int, default=32)
+    ap.add_argument("--max-length", type=int, default=1024)
+    ap.add_argument("--lora-r", type=int, default=64)
+    ap.add_argument("--lora-alpha", type=int, default=128)
+    ap.add_argument("--flash-attn", action="store_true", default=True,
+                    help="Use Flash Attention 2 if available (faster + less memory on long seqs).")
     args = ap.parse_args()
 
     src_lang, tgt_lang = args.direction.split("-")
@@ -90,8 +92,16 @@ def main() -> None:
         bnb_4bit_compute_dtype=torch.float16, bnb_4bit_use_double_quant=True,
     )
     print(f"loading {args.model} in 4-bit ...")
+    fa2_kwargs = {}
+    try:
+        if args.flash_attn:
+            import flash_attn  # noqa: F401
+            fa2_kwargs["attn_implementation"] = "flash_attention_2"
+            print("Flash Attention 2 enabled.")
+    except ImportError:
+        print("flash-attn not installed; falling back to standard attention.")
     model = AutoModelForCausalLM.from_pretrained(
-        args.model, quantization_config=bnb, device_map={"": 0},
+        args.model, quantization_config=bnb, device_map={"": 0}, **fa2_kwargs,
     )
     torch.cuda.empty_cache()
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
