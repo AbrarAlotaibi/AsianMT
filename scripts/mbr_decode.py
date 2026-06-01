@@ -95,25 +95,37 @@ def main() -> None:
 
     need_qe = args.method == "qe" or args.prune_k > 0
     qe_by_pool: list[list[float]] = [[] for _ in range(n)]
+    qe_ok = False
     if need_qe:
         print(f"loading QE model {args.qe_model} ...")
-        qe = load_from_checkpoint(download_model(args.qe_model))
-        qe_data, qe_index = [], []
-        for i, pool in enumerate(pools):
-            for j, h in enumerate(pool):
-                qe_data.append({"src": srcs[i], "mt": h})
-                qe_index.append((i, j))
-        scores = qe.predict(qe_data, batch_size=args.batch_size, gpus=gpus)["scores"]
-        for (i, j), s in zip(qe_index, scores):
-            qe_by_pool[i].append(s)
+        try:
+            qe = load_from_checkpoint(download_model(args.qe_model))
+            qe_data, qe_index = [], []
+            for i, pool in enumerate(pools):
+                for j, h in enumerate(pool):
+                    qe_data.append({"src": srcs[i], "mt": h})
+                    qe_index.append((i, j))
+            scores = qe.predict(qe_data, batch_size=args.batch_size, gpus=gpus)["scores"]
+            for (i, j), s in zip(qe_index, scores):
+                qe_by_pool[i].append(s)
+            qe_ok = True
+        except Exception as e:
+            print(f"WARNING: QE model load/predict failed ({type(e).__name__}: {e})")
+            if args.method == "qe":
+                sys.exit("--method qe requires the QE model; aborting.")
+            print(f"falling back: deterministic head-of-pool pruning to {args.prune_k} candidates.")
 
-    # QE-prune each pool to the top-K candidates.
+    # Prune each pool to the top-K candidates (by QE if available, else by file order).
     if args.prune_k > 0:
         for i in range(n):
-            order = sorted(range(len(pools[i])), key=lambda j: qe_by_pool[i][j], reverse=True)
+            if qe_ok:
+                order = sorted(range(len(pools[i])), key=lambda j: qe_by_pool[i][j], reverse=True)
+            else:
+                order = list(range(len(pools[i])))
             keep = order[: args.prune_k]
             pools[i] = [pools[i][j] for j in keep]
-            qe_by_pool[i] = [qe_by_pool[i][j] for j in keep]
+            if qe_ok:
+                qe_by_pool[i] = [qe_by_pool[i][j] for j in keep]
 
     if args.method == "qe":
         chosen = [pools[i][max(range(len(pools[i])), key=lambda j: qe_by_pool[i][j])]

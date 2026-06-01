@@ -32,14 +32,17 @@ if [ ! -d "$SFT" ]; then
   exit 1
 fi
 
-echo ">>> [1/6] sampling candidates ar->en"
+# Sampling K candidates multiplies the effective batch by K (num_return_sequences),
+# so the per-call batch must be small or the 13B + KV cache overflows 24 GB.
+SAMP_BS="${SAMP_BS:-2}"
+echo ">>> [1/6] sampling candidates ar->en (batch=$SAMP_BS x K=$K)"
 python scripts/xalma_translate.py --backbone "$BACKBONE" --group "$SFT" \
-  --direction ar-en --num-samples "$K" --limit "$N" \
+  --direction ar-en --num-samples "$K" --limit "$N" --batch-size "$SAMP_BS" \
   --input "$DATA_DIR/train.ar" --output "$PRED/cand.ar-en.train.en"
 
-echo ">>> [2/6] sampling candidates en->ar"
+echo ">>> [2/6] sampling candidates en->ar (batch=$SAMP_BS x K=$K)"
 python scripts/xalma_translate.py --backbone "$BACKBONE" --group "$SFT" \
-  --direction en-ar --num-samples "$K" --limit "$N" \
+  --direction en-ar --num-samples "$K" --limit "$N" --batch-size "$SAMP_BS" \
   --input "$DATA_DIR/train.en" --output "$PRED/cand.en-ar.train.ar"
 
 echo ">>> [3/6] building preference data"
