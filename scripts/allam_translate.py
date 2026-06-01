@@ -26,7 +26,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import PeftModel
 
 LANG_NAME = {"ar": "Arabic", "en": "English"}
-DEFAULT_MODEL = "sdaia/allam-1-7b-instruct"
+DEFAULT_MODEL = "ALLaM-AI/ALLaM-7B-Instruct-preview"
 
 SYSTEM_PROMPT = (
     "You are a professional translator. Translate the given text accurately "
