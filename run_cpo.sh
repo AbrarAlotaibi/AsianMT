@@ -10,9 +10,10 @@
 # Run on its own GPU:  CUDA_VISIBLE_DEVICES=1 bash run_cpo.sh
 # Monitor: tail -f results/cpo.log
 
-set -euo pipefail
+set -uo pipefail
 export PYTHONUNBUFFERED=1
 cd "$(dirname "$0")"
+source "$(dirname "$0")/scripts/preflight.sh"
 
 DATA_DIR="Ar-En/clean"
 PRED="predictions"
@@ -66,4 +67,5 @@ python scripts/evaluate.py --hyp "$PRED/xalma-cpo.ar-en.dev.en" --ref "$DATA_DIR
 python scripts/evaluate.py --hyp "$PRED/xalma-cpo.en-ar.dev.ar" --ref "$DATA_DIR/dev.ar" \
   --src "$DATA_DIR/dev.en" --comet | tee "$RES/xalma-cpo.en-ar.dev.json"
 
+bash push_results.sh "CPO (ALMA-R) on X-ALMA-FT (K=$K N=$N)" 2>&1 | tail -3 || true
 echo "done. compare to X-ALMA SFT (ar->en 31.76, en->ar 17.38)."

@@ -12,20 +12,27 @@
 set -uo pipefail
 export PYTHONUNBUFFERED=1
 cd "$(dirname "$0")"
+source "$(dirname "$0")/scripts/preflight.sh"
 
 DATA_DIR="Ar-En/clean"
 PRED="predictions"
 RES="results"
-CKPT="${NLLB_CKPT:-checkpoints/nllb13b-Ar-En/best}"
+# Auto-pick the best available NLLB checkpoint (3.3B preferred for en->ar,
+# 1.3B otherwise). NLLB_CKPT=... overrides.
+if [ -n "${NLLB_CKPT:-}" ]; then
+  CKPT="$NLLB_CKPT"
+elif [ -d checkpoints/nllb33b-Ar-En/best ]; then
+  CKPT="checkpoints/nllb33b-Ar-En/best"
+elif [ -d checkpoints/nllb-Ar-En/best ]; then
+  CKPT="checkpoints/nllb-Ar-En/best"
+else
+  echo "ERROR: no NLLB checkpoint found." >&2
+  exit 1
+fi
 LAM="${LAM:-0.5}"
 mkdir -p "$RES" "$PRED"
 exec > >(tee "$RES/contradecode.log") 2>&1
 echo "=== run_contradecode $(date -u +%FT%TZ)  ckpt=$CKPT lam=$LAM ==="
-
-if [ ! -d "$CKPT" ]; then
-  echo "ERROR: checkpoint $CKPT not found. Set NLLB_CKPT=..." >&2
-  exit 1
-fi
 
 echo ">>> en->ar (language-contrastive, the weak direction)"
 python scripts/contradecode.py --model "$CKPT" --direction en-ar \
@@ -41,4 +48,5 @@ python scripts/contradecode.py --model "$CKPT" --direction ar-en \
 python scripts/evaluate.py --hyp "$PRED/contra.ar-en.dev.en" --ref "$DATA_DIR/dev.en" \
   --src "$DATA_DIR/dev.ar" --comet | tee "$RES/contra.ar-en.dev.json"
 
+bash push_results.sh "ContraDecode dev (ckpt=$(basename $(dirname "$CKPT")) lam=$LAM)" 2>&1 | tail -3 || true
 echo "done. compare to plain beam: NLLB-1.3B en->ar 20.29, ar->en 30.79 BLEU."
