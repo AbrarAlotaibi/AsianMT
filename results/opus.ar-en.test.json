@@ -1,9 +1,0 @@
-{
-  "n": 1500,
-  "BLEU": 0.31,
-  "chrF": 19.56,
-  "TER": 120.26,
-  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
-  "COMET": 0.4938,
-  "COMET_model": "Unbabel/wmt22-comet-da"
-}
