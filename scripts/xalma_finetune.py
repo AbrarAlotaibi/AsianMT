@@ -72,6 +72,9 @@ def main() -> None:
     ap.add_argument("--warmup-ratio", type=float, default=0.05)
     ap.add_argument("--weight-decay", type=float, default=0.01)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--optim", default="paged_adamw_8bit",
+                    help="Optimizer; switch to adamw_bnb_8bit or adamw_torch if "
+                         "paged_adamw_8bit crashes from pinned-memory contention.")
     args = ap.parse_args()
 
     if not torch.cuda.is_available():
@@ -144,7 +147,7 @@ def main() -> None:
         warmup_ratio=args.warmup_ratio,
         weight_decay=args.weight_decay,
         fp16=True,
-        optim="paged_adamw_8bit",
+        optim=args.optim,
         gradient_checkpointing=True,
         gradient_checkpointing_kwargs={"use_reentrant": False},
         save_strategy="epoch",

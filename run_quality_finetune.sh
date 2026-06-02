@@ -44,11 +44,15 @@ else
 fi
 
 # --- Step 2: re-fine-tune X-ALMA on filtered data ---------------------------
-echo ">>> [3/5] X-ALMA QLoRA fine-tune on filtered data (both directions)"
+# OPTIM=adamw_bnb_8bit is the non-paged 8-bit optimizer (safer when other
+# jobs are using host pinned memory; e.g. concurrent CPO on another GPU).
+OPTIM="${OPTIM:-adamw_bnb_8bit}"
+echo ">>> [3/5] X-ALMA QLoRA fine-tune on filtered data (both directions, optim=$OPTIM)"
 python scripts/xalma_finetune.py \
   --backbone "$BACKBONE" \
   --data-dir "$FDATA" \
   --direction both \
+  --optim "$OPTIM" \
   --output-dir checkpoints/xalma-filtered-ft
 
 # --- Step 3: translate dev + score ------------------------------------------
