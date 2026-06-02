@@ -34,6 +34,17 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import PeftModel, prepare_model_for_kbit_training
 from trl import CPOConfig, CPOTrainer
 
+# Compatibility shim: newer transformers (>=4.46) calls
+# Trainer.get_batch_samples(epoch_iterator, num_batches, device); older trl
+# CPOTrainer (0.11.x) only accepts (epoch_iterator, num_batches). Wrap to
+# discard extra positional/keyword args so the inner training loop runs.
+import inspect as _inspect
+_gbs = CPOTrainer.get_batch_samples
+if len(_inspect.signature(_gbs).parameters) < 4:  # self + 2 = 3 params total
+    def _gbs_compat(self, epoch_iterator, num_batches, *_args, **_kwargs):
+        return _gbs(self, epoch_iterator, num_batches)
+    CPOTrainer.get_batch_samples = _gbs_compat
+
 
 def main() -> None:
     ap = argparse.ArgumentParser()
