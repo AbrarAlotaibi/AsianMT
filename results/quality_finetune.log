@@ -176,3 +176,7 @@ LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
   "COMET": 0.8512,
   "COMET_model": "Unbabel/wmt22-comet-da"
 }
+To https://github.com/AbrarAlotaibi/AsianMT.git
+   c57274f..029a143  HEAD -> main
+pushed to main.
+done. compare to baseline xalma-ft: ar->en 31.76 BLEU / 0.8449 COMET
