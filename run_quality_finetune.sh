@@ -44,11 +44,11 @@ else
 fi
 
 # --- Step 2: re-fine-tune X-ALMA on filtered data ---------------------------
-echo ">>> [3/5] X-ALMA QLoRA fine-tune on filtered data"
+echo ">>> [3/5] X-ALMA QLoRA fine-tune on filtered data (both directions)"
 python scripts/xalma_finetune.py \
   --backbone "$BACKBONE" \
-  --src-file "$FDATA/train.ar" --tgt-file "$FDATA/train.en" \
-  --direction ar-en \
+  --data-dir "$FDATA" \
+  --direction both \
   --output-dir checkpoints/xalma-filtered-ft
 
 # --- Step 3: translate dev + score ------------------------------------------
