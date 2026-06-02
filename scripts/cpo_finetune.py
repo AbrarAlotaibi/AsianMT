@@ -103,12 +103,21 @@ def main() -> None:
         seed=args.seed,
     )
 
-    trainer = CPOTrainer(
-        model=model,
-        args=cfg,
-        train_dataset=ds,
-        processing_class=tokenizer,
-    )
+    # trl 0.11/0.12 CPOTrainer uses tokenizer=; trl >=1.0 renamed to processing_class=.
+    try:
+        trainer = CPOTrainer(
+            model=model,
+            args=cfg,
+            train_dataset=ds,
+            tokenizer=tokenizer,
+        )
+    except TypeError:
+        trainer = CPOTrainer(
+            model=model,
+            args=cfg,
+            train_dataset=ds,
+            processing_class=tokenizer,
+        )
     trainer.train()
 
     best = args.output_dir / "best"
