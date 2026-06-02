@@ -138,11 +138,14 @@ if [ "${SKIP_MBR:-0}" != "1" ] && [ "${#en_ar[@]}" -ge 2 ]; then
     --output "$PRED/mbr.en-ar.test.ar"
 fi
 
-# --- Scoring (only if the test file is parallel, i.e. test.en is a reference,
-#     not just a source for the other direction). Devtest is parallel; a blind
-#     official test usually isn't, so we skip silently when sizes differ.
-if [ "$n_ar" = "$n_en" ]; then
-  echo ">>> scoring (test files are parallel; treating as labeled)"
+# --- Scoring (only if test files are TRULY parallel: same line count AND
+#     same path stem, i.e. dev/devtest with matched ar/en references).
+#     Challenge_Test files happen to share a line count but are independent
+#     test sets (no parallel references) -> skip scoring entirely.
+ar_stem="$(basename "${TEST_AR%.*}")"
+en_stem="$(basename "${TEST_EN%.*}")"
+if [ "$n_ar" = "$n_en" ] && [ "$ar_stem" = "$en_stem" ]; then
+  echo ">>> scoring (test files share stem '$ar_stem' -> parallel references)"
   shopt -s nullglob
   for hyp in "$PRED"/*.ar-en.test.en; do
     name=$(basename "$hyp" .ar-en.test.en)
@@ -155,7 +158,9 @@ if [ "$n_ar" = "$n_en" ]; then
       | tee "$RES/$name.en-ar.test.json"
   done
 else
-  echo "test source lines differ ($n_ar vs $n_en) -- blind submission, skipping scoring."
+  echo "test files are blind (stems '$ar_stem' vs '$en_stem') -- skipping scoring."
+  # Remove stale invalid scores from previous runs that mis-scored blind test.
+  rm -f "$RES"/*.ar-en.test.json "$RES"/*.en-ar.test.json
 fi
 
 # Stage submission copies of the MBR outputs at predictable paths.
