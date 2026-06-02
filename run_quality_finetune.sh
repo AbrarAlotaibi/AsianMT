@@ -47,12 +47,23 @@ fi
 # OPTIM=adamw_bnb_8bit is the non-paged 8-bit optimizer (safer when other
 # jobs are using host pinned memory; e.g. concurrent CPO on another GPU).
 OPTIM="${OPTIM:-adamw_bnb_8bit}"
-echo ">>> [3/5] X-ALMA QLoRA fine-tune on filtered data (both directions, optim=$OPTIM)"
+BSZ="${BSZ:-4}"
+GA="${GA:-4}"
+MAXLEN="${MAXLEN:-384}"
+DEBUG="${DEBUG:-0}"
+if [ "$DEBUG" = "1" ]; then
+  echo "DEBUG=1: blocking CUDA launches for full stack traces; small batch."
+  export CUDA_LAUNCH_BLOCKING=1
+  export TORCH_USE_CUDA_DSA=1
+  BSZ=1; GA=16; MAXLEN=256
+fi
+echo ">>> [3/5] X-ALMA QLoRA fine-tune (optim=$OPTIM bsz=$BSZ ga=$GA maxlen=$MAXLEN)"
 python scripts/xalma_finetune.py \
   --backbone "$BACKBONE" \
   --data-dir "$FDATA" \
   --direction both \
   --optim "$OPTIM" \
+  --batch-size "$BSZ" --grad-accum "$GA" --max-length "$MAXLEN" \
   --output-dir checkpoints/xalma-filtered-ft
 
 # --- Step 3: translate dev + score ------------------------------------------
