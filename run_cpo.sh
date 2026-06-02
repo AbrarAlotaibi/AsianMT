@@ -35,23 +35,31 @@ fi
 # Sampling K candidates multiplies the effective batch by K (num_return_sequences),
 # so the per-call batch must be small or the 13B + KV cache overflows 24 GB.
 SAMP_BS="${SAMP_BS:-2}"
-echo ">>> [1/6] sampling candidates ar->en (batch=$SAMP_BS x K=$K)"
-python scripts/xalma_translate.py --backbone "$BACKBONE" --group "$SFT" \
-  --direction ar-en --num-samples "$K" --limit "$N" --batch-size "$SAMP_BS" \
-  --input "$DATA_DIR/train.ar" --output "$PRED/cand.ar-en.train.en"
+if [ "${SKIP_SAMPLE:-0}" != "1" ]; then
+  echo ">>> [1/6] sampling candidates ar->en (batch=$SAMP_BS x K=$K)"
+  python scripts/xalma_translate.py --backbone "$BACKBONE" --group "$SFT" \
+    --direction ar-en --num-samples "$K" --limit "$N" --batch-size "$SAMP_BS" \
+    --input "$DATA_DIR/train.ar" --output "$PRED/cand.ar-en.train.en"
 
-echo ">>> [2/6] sampling candidates en->ar (batch=$SAMP_BS x K=$K)"
-python scripts/xalma_translate.py --backbone "$BACKBONE" --group "$SFT" \
-  --direction en-ar --num-samples "$K" --limit "$N" --batch-size "$SAMP_BS" \
-  --input "$DATA_DIR/train.en" --output "$PRED/cand.en-ar.train.ar"
+  echo ">>> [2/6] sampling candidates en->ar (batch=$SAMP_BS x K=$K)"
+  python scripts/xalma_translate.py --backbone "$BACKBONE" --group "$SFT" \
+    --direction en-ar --num-samples "$K" --limit "$N" --batch-size "$SAMP_BS" \
+    --input "$DATA_DIR/train.en" --output "$PRED/cand.en-ar.train.ar"
+else
+  echo ">>> [1-2/6] SKIP_SAMPLE=1, reusing existing $PRED/cand.*.train.* samples"
+fi
 
-echo ">>> [3/6] building preference data"
-python scripts/build_preference_data.py --direction ar-en --max-pairs "$N" \
-  --src "$DATA_DIR/train.ar" --ref "$DATA_DIR/train.en" --tokenizer "$SFT" \
-  --samples "$PRED"/cand.ar-en.train.en.sample* --out data/pref.ar-en.jsonl
-python scripts/build_preference_data.py --direction en-ar --max-pairs "$N" \
-  --src "$DATA_DIR/train.en" --ref "$DATA_DIR/train.ar" --tokenizer "$SFT" \
-  --samples "$PRED"/cand.en-ar.train.ar.sample* --out data/pref.en-ar.jsonl
+if [ "${SKIP_PREF:-0}" != "1" ]; then
+  echo ">>> [3/6] building preference data"
+  python scripts/build_preference_data.py --direction ar-en --max-pairs "$N" \
+    --src "$DATA_DIR/train.ar" --ref "$DATA_DIR/train.en" --tokenizer "$SFT" \
+    --samples "$PRED"/cand.ar-en.train.en.sample* --out data/pref.ar-en.jsonl
+  python scripts/build_preference_data.py --direction en-ar --max-pairs "$N" \
+    --src "$DATA_DIR/train.en" --ref "$DATA_DIR/train.ar" --tokenizer "$SFT" \
+    --samples "$PRED"/cand.en-ar.train.ar.sample* --out data/pref.en-ar.jsonl
+else
+  echo ">>> [3/6] SKIP_PREF=1, reusing existing data/pref.*.jsonl"
+fi
 
 echo ">>> [4/6] CPO fine-tune"
 python scripts/cpo_finetune.py --backbone "$BACKBONE" --sft-adapter "$SFT" \
