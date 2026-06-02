@@ -43,6 +43,16 @@ else
   echo ">>> skipping filter (SKIP_FILTER=1)"
 fi
 
+# Force single-GPU even if CUDA_VISIBLE_DEVICES isn't pinned externally.
+# Without this, transformers Trainer wraps the 4-bit model in nn.DataParallel
+# across every visible GPU, which crashes (4-bit quantized weights can't
+# replicate cleanly) and OOMs whichever cards are already busy.
+if [ -z "${CUDA_VISIBLE_DEVICES:-}" ]; then
+  export CUDA_VISIBLE_DEVICES=0
+  echo "CUDA_VISIBLE_DEVICES not set; defaulting to 0"
+fi
+echo "CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"
+
 # --- Step 2: re-fine-tune X-ALMA on filtered data ---------------------------
 # OPTIM=adamw_bnb_8bit is the non-paged 8-bit optimizer (safer when other
 # jobs are using host pinned memory; e.g. concurrent CPO on another GPU).
