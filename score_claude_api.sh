@@ -26,30 +26,33 @@ for f in "$PRED/claude-api.ar-en.dev.en" "$PRED/claude-api.en-ar.dev.ar" \
   [ -f "$f" ] || { echo "ERROR: missing $f" >&2; exit 1; }
 done
 
-# Truncate ref/src to match the hypothesis line count (999 vs 1000) so
-# evaluate.py doesn't error on mismatch. We're scoring the 999 sentences
-# Claude actually translated; the dropped final line is excluded from both
-# hypothesis and reference -- fair comparison.
-N=$(wc -l < "$PRED/claude-api.ar-en.dev.en")
-echo "hypothesis line count: $N"
-
-tmp=$(mktemp -d)
-head -n "$N" "$DATA/dev.ar" > "$tmp/dev.ar"
-head -n "$N" "$DATA/dev.en" > "$tmp/dev.en"
+# Verify line counts match using Python's splitlines (wc -l misses lines
+# without trailing newline; the claude-api files happen to lack one).
+python3 -c "
+import sys
+pairs = [
+    ('predictions/claude-api.ar-en.dev.en', 'Ar-En/clean/dev.en'),
+    ('predictions/claude-api.en-ar.dev.ar', 'Ar-En/clean/dev.ar'),
+]
+for hyp, ref in pairs:
+    h = open(hyp, encoding='utf-8').read().splitlines()
+    r = open(ref, encoding='utf-8').read().splitlines()
+    print(f'{hyp}: hyp={len(h)} ref={len(r)}')
+    if len(h) != len(r):
+        sys.exit(f'ERROR: line mismatch {hyp}')
+"
 
 echo ">>> scoring claude-api ar->en"
 python scripts/evaluate.py \
   --hyp "$PRED/claude-api.ar-en.dev.en" \
-  --ref "$tmp/dev.en" --src "$tmp/dev.ar" --comet \
+  --ref "$DATA/dev.en" --src "$DATA/dev.ar" --comet \
   | tee "$RES/claude-api.ar-en.dev.json"
 
 echo ">>> scoring claude-api en->ar"
 python scripts/evaluate.py \
   --hyp "$PRED/claude-api.en-ar.dev.ar" \
-  --ref "$tmp/dev.ar" --src "$tmp/dev.en" --comet \
+  --ref "$DATA/dev.ar" --src "$DATA/dev.en" --comet \
   | tee "$RES/claude-api.en-ar.dev.json"
 
-rm -rf "$tmp"
-
-bash push_results.sh "Claude-API dev scores (n=$N, 1 line dropped)" 2>&1 | tail -3 || true
+bash push_results.sh "Claude-API dev scores" 2>&1 | tail -3 || true
 echo "done."
