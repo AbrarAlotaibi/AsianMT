@@ -31,26 +31,16 @@ for f in "$STAGE"/*.txt; do
   echo "  $n  $(basename "$f")"
 done
 
-echo ">>> generating system description"
-cp system_description.md "$STAGE/${TEAM}_system_description.md"
-# Convert to PDF if pandoc is available; otherwise leave markdown.
-if command -v pandoc >/dev/null 2>&1; then
-  pandoc "$STAGE/${TEAM}_system_description.md" \
-    -o "$STAGE/${TEAM}_system_description.pdf" \
-    --pdf-engine=xelatex -V geometry:margin=1in 2>/dev/null \
-    || pandoc "$STAGE/${TEAM}_system_description.md" \
-         -o "$STAGE/${TEAM}_system_description.pdf" 2>/dev/null \
-    || echo "  pandoc available but PDF engine missing -- leaving .md"
-  if [ -f "$STAGE/${TEAM}_system_description.pdf" ]; then
-    rm "$STAGE/${TEAM}_system_description.md"
-    echo "  generated ${TEAM}_system_description.pdf"
-  fi
-elif command -v libreoffice >/dev/null 2>&1; then
-  libreoffice --headless --convert-to pdf "$STAGE/${TEAM}_system_description.md" \
-    --outdir "$STAGE" 2>/dev/null && rm "$STAGE/${TEAM}_system_description.md" \
-    && echo "  generated PDF via libreoffice"
+echo ">>> generating system description PDF"
+# Use our reportlab-based markdown -> PDF script. No LaTeX or pandoc needed.
+# Falls back to plain markdown if reportlab is missing.
+if python3 -c "import reportlab" 2>/dev/null; then
+  python3 scripts/md_to_pdf.py system_description.md \
+    "$STAGE/${TEAM}_system_description.pdf"
 else
-  echo "  no pandoc/libreoffice; leaving .md (convert manually before submitting)"
+  echo "  reportlab not installed; copying markdown."
+  cp system_description.md "$STAGE/${TEAM}_system_description.md"
+  echo "  pip install reportlab  # then re-run for PDF"
 fi
 
 echo ">>> creating zip"
