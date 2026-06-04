@@ -26,3 +26,7 @@ wandb/
 .idea/
 .vscode/
 *.swp
+
+# Submission packaging artifacts (regenerable via prepare_submission.sh)
+submission_package/
+*.zip
