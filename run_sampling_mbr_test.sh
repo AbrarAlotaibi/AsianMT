@@ -23,6 +23,7 @@ PRED="predictions"
 RES="results"
 CKPT="${CKPT:-checkpoints/nllb33b-Ar-En/best}"
 K="${K:-32}"
+BSZ="${BSZ:-4}"            # sampling batch (effective K*BSZ seqs in parallel)
 PRUNE_K="${PRUNE_K:-16}"
 mkdir -p "$RES" "$PRED"
 exec > >(tee "$RES/sampling_mbr_test.log") 2>&1
@@ -47,7 +48,7 @@ TEST_EN="${TEST_EN:-$(pick \
 if [ ! -f "$PRED/sampling.ar-en.test.en.sample0" ]; then
   echo ">>> [1/4] sampling ar->en (K=$K)"
   python scripts/translate.py --model "$CKPT" --kind nllb --direction ar-en \
-    --dtype fp16 --num-samples "$K" --batch-size 4 --temperature 0.8 --top-p 0.95 \
+    --dtype fp16 --num-samples "$K" --batch-size "$BSZ" --temperature 0.8 --top-p 0.95 \
     --input "$TEST_AR" --output "$PRED/sampling.ar-en.test.en"
 fi
 
@@ -55,7 +56,7 @@ fi
 if [ ! -f "$PRED/sampling.en-ar.test.ar.sample0" ]; then
   echo ">>> [2/4] sampling en->ar (K=$K)"
   python scripts/translate.py --model "$CKPT" --kind nllb --direction en-ar \
-    --dtype fp16 --num-samples "$K" --batch-size 4 --temperature 0.8 --top-p 0.95 \
+    --dtype fp16 --num-samples "$K" --batch-size "$BSZ" --temperature 0.8 --top-p 0.95 \
     --input "$TEST_EN" --output "$PRED/sampling.en-ar.test.ar"
 fi
 
