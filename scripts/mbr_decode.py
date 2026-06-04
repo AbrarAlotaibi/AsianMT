@@ -75,12 +75,20 @@ def main() -> None:
     from comet import download_model, load_from_checkpoint
 
     srcs = load_lines(args.src)
-    cand_files = [load_lines(f) for f in args.candidates]
-    for f, c in zip(args.candidates, cand_files):
+    cand_files = []
+    kept_paths = []
+    for f in args.candidates:
+        c = load_lines(f)
         if len(c) != len(srcs):
-            sys.exit(f"length mismatch: {f} has {len(c)} lines, src has {len(srcs)}")
+            print(f"WARNING: {f} has {len(c)} lines, src has {len(srcs)}; "
+                  f"dropping this candidate from the pool.")
+            continue
+        cand_files.append(c)
+        kept_paths.append(f)
+    if not cand_files:
+        sys.exit("ERROR: no candidate files matched the source line count.")
     n = len(srcs)
-    print(f"{n} sources x {len(cand_files)} candidate files")
+    print(f"{n} sources x {len(cand_files)} candidate files (kept after length check)")
 
     # Per-source deduped candidate pool (order-stable).
     pools: list[list[str]] = []
