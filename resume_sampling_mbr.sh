@@ -27,10 +27,11 @@ export BSZ="${BSZ:-2}"
 export PRUNE_K="${PRUNE_K:-16}"
 
 echo ">>> state of sampling files before cleanup"
-echo "ar->en samples present:"
-ls predictions/sampling.ar-en.test.en.sample* 2>/dev/null | wc -l
-echo "en->ar samples present (will be deleted):"
-ls predictions/sampling.en-ar.test.ar.sample* 2>/dev/null | wc -l
+shopt -s nullglob
+ar_files=(predictions/sampling.ar-en.test.en.sample*)
+en_files=(predictions/sampling.en-ar.test.ar.sample*)
+echo "ar->en samples present: ${#ar_files[@]}"
+echo "en->ar samples present (will be deleted): ${#en_files[@]}"
 
 echo ">>> deleting partial en->ar samples (ar->en preserved)"
 rm -f predictions/sampling.en-ar.test.ar.sample*
