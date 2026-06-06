@@ -1,5 +1,7 @@
 # Generated cleaning output (regenerable from raw with scripts/clean.py)
-*/clean/
+# NOTE: Ar-En/clean/dev.* and devtest.* are tracked so MBR scripts work
+# without a clean.py re-run. Only the large train.* files are regenerable.
+Ar-En/clean/train.*
 
 # Python
 __pycache__/
@@ -9,12 +11,14 @@ __pycache__/
 venv/
 env/
 
-# Model checkpoints, logs, predictions, eval artifacts
+# Model checkpoints, logs, eval artifacts
 checkpoints/
 runs/
 outputs/
-predictions/
 wandb/
+
+# NOTE: predictions/ is intentionally TRACKED (small text files needed for
+# reproducible MBR re-runs and paper verification).
 
 # NOTE: results/ is intentionally TRACKED (small score JSONs + run logs) so runs
 # on a remote server can be reviewed by pushing them to the repo.
