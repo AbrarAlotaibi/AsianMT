@@ -1,0 +1,17 @@
+# Install torch separately matching your CUDA, e.g.:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+transformers>=4.46.0
+datasets>=2.20.0
+accelerate>=0.33.0
+sentencepiece>=0.2.0
+sacremoses>=0.1.1
+sacrebleu>=2.4.2
+unbabel-comet>=2.2.2
+tqdm>=4.66.0
+pyyaml>=6.0
+# 8-bit AdamW (used by the 1.3B run via --optim adamw_bnb_8bit)
+bitsandbytes>=0.43.0; sys_platform != 'darwin'
+# X-ALMA / LLM-MT: 4-bit loading + LoRA adapters
+peft>=0.11.0
+# CPO (ALMA-R) preference fine-tuning
+trl>=0.12.0

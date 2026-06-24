@@ -1,0 +1,18 @@
+# Conda environment for the WMT26 Ar<->En MT pipeline.
+#
+# Create:
+#   conda env create -f environment.yml
+#   conda activate asianmt
+#
+# Installs CUDA 12.4 torch wheels via pip (torch 2.6 requires cu124, not cu121).
+# For a different CUDA, change the --extra-index-url below (e.g. .../whl/cu118).
+name: asianmt
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu124
+      - torch>=2.6
+      - -r requirements.txt

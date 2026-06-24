@@ -1,0 +1,41 @@
+# Generated cleaning output (regenerable from raw with scripts/clean.py)
+# NOTE: Ar-En/clean/dev.* and devtest.* are tracked so MBR scripts work
+# without a clean.py re-run. Only the large train.* files are regenerable.
+Ar-En/clean/train.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Model checkpoints, logs, eval artifacts
+checkpoints/
+runs/
+outputs/
+wandb/
+
+# NOTE: predictions/ is intentionally TRACKED (small text files needed for
+# reproducible MBR re-runs and paper verification). But NOT the bulky scratch
+# files: the 32-way sampling hypotheses and intermediate norm files. Only the
+# best-1 dev/test outputs matter for reproducibility.
+predictions/*.sample*
+predictions/test.norm.ar
+predictions/*.smoke.*
+
+# NOTE: results/ is intentionally TRACKED (small score JSONs + run logs) so runs
+# on a remote server can be reviewed by pushing them to the repo.
+*.pt
+*.bin
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Submission packaging artifacts (regenerable via prepare_submission.sh)
+submission_package/
+*.zip
