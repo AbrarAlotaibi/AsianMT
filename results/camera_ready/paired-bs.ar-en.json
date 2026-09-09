@@ -1,0 +1,119 @@
+{
+  "n": 1000,
+  "n_resamples": 1000,
+  "seed": "12345",
+  "signatures": {
+    "BLEU": "nrefs:1|bs:1000|seed:12345|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+    "chrF": "nrefs:1|bs:1000|seed:12345|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0",
+    "TER": "nrefs:1|bs:1000|seed:12345|case:lc|tok:tercom|norm:no|punct:yes|asian:no|version:2.6.0"
+  },
+  "baseline": {
+    "name": "mbr5pub",
+    "file": "C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en",
+    "BLEU": 32.9718,
+    "chrF": 59.1026,
+    "TER": 57.319
+  },
+  "systems": [
+    {
+      "name": "allam-ft",
+      "file": "predictions\\allam-ft.ar-en.dev.en",
+      "BLEU": {
+        "score": 33.0616,
+        "delta": 0.0898,
+        "bs_mean": 33.0518,
+        "ci95": 1.0409,
+        "p": 0.2947
+      },
+      "chrF": {
+        "score": 59.179,
+        "delta": 0.0764,
+        "bs_mean": 59.173,
+        "ci95": 0.8155,
+        "p": 0.2847
+      },
+      "TER": {
+        "score": 58.5621,
+        "delta": 1.2431,
+        "bs_mean": 58.5564,
+        "ci95": 1.2538,
+        "p": 0.002
+      }
+    },
+    {
+      "name": "xalma-cpo",
+      "file": "predictions\\xalma-cpo.ar-en.dev.en",
+      "BLEU": {
+        "score": 32.2326,
+        "delta": -0.7392,
+        "bs_mean": 32.1837,
+        "ci95": 1.0145,
+        "p": 0.006
+      },
+      "chrF": {
+        "score": 58.8119,
+        "delta": -0.2907,
+        "bs_mean": 58.8013,
+        "ci95": 0.8728,
+        "p": 0.039
+      },
+      "TER": {
+        "score": 58.5445,
+        "delta": 1.2255,
+        "bs_mean": 58.5388,
+        "ci95": 1.2867,
+        "p": 0.001
+      }
+    },
+    {
+      "name": "nllb33b",
+      "file": "predictions\\nllb33b.ar-en.dev.en",
+      "BLEU": {
+        "score": 31.5129,
+        "delta": -1.4589,
+        "bs_mean": 31.4877,
+        "ci95": 0.9719,
+        "p": 0.001
+      },
+      "chrF": {
+        "score": 57.8597,
+        "delta": -1.2429,
+        "bs_mean": 57.8478,
+        "ci95": 0.8212,
+        "p": 0.001
+      },
+      "TER": {
+        "score": 58.6426,
+        "delta": 1.3236,
+        "bs_mean": 58.6613,
+        "ci95": 1.2061,
+        "p": 0.001
+      }
+    },
+    {
+      "name": "sampling-mbr",
+      "file": "predictions\\sampling-mbr.ar-en.dev.en",
+      "BLEU": {
+        "score": 30.0602,
+        "delta": -2.9116,
+        "bs_mean": 30.0497,
+        "ci95": 0.9193,
+        "p": 0.001
+      },
+      "chrF": {
+        "score": 57.2596,
+        "delta": -1.843,
+        "bs_mean": 57.2519,
+        "ci95": 0.7816,
+        "p": 0.001
+      },
+      "TER": {
+        "score": 59.3296,
+        "delta": 2.0106,
+        "bs_mean": 59.3298,
+        "ci95": 1.1975,
+        "p": 0.001
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "model": "Unbabel/wmt22-comet-da",
+  "n": 1000,
+  "n_resamples": 1000,
+  "seed": 12345,
+  "baseline": {
+    "name": "mbr5pub",
+    "file": "C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en",
+    "COMET": 0.8531
+  },
+  "systems": [
+    {
+      "name": "allam-ft",
+      "file": "predictions\\allam-ft.ar-en.dev.en",
+      "COMET": 0.8449,
+      "delta": -0.0082,
+      "delta_bs_mean": -0.0082,
+      "delta_ci95": [
+        -0.0099,
+        -0.0065
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "xalma-cpo",
+      "file": "predictions\\xalma-cpo.ar-en.dev.en",
+      "COMET": 0.8468,
+      "delta": -0.0063,
+      "delta_bs_mean": -0.0063,
+      "delta_ci95": [
+        -0.0075,
+        -0.0051
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "nllb33b",
+      "file": "predictions\\nllb33b.ar-en.dev.en",
+      "COMET": 0.8447,
+      "delta": -0.0084,
+      "delta_bs_mean": -0.0084,
+      "delta_ci95": [
+        -0.01,
+        -0.007
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "sampling-mbr",
+      "file": "predictions\\sampling-mbr.ar-en.dev.en",
+      "COMET": 0.8524,
+      "delta": -0.0007,
+      "delta_bs_mean": -0.0007,
+      "delta_ci95": [
+        -0.0019,
+        0.0006
+      ],
+      "p": 0.1009
+    }
+  ]
+}

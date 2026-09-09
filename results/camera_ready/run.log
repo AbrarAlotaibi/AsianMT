@@ -1,0 +1,1093 @@
+=== run_camera_ready 2026-09-04T22:49:21Z  GPU=0 ===
+################ ar-en ################
+  ok  predictions/nllb33b.ar-en.dev.en (1000 lines)
+  ok  predictions/xalma-ft.ar-en.dev.en (1000 lines)
+  ok  predictions/xalma-cpo.ar-en.dev.en (1000 lines)
+  ok  predictions/allam-ft.ar-en.dev.en (1000 lines)
+  ok  predictions/opus.ar-en.dev.en (1000 lines)
+  ok  predictions/sampling-mbr.ar-en.dev.en (1000 lines)
+>>> [ar-en] score full pool
+W0905 01:49:41.274000 19872 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+{
+  "n": 1000,
+  "BLEU": 32.97,
+  "chrF": 59.1,
+  "TER": 57.32,
+  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+  "COMET": 0.8531,
+  "COMET_model": "Unbabel/wmt22-comet-da"
+}
+>>> [ar-en] score pool without nllb33b
+Windows fatal exception: access violation
+Current thread 0x000054cc (most recent call first):
+  File "C:\Users\Abrar\anaconda3\Lib\collections\__init__.py", line 607 in __init__
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\helpers.py", line 66 in extract_all_char_ngrams
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\chrf.py", line 262 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 37 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+/c/Users/Abrar/venvs/asianmt/retry/python: line 6:  2014 Segmentation fault         /c/Users/Abrar/venvs/asianmt/Scripts/python.exe "$@"
+[retry-shim] python crashed (rc=139) on attempt 1: scripts/evaluate.py --hyp predictions/camera_ready/mbr-minus-nllb33b.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet
+W0905 01:50:22.487000 656 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+{
+  "n": 1000,
+  "BLEU": 32.91,
+  "chrF": 59.24,
+  "TER": 57.5,
+  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+  "COMET": 0.8519,
+  "COMET_model": "Unbabel/wmt22-comet-da"
+}
+/c/Users/Abrar/venvs/asianmt/retry/python: line 6:  2019 Segmentation fault         /c/Users/Abrar/venvs/asianmt/Scripts/python.exe "$@"
+[retry-shim] python crashed (rc=139) on attempt 2: scripts/evaluate.py --hyp predictions/camera_ready/mbr-minus-nllb33b.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet
+W0905 01:51:03.395000 21176 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+{
+  "n": 1000,
+  "BLEU": 32.91,
+  "chrF": 59.24,
+  "TER": 57.5,
+  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+  "COMET": 0.8519,
+  "COMET_model": "Unbabel/wmt22-comet-da"
+}
+>>> [ar-en] score pool without xalma-ft
+W0905 01:51:38.802000 1864 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+{
+  "n": 1000,
+  "BLEU": 32.91,
+  "chrF": 58.99,
+  "TER": 57.09,
+  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+  "COMET": 0.8527,
+  "COMET_model": "Unbabel/wmt22-comet-da"
+}
+>>> [ar-en] score pool without xalma-cpo
+Windows fatal exception: access violation
+Current thread 0x00004d34 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 38 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+/c/Users/Abrar/venvs/asianmt/retry/python: line 6:  2093 Segmentation fault         /c/Users/Abrar/venvs/asianmt/Scripts/python.exe "$@"
+[retry-shim] python crashed (rc=139) on attempt 1: scripts/evaluate.py --hyp predictions/camera_ready/mbr-minus-xalma-cpo.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet
+W0905 01:52:28.692000 21316 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+{
+  "n": 1000,
+  "BLEU": 32.61,
+  "chrF": 58.78,
+  "TER": 57.35,
+  "BLEU_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+  "COMET": 0.8527,
+  "COMET_model": "Unbabel/wmt22-comet-da"
+}
+>>> [ar-en] MBR without allam-ft (4 systems) -> predictions/camera_ready/mbr-minus-allam-ft.ar-en.dev.en
+[14:37:26] === run_camera_ready.py 2026-09-05T11:37:26Z python=C:\Users\Abrar\venvs\asianmt\Scripts\python.exe GPU=0 ===
+[14:37:26] ################ ar-en ################
+[14:37:26]   skip MBR (exists): predictions\mbr5pub.ar-en.dev.en
+[14:37:26]   skip score (exists): results\camera_ready\loo-none.ar-en.dev.json
+[14:37:26]   skip MBR (exists): predictions\camera_ready\mbr-minus-nllb33b.ar-en.dev.en
+[14:37:26] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-nllb33b.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-nllb33b.ar-en.dev.json
+W0905 14:37:57.543000 26536 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[14:38:15]   -> rc=0 in 49s
+[14:38:15]   {"BLEU": 32.91, "chrF": 59.24, "TER": 57.5, "COMET": 0.8519}
+[14:38:15]   skip MBR (exists): predictions\camera_ready\mbr-minus-xalma-ft.ar-en.dev.en
+[14:38:15]   skip score (exists): results\camera_ready\loo-minus-xalma-ft.ar-en.dev.json
+[14:38:15]   skip MBR (exists): predictions\camera_ready\mbr-minus-xalma-cpo.ar-en.dev.en
+[14:38:15]   skip score (exists): results\camera_ready\loo-minus-xalma-cpo.ar-en.dev.json
+[14:38:15] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/mbr_decode.py --src Ar-En/dev.ar --candidates predictions/nllb33b.ar-en.dev.en predictions/xalma-ft.ar-en.dev.en predictions/xalma-cpo.ar-en.dev.en predictions/opus.ar-en.dev.en --output C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.ar-en.dev.en
+GPU: NVIDIA GeForce RTX 4080 SUPER  torch: 2.11.0+cu128
+W0905 14:38:19.169000 5828 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+1000 sources x 4 candidate files (kept after length check)
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+scoring 15126 (hyp,pseudo-ref) pairs ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+wrote 1000 lines -> C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.ar-en.dev.en
+[14:39:57]   -> rc=0 in 101s
+[14:39:57] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-allam-ft.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x00006c18 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 412 in _edit_distance
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 328 in __call__
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 147 in _shift
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 67 in translation_edit_rate
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 38 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+[14:40:04]   -> rc=3221225477 in 7s
+[14:40:04]   crash on attempt 1/5; retrying
+[14:40:07] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-allam-ft.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x0000404c (most recent call first):
+  Garbage-collecting
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 403 in _edit_distance
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 328 in __call__
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 147 in _shift
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 67 in translation_edit_rate
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 38 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+[14:40:11]   -> rc=3221225477 in 4s
+[14:40:11]   crash on attempt 2/5; retrying
+[14:40:14] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-allam-ft.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x00006eb4 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 395 in _edit_distance
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 328 in __call__
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 147 in _shift
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 67 in translation_edit_rate
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 38 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+[14:40:26]   -> rc=3221225477 in 12s
+[14:40:26]   crash on attempt 3/5; retrying
+[14:40:29] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-allam-ft.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x00002e88 (most recent call first):
+  File "<shim>", line ??? in <interpreter trampoline>
+  File Windows fatal exception: access violation
+[14:40:41]   -> rc=3221225477 in 12s
+[14:40:41]   crash on attempt 4/5; retrying
+[14:40:44] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-allam-ft.ar-en.dev.json
+W0905 14:41:04.016000 28488 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[14:41:21]   -> rc=0 in 37s
+[14:41:21]   {"BLEU": 32.56, "chrF": 58.89, "TER": 57.69, "COMET": 0.8512}
+[14:41:21] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/mbr_decode.py --src Ar-En/dev.ar --candidates predictions/nllb33b.ar-en.dev.en predictions/xalma-ft.ar-en.dev.en predictions/xalma-cpo.ar-en.dev.en predictions/allam-ft.ar-en.dev.en --output C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.ar-en.dev.en
+GPU: NVIDIA GeForce RTX 4080 SUPER  torch: 2.11.0+cu128
+W0905 14:41:24.427000 22180 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+1000 sources x 4 candidate files (kept after length check)
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+scoring 15135 (hyp,pseudo-ref) pairs ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+wrote 1000 lines -> C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.ar-en.dev.en
+[14:43:03]   -> rc=0 in 103s
+[14:43:03] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-opus.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x00001510 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 115 in _shift
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 67 in translation_edit_rate
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 38 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+[14:43:21]   -> rc=3221225477 in 18s
+[14:43:21]   crash on attempt 1/5; retrying
+[14:43:24] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-opus.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x000051f0 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 115 in _shift
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 67 in translation_edit_rate
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 38 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+[14:43:27]   -> rc=3221225477 in 3s
+[14:43:27]   crash on attempt 2/5; retrying
+[14:43:30] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-opus.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x00006db4 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 395 in _edit_distance
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 328 in __call__
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 147 in _shift
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 67 in translation_edit_rate
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 38 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+[14:43:41]   -> rc=3221225477 in 10s
+[14:43:41]   crash on attempt 3/5; retrying
+[14:43:44] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-opus.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x000002a4 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 395 in _edit_distance
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 328 in __call__
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 147 in _shift
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 67 in translation_edit_rate
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 38 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+[14:43:58]   -> rc=3221225477 in 14s
+[14:43:58]   crash on attempt 4/5; retrying
+[14:44:01] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-opus.ar-en.dev.json
+Windows fatal exception: access violation
+Current thread 0x00003218 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\helpers.py", line 21 in extract_all_word_ngrams
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\bleu.py", line 390 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 437 in corpus_score
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 36 in main
+  File "C:\Users\Abrar\Desktop\PhD\AsianMT\scripts\evaluate.py", line 64 in <module>
+[14:44:01]   -> rc=3221225477 in 0s
+[14:44:01]   crash on attempt 5/5; retrying
+[14:53:07] === run_camera_ready.py 2026-09-05T11:53:07Z python=C:\Users\Abrar\venvs\asianmt\Scripts\python.exe GPU=0 ===
+[14:53:07] ################ ar-en ################
+[14:53:07]   skip MBR (exists): predictions\mbr5pub.ar-en.dev.en
+[14:53:07]   skip score (exists): results\camera_ready\loo-none.ar-en.dev.json
+[14:53:07]   skip MBR (exists): predictions\camera_ready\mbr-minus-nllb33b.ar-en.dev.en
+[14:53:07]   skip score (exists): results\camera_ready\loo-minus-nllb33b.ar-en.dev.json
+[14:53:07]   skip MBR (exists): predictions\camera_ready\mbr-minus-xalma-ft.ar-en.dev.en
+[14:53:07]   skip score (exists): results\camera_ready\loo-minus-xalma-ft.ar-en.dev.json
+[14:53:07]   skip MBR (exists): predictions\camera_ready\mbr-minus-xalma-cpo.ar-en.dev.en
+[14:53:07]   skip score (exists): results\camera_ready\loo-minus-xalma-cpo.ar-en.dev.json
+[14:53:07]   skip MBR (exists): predictions\camera_ready\mbr-minus-allam-ft.ar-en.dev.en
+[14:53:07]   skip score (exists): results\camera_ready\loo-minus-allam-ft.ar-en.dev.json
+[14:53:07]   skip MBR (exists): predictions\camera_ready\mbr-minus-opus.ar-en.dev.en
+[14:53:07] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.ar-en.dev.en --ref Ar-En/dev.en --src Ar-En/dev.ar --comet  > results\camera_ready\loo-minus-opus.ar-en.dev.json
+W0905 14:53:27.130000 26660 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[14:53:43]   -> rc=0 in 37s
+[14:53:43]   {"BLEU": 33.09, "chrF": 59.36, "TER": 57.35, "COMET": 0.8532}
+[14:53:43] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe -m sacrebleu Ar-En/dev.en -i C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.ar-en.dev.en predictions/allam-ft.ar-en.dev.en predictions/xalma-cpo.ar-en.dev.en predictions/nllb33b.ar-en.dev.en predictions/sampling-mbr.ar-en.dev.en -m bleu chrf ter --paired-bs --paired-bs-n 1000 -f text  > results\camera_ready\paired-bs.ar-en.txt
+sacreBLEU: Found 5 systems.
+sacreBLEU: Parallel tests are not supported on Windows.
+sacreBLEU: Pre-computing BLEU statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en'
+sacreBLEU: Pre-computing CHRF statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en'
+sacreBLEU: Pre-computing TER statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en'
+sacreBLEU: Computing BLEU for 'predictions/allam-ft.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/allam-ft.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/allam-ft.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing BLEU for 'predictions/xalma-cpo.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/xalma-cpo.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/xalma-cpo.ar-en.dev.en' and extracting sufficient statistics
+Windows fatal exception: access violation
+Current thread 0x000059a4 (most recent call first):
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 446 in _add_cache
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 332 in __call__
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 147 in _shift
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\lib_ter.py", line 67 in translation_edit_rate
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\ter.py", line 174 in _compute_segment_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\metrics\base.py", line 391 in _extract_corpus_statistics
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\significance.py", line 245 in _paired_bs_test
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\significance.py", line 415 in __call__
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\sacrebleu.py", line 566 in main
+  File "C:\Users\Abrar\venvs\asianmt\Lib\site-packages\sacrebleu\__main__.py", line 27 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main
+[14:54:32]   -> rc=3221225477 in 49s
+[14:54:32]   crash on attempt 1/25; retrying
+[14:54:35] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe -m sacrebleu Ar-En/dev.en -i C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.ar-en.dev.en predictions/allam-ft.ar-en.dev.en predictions/xalma-cpo.ar-en.dev.en predictions/nllb33b.ar-en.dev.en predictions/sampling-mbr.ar-en.dev.en -m bleu chrf ter --paired-bs --paired-bs-n 1000 -f text  > results\camera_ready\paired-bs.ar-en.txt
+sacreBLEU: Found 5 systems.
+sacreBLEU: Parallel tests are not supported on Windows.
+sacreBLEU: Pre-computing BLEU statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en'
+sacreBLEU: Pre-computing CHRF statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en'
+sacreBLEU: Pre-computing TER statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en'
+sacreBLEU: Computing BLEU for 'predictions/allam-ft.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/allam-ft.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/allam-ft.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing BLEU for 'predictions/xalma-cpo.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/xalma-cpo.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/xalma-cpo.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing BLEU for 'predictions/nllb33b.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/nllb33b.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/nllb33b.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing BLEU for 'predictions/sampling-mbr.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/sampling-mbr.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/sampling-mbr.ar-en.dev.en' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+[14:56:16]   -> rc=0 in 101s
+[14:56:16] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/paired_bootstrap_sacrebleu.py --ref Ar-En/dev.en --baseline C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.ar-en.dev.en --systems predictions/allam-ft.ar-en.dev.en predictions/xalma-cpo.ar-en.dev.en predictions/nllb33b.ar-en.dev.en predictions/sampling-mbr.ar-en.dev.en --names allam-ft xalma-cpo nllb33b sampling-mbr --n-resamples 1000 --out C:\Users\Abrar\Desktop\PhD\AsianMT\results\camera_ready\paired-bs.ar-en.json
+Parallel tests are not supported on Windows.
+{
+  "n": 1000,
+  "n_resamples": 1000,
+  "seed": "12345",
+  "signatures": {
+    "BLEU": "nrefs:1|bs:1000|seed:12345|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+    "chrF": "nrefs:1|bs:1000|seed:12345|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0",
+    "TER": "nrefs:1|bs:1000|seed:12345|case:lc|tok:tercom|norm:no|punct:yes|asian:no|version:2.6.0"
+  },
+  "baseline": {
+    "name": "mbr5pub",
+    "file": "C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en",
+    "BLEU": 32.9718,
+    "chrF": 59.1026,
+    "TER": 57.319
+  },
+  "systems": [
+    {
+      "name": "allam-ft",
+      "file": "predictions\\allam-ft.ar-en.dev.en",
+      "BLEU": {
+        "score": 33.0616,
+        "delta": 0.0898,
+        "bs_mean": 33.0518,
+        "ci95": 1.0409,
+        "p": 0.2947
+      },
+      "chrF": {
+        "score": 59.179,
+        "delta": 0.0764,
+        "bs_mean": 59.173,
+        "ci95": 0.8155,
+        "p": 0.2847
+      },
+      "TER": {
+        "score": 58.5621,
+        "delta": 1.2431,
+        "bs_mean": 58.5564,
+        "ci95": 1.2538,
+        "p": 0.002
+      }
+    },
+    {
+      "name": "xalma-cpo",
+      "file": "predictions\\xalma-cpo.ar-en.dev.en",
+      "BLEU": {
+        "score": 32.2326,
+        "delta": -0.7392,
+        "bs_mean": 32.1837,
+        "ci95": 1.0145,
+        "p": 0.006
+      },
+      "chrF": {
+        "score": 58.8119,
+        "delta": -0.2907,
+        "bs_mean": 58.8013,
+        "ci95": 0.8728,
+        "p": 0.039
+      },
+      "TER": {
+        "score": 58.5445,
+        "delta": 1.2255,
+        "bs_mean": 58.5388,
+        "ci95": 1.2867,
+        "p": 0.001
+      }
+    },
+    {
+      "name": "nllb33b",
+      "file": "predictions\\nllb33b.ar-en.dev.en",
+      "BLEU": {
+        "score": 31.5129,
+        "delta": -1.4589,
+        "bs_mean": 31.4877,
+        "ci95": 0.9719,
+        "p": 0.001
+      },
+      "chrF": {
+        "score": 57.8597,
+        "delta": -1.2429,
+        "bs_mean": 57.8478,
+        "ci95": 0.8212,
+        "p": 0.001
+      },
+      "TER": {
+        "score": 58.6426,
+        "delta": 1.3236,
+        "bs_mean": 58.6613,
+        "ci95": 1.2061,
+        "p": 0.001
+      }
+    },
+    {
+      "name": "sampling-mbr",
+      "file": "predictions\\sampling-mbr.ar-en.dev.en",
+      "BLEU": {
+        "score": 30.0602,
+        "delta": -2.9116,
+        "bs_mean": 30.0497,
+        "ci95": 0.9193,
+        "p": 0.001
+      },
+      "chrF": {
+        "score": 57.2596,
+        "delta": -1.843,
+        "bs_mean": 57.2519,
+        "ci95": 0.7816,
+        "p": 0.001
+      },
+      "TER": {
+        "score": 59.3296,
+        "delta": 2.0106,
+        "bs_mean": 59.3298,
+        "ci95": 1.1975,
+        "p": 0.001
+      }
+    }
+  ]
+}
+[14:58:32]   -> rc=0 in 136s
+[14:58:32] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/paired_bootstrap_comet.py --src Ar-En/dev.ar --ref Ar-En/dev.en --baseline C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.ar-en.dev.en --systems predictions/allam-ft.ar-en.dev.en predictions/xalma-cpo.ar-en.dev.en predictions/nllb33b.ar-en.dev.en predictions/sampling-mbr.ar-en.dev.en --names allam-ft xalma-cpo nllb33b sampling-mbr --n-resamples 1000 --seed 12345 --sentence-scores C:\Users\Abrar\Desktop\PhD\AsianMT\results\camera_ready\comet-sentence-scores.ar-en.json --out C:\Users\Abrar\Desktop\PhD\AsianMT\results\camera_ready\paired-bs-comet.ar-en.json
+W0905 14:58:38.320000 27984 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+scoring 5 hypothesis file(s) with Unbabel/wmt22-comet-da (gpus=1)
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.ar-en.dev.en: system_score=0.8531
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  predictions\allam-ft.ar-en.dev.en: system_score=0.8449
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  predictions\xalma-cpo.ar-en.dev.en: system_score=0.8468
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  predictions\nllb33b.ar-en.dev.en: system_score=0.8447
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  predictions\sampling-mbr.ar-en.dev.en: system_score=0.8524
+{
+  "model": "Unbabel/wmt22-comet-da",
+  "n": 1000,
+  "n_resamples": 1000,
+  "seed": 12345,
+  "baseline": {
+    "name": "mbr5pub",
+    "file": "C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.ar-en.dev.en",
+    "COMET": 0.8531
+  },
+  "systems": [
+    {
+      "name": "allam-ft",
+      "file": "predictions\\allam-ft.ar-en.dev.en",
+      "COMET": 0.8449,
+      "delta": -0.0082,
+      "delta_bs_mean": -0.0082,
+      "delta_ci95": [
+        -0.0099,
+        -0.0065
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "xalma-cpo",
+      "file": "predictions\\xalma-cpo.ar-en.dev.en",
+      "COMET": 0.8468,
+      "delta": -0.0063,
+      "delta_bs_mean": -0.0063,
+      "delta_ci95": [
+        -0.0075,
+        -0.0051
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "nllb33b",
+      "file": "predictions\\nllb33b.ar-en.dev.en",
+      "COMET": 0.8447,
+      "delta": -0.0084,
+      "delta_bs_mean": -0.0084,
+      "delta_ci95": [
+        -0.01,
+        -0.007
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "sampling-mbr",
+      "file": "predictions\\sampling-mbr.ar-en.dev.en",
+      "COMET": 0.8524,
+      "delta": -0.0007,
+      "delta_bs_mean": -0.0007,
+      "delta_ci95": [
+        -0.0019,
+        0.0006
+      ],
+      "p": 0.1009
+    }
+  ]
+}
+[14:59:32]   -> rc=0 in 60s
+[14:59:32] ################ en-ar ################
+[14:59:32] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/mbr_decode.py --src Ar-En/dev.en --candidates predictions/nllb33b.en-ar.dev.ar predictions/xalma-ft.en-ar.dev.ar predictions/xalma-cpo.en-ar.dev.ar predictions/allam-ft.en-ar.dev.ar predictions/opus.en-ar.dev.ar --output C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.en-ar.dev.ar
+GPU: NVIDIA GeForce RTX 4080 SUPER  torch: 2.11.0+cu128
+W0905 14:59:38.383000 28336 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+1000 sources x 5 candidate files (kept after length check)
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+scoring 24134 (hyp,pseudo-ref) pairs ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+wrote 1000 lines -> C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.en-ar.dev.ar
+[15:02:15]   -> rc=0 in 164s
+[15:02:15] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.en-ar.dev.ar --ref Ar-En/dev.ar --src Ar-En/dev.en --comet  > results\camera_ready\loo-none.en-ar.dev.json
+W0905 15:02:30.004000 3936 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[15:02:52]   -> rc=0 in 36s
+[15:02:52]   {"BLEU": 21.48, "chrF": 54.9, "TER": 68.97, "COMET": 0.8865}
+[15:02:52] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/mbr_decode.py --src Ar-En/dev.en --candidates predictions/xalma-ft.en-ar.dev.ar predictions/xalma-cpo.en-ar.dev.ar predictions/allam-ft.en-ar.dev.ar predictions/opus.en-ar.dev.ar --output C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-nllb33b.en-ar.dev.ar
+GPU: NVIDIA GeForce RTX 4080 SUPER  torch: 2.11.0+cu128
+W0905 15:02:58.394000 27728 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+1000 sources x 4 candidate files (kept after length check)
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+scoring 15433 (hyp,pseudo-ref) pairs ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+wrote 1000 lines -> C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-nllb33b.en-ar.dev.ar
+[15:04:46]   -> rc=0 in 114s
+[15:04:46] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-nllb33b.en-ar.dev.ar --ref Ar-En/dev.ar --src Ar-En/dev.en --comet  > results\camera_ready\loo-minus-nllb33b.en-ar.dev.json
+W0905 15:05:00.042000 21536 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[15:05:23]   -> rc=0 in 37s
+[15:05:23]   {"BLEU": 20.42, "chrF": 53.67, "TER": 70.65, "COMET": 0.8835}
+[15:05:23] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/mbr_decode.py --src Ar-En/dev.en --candidates predictions/nllb33b.en-ar.dev.ar predictions/xalma-cpo.en-ar.dev.ar predictions/allam-ft.en-ar.dev.ar predictions/opus.en-ar.dev.ar --output C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-xalma-ft.en-ar.dev.ar
+GPU: NVIDIA GeForce RTX 4080 SUPER  torch: 2.11.0+cu128
+W0905 15:05:29.635000 27908 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+1000 sources x 4 candidate files (kept after length check)
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+scoring 15843 (hyp,pseudo-ref) pairs ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+wrote 1000 lines -> C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-xalma-ft.en-ar.dev.ar
+[15:07:19]   -> rc=0 in 116s
+[15:07:19] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-xalma-ft.en-ar.dev.ar --ref Ar-En/dev.ar --src Ar-En/dev.en --comet  > results\camera_ready\loo-minus-xalma-ft.en-ar.dev.json
+W0905 15:07:33.982000 19020 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[15:07:56]   -> rc=0 in 37s
+[15:07:56]   {"BLEU": 21.52, "chrF": 55.1, "TER": 69.08, "COMET": 0.8863}
+[15:07:56] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/mbr_decode.py --src Ar-En/dev.en --candidates predictions/nllb33b.en-ar.dev.ar predictions/xalma-ft.en-ar.dev.ar predictions/allam-ft.en-ar.dev.ar predictions/opus.en-ar.dev.ar --output C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-xalma-cpo.en-ar.dev.ar
+GPU: NVIDIA GeForce RTX 4080 SUPER  torch: 2.11.0+cu128
+W0905 15:08:02.627000 25972 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+1000 sources x 4 candidate files (kept after length check)
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+scoring 15843 (hyp,pseudo-ref) pairs ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+wrote 1000 lines -> C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-xalma-cpo.en-ar.dev.ar
+[15:09:52]   -> rc=0 in 116s
+[15:09:52] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-xalma-cpo.en-ar.dev.ar --ref Ar-En/dev.ar --src Ar-En/dev.en --comet  > results\camera_ready\loo-minus-xalma-cpo.en-ar.dev.json
+W0905 15:10:06.036000 20256 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[15:10:29]   -> rc=0 in 37s
+[15:10:29]   {"BLEU": 21.65, "chrF": 55.07, "TER": 68.73, "COMET": 0.8865}
+[15:10:29] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/mbr_decode.py --src Ar-En/dev.en --candidates predictions/nllb33b.en-ar.dev.ar predictions/xalma-ft.en-ar.dev.ar predictions/xalma-cpo.en-ar.dev.ar predictions/opus.en-ar.dev.ar --output C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.en-ar.dev.ar
+GPU: NVIDIA GeForce RTX 4080 SUPER  torch: 2.11.0+cu128
+W0905 15:10:35.392000 25312 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+1000 sources x 4 candidate files (kept after length check)
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+scoring 15356 (hyp,pseudo-ref) pairs ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+wrote 1000 lines -> C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.en-ar.dev.ar
+[15:12:22]   -> rc=0 in 113s
+[15:12:22] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-allam-ft.en-ar.dev.ar --ref Ar-En/dev.ar --src Ar-En/dev.en --comet  > results\camera_ready\loo-minus-allam-ft.en-ar.dev.json
+W0905 15:12:35.914000 26548 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[15:12:58]   -> rc=0 in 36s
+[15:12:58]   {"BLEU": 20.45, "chrF": 53.74, "TER": 70.09, "COMET": 0.8831}
+[15:12:58] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/mbr_decode.py --src Ar-En/dev.en --candidates predictions/nllb33b.en-ar.dev.ar predictions/xalma-ft.en-ar.dev.ar predictions/xalma-cpo.en-ar.dev.ar predictions/allam-ft.en-ar.dev.ar --output C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.en-ar.dev.ar
+GPU: NVIDIA GeForce RTX 4080 SUPER  torch: 2.11.0+cu128
+W0905 15:13:04.422000 5280 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+1000 sources x 4 candidate files (kept after length check)
+loading MBR utility model Unbabel/wmt22-comet-da ...
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+scoring 15422 (hyp,pseudo-ref) pairs ...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+wrote 1000 lines -> C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.en-ar.dev.ar
+[15:14:52]   -> rc=0 in 114s
+[15:14:52] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/evaluate.py --hyp C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\camera_ready\mbr-minus-opus.en-ar.dev.ar --ref Ar-En/dev.ar --src Ar-En/dev.en --comet  > results\camera_ready\loo-minus-opus.en-ar.dev.json
+W0905 15:15:05.532000 10636 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+[15:15:27]   -> rc=0 in 36s
+[15:15:27]   {"BLEU": 21.1, "chrF": 54.29, "TER": 69.17, "COMET": 0.8852}
+[15:15:27] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe -m sacrebleu Ar-En/dev.ar -i C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.en-ar.dev.ar predictions/allam-ft.en-ar.dev.ar predictions/xalma-cpo.en-ar.dev.ar predictions/nllb33b.en-ar.dev.ar predictions/sampling-mbr.en-ar.dev.ar -m bleu chrf ter --paired-bs --paired-bs-n 1000 -f text  > results\camera_ready\paired-bs.en-ar.txt
+sacreBLEU: Found 5 systems.
+sacreBLEU: Parallel tests are not supported on Windows.
+sacreBLEU: Pre-computing BLEU statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.en-ar.dev.ar'
+sacreBLEU: Pre-computing CHRF statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.en-ar.dev.ar'
+sacreBLEU: Pre-computing TER statistics for 'Baseline: C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.en-ar.dev.ar'
+sacreBLEU: Computing BLEU for 'predictions/allam-ft.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/allam-ft.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/allam-ft.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing BLEU for 'predictions/xalma-cpo.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/xalma-cpo.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/xalma-cpo.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing BLEU for 'predictions/nllb33b.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/nllb33b.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/nllb33b.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing BLEU for 'predictions/sampling-mbr.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing chrF2 for 'predictions/sampling-mbr.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+sacreBLEU: Computing TER for 'predictions/sampling-mbr.en-ar.dev.ar' and extracting sufficient statistics
+sacreBLEU:  > Performing paired bootstrap resampling test (# resamples: 1000)
+[15:16:11]   -> rc=0 in 44s
+[15:16:11] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/paired_bootstrap_sacrebleu.py --ref Ar-En/dev.ar --baseline C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.en-ar.dev.ar --systems predictions/allam-ft.en-ar.dev.ar predictions/xalma-cpo.en-ar.dev.ar predictions/nllb33b.en-ar.dev.ar predictions/sampling-mbr.en-ar.dev.ar --names allam-ft xalma-cpo nllb33b sampling-mbr --n-resamples 1000 --out C:\Users\Abrar\Desktop\PhD\AsianMT\results\camera_ready\paired-bs.en-ar.json
+Parallel tests are not supported on Windows.
+{
+  "n": 1000,
+  "n_resamples": 1000,
+  "seed": "12345",
+  "signatures": {
+    "BLEU": "nrefs:1|bs:1000|seed:12345|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+    "chrF": "nrefs:1|bs:1000|seed:12345|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0",
+    "TER": "nrefs:1|bs:1000|seed:12345|case:lc|tok:tercom|norm:no|punct:yes|asian:no|version:2.6.0"
+  },
+  "baseline": {
+    "name": "mbr5pub",
+    "file": "C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.en-ar.dev.ar",
+    "BLEU": 21.4818,
+    "chrF": 54.8963,
+    "TER": 68.9694
+  },
+  "systems": [
+    {
+      "name": "allam-ft",
+      "file": "predictions\\allam-ft.en-ar.dev.ar",
+      "BLEU": {
+        "score": 21.7394,
+        "delta": 0.2576,
+        "bs_mean": 21.7247,
+        "ci95": 0.9301,
+        "p": 0.1758
+      },
+      "chrF": {
+        "score": 54.403,
+        "delta": -0.4932,
+        "bs_mean": 54.4026,
+        "ci95": 0.7712,
+        "p": 0.017
+      },
+      "TER": {
+        "score": 69.1046,
+        "delta": 0.1351,
+        "bs_mean": 69.1227,
+        "ci95": 1.35,
+        "p": 0.2567
+      }
+    },
+    {
+      "name": "xalma-cpo",
+      "file": "predictions\\xalma-cpo.en-ar.dev.ar",
+      "BLEU": {
+        "score": 17.7651,
+        "delta": -3.7167,
+        "bs_mean": 17.7391,
+        "ci95": 0.8509,
+        "p": 0.001
+      },
+      "chrF": {
+        "score": 50.4369,
+        "delta": -4.4594,
+        "bs_mean": 50.4465,
+        "ci95": 0.8578,
+        "p": 0.001
+      },
+      "TER": {
+        "score": 74.347,
+        "delta": 5.3776,
+        "bs_mean": 74.3811,
+        "ci95": 1.2238,
+        "p": 0.001
+      }
+    },
+    {
+      "name": "nllb33b",
+      "file": "predictions\\nllb33b.en-ar.dev.ar",
+      "BLEU": {
+        "score": 21.1863,
+        "delta": -0.2955,
+        "bs_mean": 21.1468,
+        "ci95": 0.9002,
+        "p": 0.0999
+      },
+      "chrF": {
+        "score": 54.5848,
+        "delta": -0.3115,
+        "bs_mean": 54.5782,
+        "ci95": 0.7211,
+        "p": 0.039
+      },
+      "TER": {
+        "score": 68.278,
+        "delta": -0.6915,
+        "bs_mean": 68.3107,
+        "ci95": 1.1565,
+        "p": 0.016
+      }
+    },
+    {
+      "name": "sampling-mbr",
+      "file": "predictions\\sampling-mbr.en-ar.dev.ar",
+      "BLEU": {
+        "score": 18.7193,
+        "delta": -2.7624,
+        "bs_mean": 18.6919,
+        "ci95": 0.8398,
+        "p": 0.001
+      },
+      "chrF": {
+        "score": 52.7421,
+        "delta": -2.1541,
+        "bs_mean": 52.7435,
+        "ci95": 0.7387,
+        "p": 0.001
+      },
+      "TER": {
+        "score": 71.2606,
+        "delta": 2.2912,
+        "bs_mean": 71.2847,
+        "ci95": 1.2123,
+        "p": 0.001
+      }
+    }
+  ]
+}
+[15:16:53]   -> rc=0 in 42s
+[15:16:53] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/paired_bootstrap_comet.py --src Ar-En/dev.en --ref Ar-En/dev.ar --baseline C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.en-ar.dev.ar --systems predictions/allam-ft.en-ar.dev.ar predictions/xalma-cpo.en-ar.dev.ar predictions/nllb33b.en-ar.dev.ar predictions/sampling-mbr.en-ar.dev.ar --names allam-ft xalma-cpo nllb33b sampling-mbr --n-resamples 1000 --seed 12345 --sentence-scores C:\Users\Abrar\Desktop\PhD\AsianMT\results\camera_ready\comet-sentence-scores.en-ar.json --out C:\Users\Abrar\Desktop\PhD\AsianMT\results\camera_ready\paired-bs-comet.en-ar.json
+W0905 15:16:59.618000 25824 Lib\site-packages\torch\utils\flop_counter.py:29] triton not found; flop counting will not work for triton kernels
+scoring 5 hypothesis file(s) with Unbabel/wmt22-comet-da (gpus=1)
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.6.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint C:\Users\Abrar\.cache\huggingface\hub\models--Unbabel--wmt22-comet-da\snapshots\2760a223ac957f30acfb18c8aa649b01cf1d75f2\checkpoints\model.ckpt`
+Encoder model frozen.
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\core\saving.py:197: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+You are using a CUDA device ('NVIDIA GeForce RTX 4080 SUPER') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  C:\Users\Abrar\Desktop\PhD\AsianMT\predictions\mbr5pub.en-ar.dev.ar: system_score=0.8865
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  predictions\allam-ft.en-ar.dev.ar: system_score=0.8750
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  predictions\xalma-cpo.en-ar.dev.ar: system_score=0.8630
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  predictions\nllb33b.en-ar.dev.ar: system_score=0.8789
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+C:\Users\Abrar\venvs\asianmt\Lib\site-packages\pytorch_lightning\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  predictions\sampling-mbr.en-ar.dev.ar: system_score=0.8862
+{
+  "model": "Unbabel/wmt22-comet-da",
+  "n": 1000,
+  "n_resamples": 1000,
+  "seed": 12345,
+  "baseline": {
+    "name": "mbr5pub",
+    "file": "C:\\Users\\Abrar\\Desktop\\PhD\\AsianMT\\predictions\\mbr5pub.en-ar.dev.ar",
+    "COMET": 0.8865
+  },
+  "systems": [
+    {
+      "name": "allam-ft",
+      "file": "predictions\\allam-ft.en-ar.dev.ar",
+      "COMET": 0.875,
+      "delta": -0.0115,
+      "delta_bs_mean": -0.0115,
+      "delta_ci95": [
+        -0.0133,
+        -0.0099
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "xalma-cpo",
+      "file": "predictions\\xalma-cpo.en-ar.dev.ar",
+      "COMET": 0.863,
+      "delta": -0.0235,
+      "delta_bs_mean": -0.0235,
+      "delta_ci95": [
+        -0.0257,
+        -0.0213
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "nllb33b",
+      "file": "predictions\\nllb33b.en-ar.dev.ar",
+      "COMET": 0.8789,
+      "delta": -0.0076,
+      "delta_bs_mean": -0.0076,
+      "delta_ci95": [
+        -0.009,
+        -0.0062
+      ],
+      "p": 0.001
+    },
+    {
+      "name": "sampling-mbr",
+      "file": "predictions\\sampling-mbr.en-ar.dev.ar",
+      "COMET": 0.8862,
+      "delta": -0.0002,
+      "delta_bs_mean": -0.0002,
+      "delta_ci95": [
+        -0.0012,
+        0.0008
+      ],
+      "p": 0.2418
+    }
+  ]
+}
+[15:17:53]   -> rc=0 in 60s
+[15:17:53] building camera_ready_experiments.md
+[15:17:53] $ C:\Users\Abrar\venvs\asianmt\Scripts\python.exe scripts/camera_ready_report.py
+wrote camera_ready_experiments.md  (missing inputs: 0, missing result files: 0, flagged p>=0.05: 7)
+[15:17:53]   -> rc=0 in 0s
+[15:17:53] done.
